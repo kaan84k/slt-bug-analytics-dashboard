@@ -1,0 +1,123 @@
+bug_category,count,summary,key_findings,suggested_actions,priority_level,additional_notes,latest_date,versions_affected
+Login Error,122,"SUMMARY:**
+Many users are facing issues related to logging in to the app, encountering various error messages and difficulties with account access.","KEY FINDINGS:**
+- Users experiencing difficulty logging in, encountering error messages such as ""oops something went wrong,"" ""invalid username or password,"" and ""error says there must be only 10 digits to a user name.""
+- Some users unable to link their account, facing issues with account verification and login credentials.
+- Reports of inconsistent behavior when resetting passwords or creating new accounts.
+- Complaints about misleading information regarding using existing credentials for login.
+- Instances of app crashing during the login process.","SUGGESTED ACTIONS:**
+- Investigate and address the root cause of login errors, such as incorrect validation checks and inconsistent password reset mechanisms.
+- Review the account linking process and ensure seamless integration for users.
+- Clarify and improve messaging related to account credentials and registration requirements.
+- Conduct thorough testing, especially on different network connections, to prevent login failures due to connectivity issues.",Critical,"PRIORITY LEVEL:**
+- Critical: The login issues have a high user impact as they prevent access to the app and account information. The frequency of reports indicates a widespread problem that needs urgent attention. The technical severity is significant as it affects core functionality.",2025-04-28 19:25:33,"1.0.4, 1.2.2, 1.0.0, 2.0.8, 1.3.2, 1.6.1, 1.4.1, 1.0.6, 1.4.2, 2.0.2, 1.0.9, 1.5.4, 1.2.8, 1.6.0, 1.7.0, 2.1.0, 1.5.2"
+Update Issue,54,"SUMMARY:
+Users have reported various issues related to the update process of the app. These include difficulties in updating the app, encountering errors during the update process, and facing issues with account data loss or functionality after updates.","KEY FINDINGS:
+- Users experiencing challenges in updating the app from the Play Store.
+- Account data loss or service unavailability after updates.
+- Errors such as ""internal error"" or ""service temporarily unavailable"" preventing successful updates.
+- App not showing updates correctly or failing to update even after attempting to do so.","SUGGESTED ACTIONS:
+- Investigate and resolve the issue causing the app to not update properly from the Play Store.
+- Address the account data loss and service unavailability problems users face after updates.
+- Fix errors like ""internal error"" and ""service temporarily unavailable"" to ensure successful updates.
+- Improve the update mechanism to accurately reflect available updates and complete the update process reliably.",Critical,"PRIORITY LEVEL:
+- Critical: The inability to update the app and the resulting issues with account data loss and service unavailability have a high user impact and occur frequently, indicating a critical priority for resolution.",2025-05-06 00:29:40,"1.2.2, 1.7.0, 1.4.1, 1.0.9, 1.3.2, 2.0.2, 1.4.2, 1.6.0, 1.6.1, 1.8.0, 1.5.2, 2.0.8, 1.0.5, 1.5.4, 1.0.6, 1.0.0"
+Crash/Freeze,144,"SUMMARY:
+Users are reporting frequent crashes, errors, and service unavailability issues in the app. These issues are impacting various functionalities like updating contact information, accessing package details, submitting complaints, and using the app's features. The app is also reported to have a slow startup time.","KEY FINDINGS:
+- Frequent crashes and errors reported by multiple users.
+- Service unavailability messages causing inconvenience.
+- Specific functionalities like history tab, contact information update, package details, and complaint submission are affected.
+- Slow app startup time reported by some users.","SUGGESTED ACTIONS:
+- Investigate and address the root cause of the crashes and errors leading to the app instability.
+- Improve error handling mechanisms to provide clearer messages to users when services are temporarily unavailable.
+- Fix specific functionalities such as the history tab, contact information update, package details retrieval, and complaint submission.
+- Optimize app startup time to enhance user experience.",Critical,"PRIORITY LEVEL:
+- **Critical**: The app crashes frequently, impacting user experience and functionality across various features.
+- **High**: Service unavailability issues are reported, affecting users' ability to use the app effectively.
+- **Medium**: Specific functional issues like history tab not working, contact information update failure, and package details unavailability need to be addressed promptly.
+- **Low**: Slow app startup time, while important for user experience, may be considered less critical compared to frequent crashes and service unavailability.",2025-05-21 12:21:09,"1.2.2, 1.5.4, 1.3.2, 1.0.9, 1.7.0, 1.8.0, 1.2.8, 1.0.0, 1.6.1, 1.0.6, 2.0.8, 1.5.2, 1.4.2, 2.1.0, 1.4.1, 1.6.0, 1.5.9"
+Server Error,5,"SUMMARY:
+Users have reported encountering internal server errors while using the application, leading to frustration and difficulty in using the app effectively. The errors seem to be recurring across different versions and impacting the user experience negatively.","KEY FINDINGS:
+- Internal server errors occurring during various actions within the application.
+- Users experiencing multiple error messages, including system errors, leading to confusion and frustration.
+- Inconsistent error messages and occurrences across different app versions.","SUGGESTED ACTIONS:
+- Review server-side logs to identify the root cause of internal server errors.
+- Implement better error handling mechanisms to provide more informative and user-friendly error messages.
+- Conduct thorough testing to replicate and resolve the internal server error issues across different scenarios and versions.",Critical,"PRIORITY LEVEL:
+- **High**
+  - User impact: Internal server errors are disrupting user experience and causing frustration.
+  - Frequency of reports: Multiple users have reported encountering server errors.
+  - Technical severity: The recurring nature of internal server errors indicates a critical technical issue that needs immediate attention.",2025-01-16 21:16:06,"1.8.0, 2.0.8, 1.4.2"
+Slow Performance,23,"SUMMARY:
+Users have reported slow performance issues with the app, including loading delays, service unavailability messages, and overall sluggish response times.","KEY FINDINGS:
+- App instability leading to loading failures
+- Random errors such as ""oops something went wrong"" and ""service unavailable""
+- Slow loading times causing frustration and hindering user experience
+- Requests for optional updates due to slow connections
+- Service temporarily unavailable messages impacting app usability","SUGGESTED ACTIONS:
+- Investigate and address app instability causing loading failures
+- Improve error handling to provide more informative error messages
+- Optimize app loading times for better performance
+- Implement optional update feature for users with slow connections
+- Address service unavailability issues promptly to enhance user experience",Critical,"PRIORITY LEVEL:
+- Critical: App instability and loading failures directly impact user experience and app usability.
+- High: Slow loading times and service unavailability are recurring issues affecting a significant number of users.
+- Medium: Optional update feature and error handling improvements can enhance overall user satisfaction.
+- Low: Addressing false data measurement issues can be prioritized after critical and high priority fixes.",2025-04-29 18:34:17,"1.7.0, 1.8.0, 1.0.9, 1.0.0, 1.3.2, 1.6.1, 1.6.0, 2.1.0, 1.2.8, 1.4.2, 2.0.6"
+Payment Issue,119,"SUMMARY:
+Users have reported various payment-related issues with the app, including problems with making payments, updating payment status, viewing bills, and using payment gateways. These issues have led to frustration among users due to the inability to complete transactions successfully.","KEY FINDINGS:
+- Payment gateway issues causing failed transactions.
+- Inability to update payment status accurately.
+- Users experiencing session timeouts during payment.
+- Problems with creating complaints related to payments.
+- Unreliable OTP verification for debit card payments.","SUGGESTED ACTIONS:
+- Investigate and fix the payment gateway integration to ensure smooth transactions.
+- Implement a mechanism to update payment statuses promptly after successful transactions.
+- Address session timeout errors during payment sessions to prevent disruptions.
+- Resolve the issue with creating complaints related to payments.
+- Improve OTP verification for debit card payments to enhance security and reliability.",Critical,"PRIORITY LEVEL:
+- Critical: The payment issues directly impact user transactions and can lead to financial inconveniences.
+- High: The frequency of reports indicates a widespread problem affecting a significant number of users.
+- Medium: The technical severity of the issues requires prompt attention to maintain user trust and satisfaction.",2025-05-02 11:00:54,"1.3.2, 1.2.2, 2.0.8, 1.6.1, 1.7.0, 1.4.2, 1.5.2, 1.6.0, 1.5.4, 1.0.0, 1.2.8, 1.8.0, 2.0.6, 1.0.6, 1.0.5, 1.5.9, 1.0.9, 1.3.0, 2.1.0, 1.0.4, 1.4.1"
+Network/Connection,66,"SUMMARY:
+Users have reported various issues related to network/connection in the app, including service unavailability, inability to add or reload prepaid routers, poor connection quality, and error messages indicating service issues. These issues are impacting user experience and functionality.","KEY FINDINGS:
+- Service unavailability reported by multiple users.
+- Inability to add or reload prepaid routers.
+- Poor connection quality leading to slow speeds and signal issues.
+- Error messages indicating service issues and account details not available.","SUGGESTED ACTIONS:
+- Investigate and address the root cause of service unavailability.
+- Improve the functionality for adding and reloading prepaid routers.
+- Optimize network performance to enhance connection quality and speed.
+- Fix error messages related to service availability and account details.",Critical,"PRIORITY LEVEL:
+- Critical: Service unavailability and inability to add/reload prepaid routers directly impact user functionality and experience.
+- High: Poor connection quality and frequent error messages affect user satisfaction and usage.
+- Medium: Issues related to slow network speeds and signal problems should be addressed to improve overall performance.",2025-05-23 18:39:00,"1.6.1, 1.0.6, 1.3.2, 1.7.0, 1.8.0, 1.5.2, 1.4.1, 1.0.4, 1.6.0, 1.2.8, 2.0.2, 1.4.2, 1.0.0, 2.1.0, 1.5.9, 1.5.8, 2.0.8, 1.5.4"
+Notification Problem,2,"SUMMARY:
+Users have reported issues related to receiving error notifications when logging into the app and encountering ""service temporary unavailable"" notifications frequently, impacting the app's functionality.","KEY FINDINGS:
+- Error notification displayed during app login.
+- Frequent ""service temporary unavailable"" notifications affecting app usage.","SUGGESTED ACTIONS:
+- Investigate the root cause of the error notification during app login.
+- Enhance error handling mechanisms to provide more informative notifications.
+- Improve service availability to reduce occurrences of ""service temporary unavailable"" notifications.",High,"PRIORITY LEVEL:
+- **High**
+  - User impact: Users are unable to access the app due to error notifications.
+  - Frequency of reports: Multiple users have encountered the issue.
+  - Technical severity: Both issues indicate potential backend system or connectivity problems.",2023-08-26 05:13:47,"1.7.0, 1.6.1"
+UI Issue,37,"SUMMARY:
+Users have reported various UI issues with the app, including slow responsiveness, unavailability of features like adding extra GB, error messages, unresponsive buttons, and difficulty in finding package details. Complaint submission and bill payment functionalities are also problematic.","KEY FINDINGS:
+- Slow or unresponsive UI
+- Inability to add extra GB
+- Error messages like ""service temporarily unavailable""
+- Unresponsive buttons and features
+- Difficulty in accessing package details
+- Issues with complaint submission and bill payment functionalities","SUGGESTED ACTIONS:
+- Improve app responsiveness and performance to address slow UI and unresponsiveness.
+- Fix bugs related to adding extra GB, error messages, and unresponsive buttons.
+- Enhance error handling for ""service temporarily unavailable"" messages.
+- Conduct a thorough review of the UI components, especially buttons and input fields.
+- Ensure all features like complaint submission and bill payment work seamlessly.","Critical
+By addressing these UI issues promptly, the development team can enhance the user experience and improve the overall performance of the app.","PRIORITY LEVEL:
+- Critical: Issues impacting core functionalities like adding extra GB, error messages, and unresponsive buttons.
+- High: Problems related to complaint submission and bill payment functionalities.
+- Medium: UI responsiveness and difficulty in accessing package details.
+- Low: Specific issues reported by individual users like protocol report display and history tab details.",2025-04-22 20:22:39,"2.1.0, 1.0.0, 1.6.1, 1.7.0, 1.4.2, 2.0.2, 1.3.2, 1.0.6, 1.8.0, 1.3.0, 1.6.0, 2.0.8, 1.0.5, 1.4.1"
