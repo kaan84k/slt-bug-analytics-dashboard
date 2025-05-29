@@ -33,14 +33,12 @@ def main():
     # Step 3: Initial bug categorization
     run_step('bug__categories.py', 3, "Initial bug categorization")
     
-    # Step 4: Reclassify bugs using SBERT
-    run_step('reclassified_bugs_with_sbert.py', 4, "Reclassifying bugs with SBERT")
+    # Step 4: Reclassify 'Other' bugs using SBERT, cluster for insights, and apply final keyword categorization
+    run_step('reclassified_bugs_with_sbert.py', 4, "Reclassifying 'Other' bugs, clustering, and final keyword categorization")
     
-    # Step 5: Generate final bug analysis and insights
-    run_step('bug__categories_v2.py', 5, "Generating final bug analysis")
-    
-    # Step 6: Generate developer summaries
-    run_step('developer_summary.py', 6, "Generating developer summaries")
+    # Step 5 (formerly Step 6): Create developer-focused summaries using OpenAI GPT
+    # This now uses 'reclassified_bugs_with_sbert.csv' which has the final categories.
+    run_step('developer_summary.py', 5, "Generating developer summaries with GPT")
 
     end_time = time.time()
     duration = end_time - start_time
@@ -49,9 +47,10 @@ def main():
     print("\nOutput files generated:")
     print("- slt_selfcare_google_reviews.csv (Raw app reviews)")
     print("- prioritized_bugs.csv (Identified bug reports)")
-    print("- categorized_bugs.csv (Initially categorized bugs)")
-    print("- reclassified_bugs_with_sbert.csv (Final bug classification)")
-    print("- developer_bug_summaries.csv (Developer insights)")
+    print("- categorized_bugs.csv (Initially categorized bugs by bug_categories.py)")
+    print("- reclassified_bugs_with_sbert.csv (SBERT reclassification + final keyword override by reclassified_bugs_with_sbert.py)")
+    print("- developer_bug_summaries.csv (Developer insights from developer_summary.py)")
+    print("- gpt_summary_cache.json (Cache file from developer_summary.py)")
       # Check if all required files exist
     required_files = [
         'slt_selfcare_google_reviews.csv',

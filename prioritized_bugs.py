@@ -10,6 +10,7 @@ import seaborn as sns
 from tqdm import tqdm
 import re
 import logging
+import torch
 
 # Set up logging
 logging.basicConfig(
@@ -28,25 +29,18 @@ logger.info(f"Columns: {df.columns.tolist()}")
 logger.info(f"Missing values: \n{df.isnull().sum()}")
 
 # Preprocess the reviews
-def preprocess_text(text):
-    if pd.isna(text) or text == '':
-        return ''
-    text = str(text).lower()
-    text = re.sub(r'[^a-zA-Z0-9\s]', ' ', text)
-    text = re.sub(r'\s+', ' ', text).strip()
-    return text
+# Vectorized preprocessing for 'processed_review'
+df['processed_review'] = df['review_description'].fillna('').str.lower()
+df['processed_review'] = df['processed_review'].str.replace(r'[^a-zA-Z0-9\s]', ' ', regex=True)
+df['processed_review'] = df['processed_review'].str.replace(r'\s+', ' ', regex=True).str.strip()
 
-def count_bug_keywords(text):
-    count = 0
-    text = text.lower()
-    for keyword in bug_keywords:
-        if keyword in text:
-            count += 1
-    return count
+# Ensure 'review_description' is also preprocessed if used elsewhere, or simply use 'processed_review' consistently.
+# For now, let's assume 'processed_review' is the primary column for text analysis.
+# If 'review_description' itself needs to be clean for other purposes, apply the same:
+df['review_description'] = df['review_description'].fillna('').str.lower()
+df['review_description'] = df['review_description'].str.replace(r'[^a-zA-Z0-9\s]', ' ', regex=True)
+df['review_description'] = df['review_description'].str.replace(r'\s+', ' ', regex=True).str.strip()
 
-# Handle missing values and preprocess
-df['review_description'] = df['review_description'].fillna('').apply(preprocess_text)
-df['processed_review'] = df['review_description'].apply(preprocess_text)
 
 # Add additional features
 df['review_length'] = df['processed_review'].apply(len)
@@ -56,13 +50,16 @@ df['word_count'] = df['processed_review'].apply(lambda x: len(x.split()) if x el
 bug_keywords = ['crash', 'bug', 'error', 'freeze', 'frozen', 'stuck', 'fix',
                'issue', 'problem', 'glitch', 'not working', 'broken', 'failed']
 
+# Compile the regex pattern for bug keywords for efficiency
+bug_keyword_pattern = re.compile(r'|'.join(bug_keywords), flags=re.IGNORECASE)
+
 def count_bug_keywords(text):
-    count = 0
-    text = text.lower()
-    for keyword in bug_keywords:
-        if keyword in text:
-            count += 1
-    return count
+    if pd.isna(text) or text == '':
+        return 0
+    # Text is already preprocessed (lowercased) before being passed to this function
+    # if it comes from 'processed_review'
+    matches = re.findall(bug_keyword_pattern, str(text).lower()) # ensure lowercasing if text is not from processed_review
+    return len(matches)
 
 df['bug_keyword_count'] = df['processed_review'].apply(count_bug_keywords)
 
@@ -74,21 +71,27 @@ if 'rating' in df.columns:
     df['rating'] = df['rating'].fillna(median_rating)
 
 # Step 2: Embed reviews using a pretrained model
+# Determine device for SentenceTransformer
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+logger.info(f"Using device: {device} for SentenceTransformer models")
+
 logger.info("Loading transformer model...")
-model = SentenceTransformer('all-MiniLM-L6-v2')  # Fast and good quality
+model = SentenceTransformer('all-MiniLM-L6-v2', device=device)  # Fast and good quality
 
 # Only encode non-empty reviews
 non_empty_indices = df.index[df['processed_review'] != ''].tolist()
 non_empty_reviews = df.loc[non_empty_indices, 'processed_review'].tolist()
 
 logger.info(f"Encoding {len(non_empty_reviews)} non-empty reviews...")
+# Batch size for encoding. If using GPU, can be increased depending on GPU memory (e.g., 64, 128).
 batch_size = 32  # Adjust based on your memory constraints
 review_embeddings = np.zeros((len(df), model.get_sentence_embedding_dimension()))
 
 # Process in batches with progress bar
+# model.encode will use the device the model is on.
 for i in tqdm(range(0, len(non_empty_reviews), batch_size)):
     batch = non_empty_reviews[i:i+batch_size]
-    batch_embeddings = model.encode(batch)
+    batch_embeddings = model.encode(batch) # No explicit device= needed here, it uses model's device
     for j, idx in enumerate(non_empty_indices[i:i+batch_size]):
         review_embeddings[idx] = batch_embeddings[j]
 
@@ -118,8 +121,13 @@ labeled_examples = [
 ]
 
 train_texts, train_labels = zip(*labeled_examples)
-train_texts_processed = [preprocess_text(text) for text in train_texts]
-train_embeddings = model.encode(train_texts_processed)
+# Preprocess training texts using the same vectorized logic for consistency (applied to a series)
+train_texts_series = pd.Series(train_texts)
+train_texts_processed = train_texts_series.fillna('').str.lower()
+train_texts_processed = train_texts_processed.str.replace(r'[^a-zA-Z0-9\s]', ' ', regex=True)
+train_texts_processed = train_texts_processed.str.replace(r'\s+', ' ', regex=True).str.strip().tolist()
+# model.encode will use the device the model is on.
+train_embeddings = model.encode(train_texts_processed) # No explicit device= needed here
 
 # Step 4: Train and optimize classifier
 logger.info("Training and optimizing classifier...")
@@ -178,7 +186,8 @@ pseudo_labels = [1] * len(pseudo_bug_indices) + [0] * len(pseudo_nonbug_indices)
 
 # Only add if there are enough pseudo-labeled samples
 if len(pseudo_texts) > 0:
-    pseudo_embeddings = model.encode(pseudo_texts)
+    # model.encode will use the device the model is on.
+    pseudo_embeddings = model.encode(pseudo_texts) # No explicit device= needed here
     # Combine with original labeled data
     all_embeddings = np.vstack([train_embeddings, pseudo_embeddings])
     all_labels = np.concatenate([train_labels, pseudo_labels])

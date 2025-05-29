@@ -2,10 +2,13 @@ import pandas as pd
 import os
 import time
 import logging
-from openai import OpenAI
+from openai import AsyncOpenAI # Changed import
 from dotenv import load_dotenv
-from tqdm import tqdm
+# from tqdm import tqdm # tqdm might be removed or replaced for async
 import sys
+import asyncio # Added asyncio
+import json # Added for caching
+from datetime import datetime # Added for cache timestamp
 
 # Set up logging
 logging.basicConfig(
@@ -22,8 +25,46 @@ if not os.getenv("OPENAI_API_KEY"):
     logger.error("OPENAI_API_KEY not found. Please create a .env file with your API key.")
     sys.exit(1)
 
-# Configure OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Configure OpenAI client (Async)
+client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+# --- Caching Setup ---
+CACHE_FILE_PATH = "gpt_summary_cache.json"
+
+def generate_review_hash(reviews_df):
+    """Generates a simple hash based on the number of reviews."""
+    # For simplicity, using review count. A more robust hash could involve content.
+    return str(len(reviews_df))
+
+def load_cache():
+    """Loads the cache from a JSON file."""
+    if os.path.exists(CACHE_FILE_PATH):
+        try:
+            with open(CACHE_FILE_PATH, 'r') as f:
+                logger.info(f"Loading cache from {CACHE_FILE_PATH}")
+                return json.load(f)
+        except (IOError, json.JSONDecodeError) as e:
+            logger.warning(f"Error loading cache file {CACHE_FILE_PATH}: {e}. Starting with an empty cache.")
+            return {}
+    return {}
+
+def save_cache(cache_data):
+    """Saves the cache to a JSON file."""
+    try:
+        with open(CACHE_FILE_PATH, 'w') as f:
+            json.dump(cache_data, f, indent=4)
+        logger.info(f"Cache saved to {CACHE_FILE_PATH}")
+    except IOError as e:
+        logger.error(f"Error saving cache to {CACHE_FILE_PATH}: {e}")
+
+def is_cache_valid(cached_item, current_reviews_df):
+    """Checks if the cached item is still valid based on review count hash."""
+    if not cached_item:
+        return False
+    expected_hash = generate_review_hash(current_reviews_df)
+    return cached_item.get("review_count_hash") == expected_hash
+
+# --- End Caching Setup ---
 
 def load_bug_data(file_path='reclassified_bugs_with_sbert.csv'):
     """Load and prepare the bug data"""
@@ -52,16 +93,19 @@ def group_bugs_by_category(df):
     for category in df['bug_category'].unique():
         category_df = df[df['bug_category'] == category]
         grouped[category] = category_df
-        logger.info(f"Category: {category} - {len(category_df)} bugs")
+        # logger.info(f"Category: {category} - {len(category_df)} bugs") # Reduce noise, will be logged later
         
     return grouped
 
-def generate_summary_with_gpt(category, reviews_df, max_reviews=25):
-    """Generate summaries, key findings, suggested actions, and priority levels using GPT-3.5"""
-    # Limit the number of reviews to avoid token limit issues
-    if len(reviews_df) > max_reviews:
-        logger.info(f"Limiting {category} reviews from {len(reviews_df)} to {max_reviews}")
-        reviews_sample = reviews_df.sample(max_reviews, random_state=42)
+async def generate_summary_with_gpt(category, reviews_df, semaphore, max_reviews=25): # Added semaphore, made async
+    """Generate summaries, key findings, suggested actions, and priority levels using GPT-3.5 (async)"""
+    
+    async with semaphore: # Acquire semaphore
+        logger.info(f"Acquired semaphore for {category}. Generating summary...")
+        # Limit the number of reviews to avoid token limit issues
+        if len(reviews_df) > max_reviews:
+            logger.info(f"Limiting {category} reviews from {len(reviews_df)} to {max_reviews}")
+            reviews_sample = reviews_df.sample(max_reviews, random_state=42)
     else:
         reviews_sample = reviews_df
     
@@ -98,8 +142,8 @@ def generate_summary_with_gpt(category, reviews_df, max_reviews=25):
         
         for attempt in range(max_retries):
             try:
-                # Updated code for OpenAI API v1.0.0+
-                completion = client.chat.completions.create(
+                # Updated code for OpenAI API v1.0.0+ (async)
+                completion = await client.chat.completions.create( # await client call
                     model="gpt-3.5-turbo",
                     messages=[
                         {"role": "system", "content": "You are a software development expert providing bug analysis."},
@@ -109,27 +153,48 @@ def generate_summary_with_gpt(category, reviews_df, max_reviews=25):
                     max_tokens=1000
                 )
                 
-                response = completion.choices[0].message.content
-                logger.debug(f"GPT response for {category}: {response[:100]}...")
-                return parse_gpt_response(response)
+                response_content = completion.choices[0].message.content
+                logger.debug(f"GPT response for {category}: {response_content[:100]}...")
+                parsed_response = parse_gpt_response(response_content)
+
+                # Prepare the full result dictionary to be returned
+                # This helps in simplifying the main loop later
+                return {
+                    "bug_category": category,
+                    "count": len(reviews_df), # Use original reviews_df for count
+                    "summary": parsed_response["summary"],
+                    "key_findings": parsed_response["key_findings"],
+                    "suggested_actions": parsed_response["suggested_actions"],
+                    "priority_level": parsed_response["priority_level"],
+                    "additional_notes": parsed_response["additional_notes"],
+                    "latest_date": reviews_df['review_date'].max(),
+                    "versions_affected": ", ".join(reviews_df['appVersion'].dropna().unique().astype(str))
+                }
             
             except Exception as e:
                 if attempt < max_retries - 1:
-                    logger.warning(f"API call failed, retrying in {retry_delay} seconds... ({str(e)})")
-                    time.sleep(retry_delay)
+                    logger.warning(f"API call for {category} failed, retrying in {retry_delay} seconds... ({str(e)})")
+                    await asyncio.sleep(retry_delay) # await asyncio.sleep
                     retry_delay *= 2  # Exponential backoff
                 else:
-                    raise
+                    logger.error(f"Final attempt failed for {category}: {str(e)}")
+                    raise # Re-raise the exception to be caught by asyncio.gather
                     
-    except Exception as e:
-        logger.error(f"Error generating summary for {category}: {str(e)}")
-        return {
-            "summary": f"Error generating summary: {str(e)}",
-            "key_findings": "Error",
-            "suggested_actions": "Error",
-            "priority_level": "Unknown",
-            "additional_notes": f"Error occurred during analysis: {str(e)}"
-        }
+    # This part should ideally not be reached if retries fail and raise an exception.
+    # If it is reached due to an unexpected flow, return an error structure.
+    # However, asyncio.gather with return_exceptions=True will handle the raised exception.
+    # So, this specific structure might not be directly returned if an exception is properly raised.
+    # It's more of a fallback if the raise somehow doesn't propagate as expected.
+    # For robustness, we'll rely on the exception being caught by gather.
+    # If an exception is raised, asyncio.gather will return it for that task.
+
+    # Fallback if all retries fail and an exception wasn't raised (should not happen with current logic)
+    logger.error(f"Error generating summary for {category} after all retries.")
+    # This return is problematic because an exception should have been raised.
+    # Let's ensure an exception is always raised on final failure.
+    # The current logic *does* raise, so asyncio.gather will get the exception object.
+    # This function will either return the successful dict or an exception will be propagated.
+    return None # Should not be reached
 
 def parse_gpt_response(response):
     """Parse the GPT response into structured fields"""
@@ -204,7 +269,7 @@ def parse_gpt_response(response):
     
     # Final cleanup to remove any markdown or numbering artifacts
     for key in result:
-        if result[key]:
+        if isinstance(result[key], str): # Ensure it's a string before replacing
             # Remove markdown headers like "### 1." or "### 2." 
             result[key] = result[key].replace("### 1.", "").replace("### 2.", "")
             result[key] = result[key].replace("### 3.", "").replace("### 4.", "")
@@ -213,39 +278,79 @@ def parse_gpt_response(response):
     
     return result
 
-def main():
+async def main(): # Make main async
     logger.info("Starting developer summary generation")
     
-    # Load bug data
     bugs_df = load_bug_data()
-    
-    # Group bugs by category
     grouped_bugs = group_bugs_by_category(bugs_df)
     
-    # Prepare the results dataframe
-    results = []
+    cache = load_cache()
     
-    # Process each category
-    for category, category_df in tqdm(grouped_bugs.items(), desc="Processing bug categories"):
-        logger.info(f"Generating summary for category: {category}")
-          # Generate summary with GPT
-        summary_data = generate_summary_with_gpt(category, category_df)
+    tasks = []
+    results_from_cache_or_to_be_processed = [] # Holds data from cache or identifies categories for API calls
+    
+    semaphore = asyncio.Semaphore(5) # Limit to 5 concurrent OpenAI requests
+
+    categories_to_process_api = {} # Store category_df for API calls
+
+    for category, category_df in grouped_bugs.items():
+        if category in cache and is_cache_valid(cache.get(category), category_df):
+            logger.info(f"Using cached summary for {category}")
+            # The cached data should be the full result structure
+            results_from_cache_or_to_be_processed.append(cache[category]['data'])
+        else:
+            logger.info(f"Cache miss or invalid for {category}. Preparing API call.")
+            # Mark for API processing, store category_df
+            categories_to_process_api[category] = category_df
+            # We will create tasks only for these categories
+            
+    # Create tasks only for categories not found in cache or with invalid cache
+    for category, category_df in categories_to_process_api.items():
+        tasks.append(generate_summary_with_gpt(category, category_df, semaphore))
+
+    if tasks:
+        logger.info(f"Launching {len(tasks)} API calls concurrently for categories: {list(categories_to_process_api.keys())}...")
+        api_call_results_list = await asyncio.gather(*tasks, return_exceptions=True)
         
-        # Add to results
-        results.append({
-            "bug_category": category,
-            "count": len(category_df),
-            "summary": summary_data["summary"],
-            "key_findings": summary_data["key_findings"],
-            "suggested_actions": summary_data["suggested_actions"],
-            "priority_level": summary_data["priority_level"],
-            "additional_notes": summary_data["additional_notes"],
-            "latest_date": category_df['review_date'].max(),
-            "versions_affected": ", ".join(category_df['appVersion'].dropna().unique().astype(str))
-        })
+        # Process results from API calls
+        for i, api_result in enumerate(api_call_results_list):
+            # Determine category for this result. Order is preserved by gather.
+            # This requires tasks list to be in a defined order matching categories_to_process_api.keys()
+            category_name_for_this_result = list(categories_to_process_api.keys())[i]
+            current_category_df = categories_to_process_api[category_name_for_this_result]
+
+            if isinstance(api_result, Exception):
+                logger.error(f"API call for category '{category_name_for_this_result}' failed: {api_result}")
+                # Append an error placeholder
+                error_data = {
+                    "bug_category": category_name_for_this_result,
+                    "count": len(current_category_df),
+                    "summary": "Error: Generation failed",
+                    "key_findings": "Error", "suggested_actions": "Error", "priority_level": "Unknown",
+                    "additional_notes": str(api_result),
+                    "latest_date": current_category_df['review_date'].max(),
+                    "versions_affected": ", ".join(current_category_df['appVersion'].dropna().unique().astype(str))
+                }
+                results_from_cache_or_to_be_processed.append(error_data)
+            elif api_result: # Successful API call, api_result is the full dict from generate_summary_with_gpt
+                results_from_cache_or_to_be_processed.append(api_result)
+                # Update cache
+                cache[api_result['bug_category']] = {
+                    "review_count_hash": generate_review_hash(current_category_df), # Use the original df for hash
+                    "timestamp": datetime.utcnow().isoformat(),
+                    "data": api_result 
+                }
+    else:
+        logger.info("No new API calls needed. All summaries loaded from cache or no categories to process.")
+
+    save_cache(cache)
     
-    # Create DataFrame from results
-    results_df = pd.DataFrame(results)
+    # Create DataFrame from combined results (cache + new API calls)
+    if not results_from_cache_or_to_be_processed:
+        logger.warning("No results to process. Output file will be empty or not generated.")
+        results_df = pd.DataFrame()
+    else:
+        results_df = pd.DataFrame(results_from_cache_or_to_be_processed)
     
     # Sort by priority level
     priority_order = {
@@ -257,23 +362,30 @@ def main():
     }
     
     results_df['priority_sort'] = results_df['priority_level'].map(priority_order)
-    results_df.sort_values('priority_sort', inplace=True)
-    results_df.drop('priority_sort', axis=1, inplace=True)
+    if not results_df.empty:
+        results_df['priority_sort'] = results_df['priority_level'].map(priority_order)
+        results_df.sort_values('priority_sort', inplace=True)
+        results_df.drop('priority_sort', axis=1, inplace=True)
     
     # Save to CSV
     output_file = "developer_bug_summaries.csv"
-    results_df.to_csv(output_file, index=False)
-    logger.info(f"Developer summaries saved to {output_file}")
-    
-    print(f"\nDeveloper bug summaries generated successfully!")
-    print(f"Output file: {output_file}")
-    print(f"Total bug categories processed: {len(results_df)}")
-    
-    # Show summary of priority levels
-    priority_counts = results_df['priority_level'].value_counts()
-    print("\nPriority Summary:")
-    for priority, count in priority_counts.items():
-        print(f"  {priority}: {count} categories")
+    if not results_df.empty:
+        results_df.to_csv(output_file, index=False)
+        logger.info(f"Developer summaries saved to {output_file}")
+        
+        print(f"\nDeveloper bug summaries generated successfully!")
+        print(f"Output file: {output_file}")
+        print(f"Total bug categories processed: {len(results_df)}")
+        
+        # Show summary of priority levels
+        priority_counts = results_df['priority_level'].value_counts()
+        print("\nPriority Summary:")
+        for priority, count in priority_counts.items():
+            print(f"  {priority}: {count} categories")
+    else:
+        logger.info("No data to save. Output file not created.")
+        print("\nNo bug summaries were generated or loaded from cache.")
+
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main()) # Run the async main
