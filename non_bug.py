@@ -19,6 +19,12 @@ import spacy
 from scipy import stats
 from statsmodels.tsa.seasonal import seasonal_decompose
 
+# Ensure required NLTK data is downloaded
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+
 # Load spaCy model
 try:
     nlp = spacy.load('en_core_web_sm')
