@@ -141,6 +141,49 @@ with tab2:
     fig_bar.update_layout(barmode='stack', xaxis_tickangle=-45)
     st.plotly_chart(fig_bar, use_container_width=True)
 
+    # --- User Journey View: Bug Timeline & Sentiment Heatmap ---
+    with st.expander("🧭 User Journey View: Bug Timeline & Sentiment Heatmap", expanded=False):
+        st.markdown("#### Timeline of Bugs by App Version and Sentiment")
+        if 'review_date' in filtered_bug_df.columns and 'appVersion' in filtered_bug_df.columns:
+            try:
+                # Prepare data for heatmap
+                heatmap_df = filtered_bug_df.copy()
+                heatmap_df['review_date'] = pd.to_datetime(heatmap_df['review_date'])
+                if 'sentiment' in heatmap_df.columns:
+                    sentiment_col = 'sentiment'
+                else:
+                    sentiment_col = None
+                # Group by review_date, appVersion, and optionally sentiment
+                if sentiment_col:
+                    grouped_heatmap = heatmap_df.groupby([
+                        pd.Grouper(key='review_date', freq='W'), 'appVersion', 'bug_category'
+                    ])[sentiment_col].mean().reset_index()
+                    fig = px.density_heatmap(
+                        grouped_heatmap,
+                        x='review_date',
+                        y='appVersion',
+                        z=sentiment_col,
+                        color_continuous_scale='RdYlGn',
+                        title='Bug Sentiment Heatmap by App Version (Weekly)'
+                    )
+                else:
+                    grouped_heatmap = heatmap_df.groupby([
+                        pd.Grouper(key='review_date', freq='W'), 'appVersion', 'bug_category'
+                    ]).size().reset_index(name='count')
+                    fig = px.density_heatmap(
+                        grouped_heatmap,
+                        x='review_date',
+                        y='appVersion',
+                        z='count',
+                        color_continuous_scale='YlOrRd',
+                        title='Bug Count Heatmap by App Version (Weekly)'
+                    )
+                st.plotly_chart(fig, use_container_width=True)
+            except Exception as e:
+                st.error(f"Error creating heatmap: {str(e)}")
+        else:
+            st.info("review_date and appVersion columns required for User Journey View.")
+
 with tab3:
     st.subheader("Developer Insights")
     
@@ -405,49 +448,6 @@ with tab4:
         st.bar_chart(sentiment_dist)
     except Exception as e:
         st.error(f"Error in sentiment analysis: {str(e)}")
-
-# --- User Journey View ---
-with st.expander("🧭 User Journey View: Bug Timeline & Sentiment Heatmap", expanded=False):
-    st.markdown("#### Timeline of Bugs by App Version and Sentiment")
-    if 'review_date' in filtered_bug_df.columns and 'appVersion' in filtered_bug_df.columns:
-        try:
-            # Prepare data for heatmap
-            heatmap_df = filtered_bug_df.copy()
-            heatmap_df['review_date'] = pd.to_datetime(heatmap_df['review_date'])
-            if 'sentiment' in heatmap_df.columns:
-                sentiment_col = 'sentiment'
-            else:
-                sentiment_col = None
-            # Group by review_date, appVersion, and optionally sentiment
-            if sentiment_col:
-                grouped_heatmap = heatmap_df.groupby([
-                    pd.Grouper(key='review_date', freq='W'), 'appVersion', 'bug_category'
-                ])[sentiment_col].mean().reset_index()
-                fig = px.density_heatmap(
-                    grouped_heatmap,
-                    x='review_date',
-                    y='appVersion',
-                    z=sentiment_col,
-                    color_continuous_scale='RdYlGn',
-                    title='Bug Sentiment Heatmap by App Version (Weekly)'
-                )
-            else:
-                grouped_heatmap = heatmap_df.groupby([
-                    pd.Grouper(key='review_date', freq='W'), 'appVersion', 'bug_category'
-                ]).size().reset_index(name='count')
-                fig = px.density_heatmap(
-                    grouped_heatmap,
-                    x='review_date',
-                    y='appVersion',
-                    z='count',
-                    color_continuous_scale='YlOrRd',
-                    title='Bug Count Heatmap by App Version (Weekly)'
-                )
-            st.plotly_chart(fig, use_container_width=True)
-        except Exception as e:
-            st.error(f"Error creating heatmap: {str(e)}")
-    else:
-        st.info("review_date and appVersion columns required for User Journey View.")
 
 # --- Export Options ---
 st.sidebar.header("📤 Export Options")
