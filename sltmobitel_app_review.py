@@ -2,6 +2,7 @@
 
 from google_play_scraper import reviews_all, Sort
 import pandas as pd
+import os
 
 def fetch_google_reviews(app_id, lang='en', country='us'):
     try:
@@ -51,5 +52,16 @@ reviews_df = fetch_google_reviews(GOOGLE_APP_ID)
 # Display some of the reviews
 print(reviews_df.head())
 
-# Optionally save to CSV
-reviews_df.to_csv("slt_selfcare_google_reviews.csv", index=False)
+# Optionally save to CSV with auto-increment/append logic
+csv_path = "slt_selfcare_google_reviews.csv"
+if os.path.exists(csv_path):
+    try:
+        existing_df = pd.read_csv(csv_path)
+        combined_df = pd.concat([existing_df, reviews_df], ignore_index=True)
+        combined_df.drop_duplicates(subset=["review_id"], inplace=True)
+        combined_df.to_csv(csv_path, index=False)
+    except Exception as e:
+        print(f"Error updating existing CSV: {e}. Saving new data only.")
+        reviews_df.to_csv(csv_path, index=False)
+else:
+    reviews_df.to_csv(csv_path, index=False)
