@@ -409,23 +409,23 @@ with tab4:
 # --- User Journey View ---
 with st.expander("🧭 User Journey View: Bug Timeline & Sentiment Heatmap", expanded=False):
     st.markdown("#### Timeline of Bugs by App Version and Sentiment")
-    if 'date' in filtered_bug_df.columns and 'appVersion' in filtered_bug_df.columns:
+    if 'review_date' in filtered_bug_df.columns and 'appVersion' in filtered_bug_df.columns:
         try:
             # Prepare data for heatmap
             heatmap_df = filtered_bug_df.copy()
-            heatmap_df['date'] = pd.to_datetime(heatmap_df['date'])
+            heatmap_df['review_date'] = pd.to_datetime(heatmap_df['review_date'])
             if 'sentiment' in heatmap_df.columns:
                 sentiment_col = 'sentiment'
             else:
                 sentiment_col = None
-            # Group by date, appVersion, and optionally sentiment
+            # Group by review_date, appVersion, and optionally sentiment
             if sentiment_col:
                 grouped_heatmap = heatmap_df.groupby([
-                    pd.Grouper(key='date', freq='W'), 'appVersion', 'bug_category'
+                    pd.Grouper(key='review_date', freq='W'), 'appVersion', 'bug_category'
                 ])[sentiment_col].mean().reset_index()
                 fig = px.density_heatmap(
                     grouped_heatmap,
-                    x='date',
+                    x='review_date',
                     y='appVersion',
                     z=sentiment_col,
                     color_continuous_scale='RdYlGn',
@@ -433,11 +433,11 @@ with st.expander("🧭 User Journey View: Bug Timeline & Sentiment Heatmap", exp
                 )
             else:
                 grouped_heatmap = heatmap_df.groupby([
-                    pd.Grouper(key='date', freq='W'), 'appVersion', 'bug_category'
+                    pd.Grouper(key='review_date', freq='W'), 'appVersion', 'bug_category'
                 ]).size().reset_index(name='count')
                 fig = px.density_heatmap(
                     grouped_heatmap,
-                    x='date',
+                    x='review_date',
                     y='appVersion',
                     z='count',
                     color_continuous_scale='YlOrRd',
@@ -447,7 +447,7 @@ with st.expander("🧭 User Journey View: Bug Timeline & Sentiment Heatmap", exp
         except Exception as e:
             st.error(f"Error creating heatmap: {str(e)}")
     else:
-        st.info("Date and appVersion columns required for User Journey View.")
+        st.info("review_date and appVersion columns required for User Journey View.")
 
 # --- Export Options ---
 st.sidebar.header("📤 Export Options")
