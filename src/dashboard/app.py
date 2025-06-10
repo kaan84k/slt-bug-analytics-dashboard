@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 import plotly.graph_objects as go
-from non_bug import UserExperienceAnalyzer
+from data_processing.non_bug import UserExperienceAnalyzer
 import io
 import base64
 import re
@@ -14,9 +14,9 @@ st.title("SLT Selfcare App - Bug Analytics Dashboard")
 
 # Load categorized bugs and NLP summaries with error handling
 try:
-    bug_df = pd.read_csv("reclassified_bugs_with_sbert.csv")
-    nlp_df = pd.read_csv("developer_bug_summaries.csv")
-    predictions_df = pd.read_csv("bug_predictions.csv")
+    bug_df = pd.read_csv("data/reclassified_bugs_with_sbert.csv")
+    nlp_df = pd.read_csv("data/developer_bug_summaries.csv")
+    predictions_df = pd.read_csv("data/bug_predictions.csv")
 except Exception as e:
     st.error(f"Error loading data files: {str(e)}")
     st.info("Please run the full pipeline to generate all required files.")
@@ -388,7 +388,7 @@ with tab4:
     
     try:
         # Initialize the analyzer
-        analyzer = UserExperienceAnalyzer('bug_predictions.csv')
+        analyzer = UserExperienceAnalyzer('data/bug_predictions.csv')
         
         # Display summary metrics
         summary = analyzer.get_sentiment_summary()

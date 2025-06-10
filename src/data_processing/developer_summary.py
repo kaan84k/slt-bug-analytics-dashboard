@@ -25,7 +25,7 @@ if not os.getenv("OPENAI_API_KEY"):
 # Configure OpenAI client
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-def load_bug_data(file_path='reclassified_bugs_with_sbert.csv'):
+def load_bug_data(file_path='data/reclassified_bugs_with_sbert.csv'):
     """Load and prepare the bug data"""
     try:
         logger.info(f"Loading bug data from {file_path}")
@@ -261,7 +261,7 @@ def main():
     results_df.drop('priority_sort', axis=1, inplace=True)
     
     # Save to CSV
-    output_file = "developer_bug_summaries.csv"
+    output_file = "data/developer_bug_summaries.csv"
     results_df.to_csv(output_file, index=False)
     logger.info(f"Developer summaries saved to {output_file}")
     

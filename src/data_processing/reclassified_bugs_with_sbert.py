@@ -8,7 +8,7 @@ from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 
 # === Load Dataset ===
-file_path = 'categorized_bugs.csv'  # Upload your file here
+file_path = 'data/categorized_bugs.csv'  # Upload your file here
 df = pd.read_csv(file_path)
 
 # === Clean Text ===
@@ -52,6 +52,6 @@ other_df['bug_category'] = other_df['predicted_category']
 final_df = pd.concat([labeled_df, other_df], ignore_index=True)
 
 # === Save Final Output ===
-final_df.to_csv('reclassified_bugs_with_sbert.csv', index=False)
+final_df.to_csv('data/reclassified_bugs_with_sbert.csv', index=False)
 # print("✅ Reclassified data saved to: /content/reclassified_bugs_with_sbert.csv")
 

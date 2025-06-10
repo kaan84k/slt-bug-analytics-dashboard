@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 # Step 1: Load and preprocess review data
 logger.info("Loading review data...")
-df = pd.read_csv('slt_selfcare_google_reviews.csv')
+df = pd.read_csv('data/slt_selfcare_google_reviews.csv')
 
 # Data exploration
 logger.info(f"Dataset shape: {df.shape}")
@@ -241,13 +241,13 @@ output_columns = [
 available_columns = [col for col in output_columns if col in df.columns]
 
 # Save detailed results for all reviews
-df[available_columns].to_csv('bug_predictions.csv', index=False)
+df[available_columns].to_csv('data/bug_predictions.csv', index=False)
 
 # Save prioritized bugs for easy review
 if not bugs_prioritized.empty:
     # Ensure columns exist in the prioritized DataFrame before selecting
     available_prioritized_columns = [col for col in output_columns if col in bugs_prioritized.columns]
-    bugs_prioritized[available_prioritized_columns].to_csv('prioritized_bugs.csv', index=False)
+    bugs_prioritized[available_prioritized_columns].to_csv('data/prioritized_bugs.csv', index=False)
 
 
 logger.info("\n✅ Bug detection completed. Results saved to:")
