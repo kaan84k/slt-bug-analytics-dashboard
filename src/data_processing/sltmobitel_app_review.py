@@ -53,7 +53,7 @@ reviews_df = fetch_google_reviews(GOOGLE_APP_ID)
 print(reviews_df.head())
 
 # Optionally save to CSV with auto-increment/append logic
-csv_path = "slt_selfcare_google_reviews.csv"
+csv_path = "data/slt_selfcare_google_reviews.csv"
 if os.path.exists(csv_path):
     try:
         existing_df = pd.read_csv(csv_path)

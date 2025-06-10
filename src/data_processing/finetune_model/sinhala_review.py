@@ -25,7 +25,7 @@ def detect_language(text):
         return 'unknown'
 
 def main():
-    df = pd.read_csv('slt_selfcare_google_reviews.csv')
+    df = pd.read_csv('data/slt_selfcare_google_reviews.csv')
     translator = Translator()
     detected_langs = []
     is_singlish_list = []
@@ -55,7 +55,7 @@ def main():
     df['detected_language'] = detected_langs
     df['is_singlish'] = is_singlish_list
     df['translated_review'] = translations
-    df.to_csv('slt_reviews_translated.csv', index=False)
+    df.to_csv('data/slt_reviews_translated.csv', index=False)
     print('✅ Reviews processed and saved to slt_reviews_translated.csv')
 
 if __name__ == '__main__':
