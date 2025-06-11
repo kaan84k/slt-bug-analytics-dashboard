@@ -31,13 +31,17 @@ def parse_args() -> argparse.Namespace:
 
 ARGS = parse_args()
 
-if not ARGS.dry_run and not os.getenv("OPENAI_API_KEY"):
-    logger.error("OPENAI_API_KEY not found. Please create a .env file with your API key or use --dry-run.")
-    sys.exit(1)
-
+# Automatically fall back to dry-run mode if no API key is available
 client = None
-if not ARGS.dry_run:
+if ARGS.dry_run:
+    logger.info("Dry run requested - OpenAI API will not be used")
+elif os.getenv("OPENAI_API_KEY"):
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+else:
+    logger.warning(
+        "OPENAI_API_KEY not found. Proceeding in dry-run mode."
+    )
+    ARGS.dry_run = True
 
 def load_bug_data(file_path: str) -> pd.DataFrame:
     """Load and validate the bug data"""
