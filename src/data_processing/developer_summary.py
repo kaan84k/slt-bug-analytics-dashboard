@@ -4,7 +4,14 @@ import os
 import sys
 import time
 
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+except Exception:  # pragma: no cover - optional dependency may be missing
+    def load_dotenv(*_args, **_kwargs):
+        logging.getLogger(__name__).warning(
+            "python-dotenv not installed; skipping .env loading"
+        )
+
 import pandas as pd
 from tqdm import tqdm
 
