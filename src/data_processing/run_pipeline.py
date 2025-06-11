@@ -77,7 +77,9 @@ def main():
         'reclassified_bugs_with_sbert.csv',
         'developer_bug_summaries.csv'
     ]
-    data_dir = Path(__file__).resolve().parents[1] / 'data'
+    # Use the repository-level data directory for the final output check
+    # "parents[2]" points to the project root (../../ from this file)
+    data_dir = Path(__file__).resolve().parents[2] / "data"
 
     missing_files = [str(data_dir / f) for f in required_files if not (data_dir / f).exists()]
     if missing_files:
