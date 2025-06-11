@@ -5,8 +5,6 @@ import sys
 import time
 
 from dotenv import load_dotenv
-from openai import OpenAI
-from openai import error as openai_error
 import pandas as pd
 from tqdm import tqdm
 
@@ -31,17 +29,44 @@ def parse_args() -> argparse.Namespace:
 
 ARGS = parse_args()
 
+# Lazy import of OpenAI so the script can run without the package
+try:
+    from openai import OpenAI, error as openai_error  # type: ignore
+except Exception:
+    OpenAI = None  # type: ignore
+    class _DummyOpenAIError(Exception):
+        pass
+
+    class openai_error(Exception):
+        APIError = _DummyOpenAIError
+        Timeout = _DummyOpenAIError
+        RateLimitError = _DummyOpenAIError
+        AuthenticationError = _DummyOpenAIError
+        APIConnectionError = _DummyOpenAIError
+
+    logger.warning("openai package not found. Proceeding in dry-run mode.")
+    ARGS.dry_run = True
+
 # Automatically fall back to dry-run mode if no API key is available
 client = None
 if ARGS.dry_run:
     logger.info("Dry run requested - OpenAI API will not be used")
-elif os.getenv("OPENAI_API_KEY"):
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 else:
-    logger.warning(
-        "OPENAI_API_KEY not found. Proceeding in dry-run mode."
-    )
-    ARGS.dry_run = True
+    api_key = os.getenv("OPENAI_API_KEY")
+    if api_key:
+        try:
+            client = OpenAI(api_key=api_key)
+        except Exception as e:
+            logger.warning(
+                "Failed to initialize OpenAI client (%s). Proceeding in dry-run mode.",
+                e,
+            )
+            ARGS.dry_run = True
+    else:
+        logger.warning(
+            "OPENAI_API_KEY not found. Proceeding in dry-run mode."
+        )
+        ARGS.dry_run = True
 
 def load_bug_data(file_path: str) -> pd.DataFrame:
     """Load and validate the bug data"""
@@ -140,7 +165,13 @@ def generate_summary_with_gpt(category, reviews_df, max_reviews: int = 25):
             response = completion.choices[0].message.content
             logger.debug(f"GPT response for {category}: {response[:100]}...")
             return parse_gpt_response(response)
-        except (openai_error.APIError, openai_error.Timeout, openai_error.RateLimitError) as api_err:
+        except (
+            openai_error.APIError,
+            openai_error.Timeout,
+            openai_error.RateLimitError,
+            openai_error.APIConnectionError,
+            openai_error.AuthenticationError,
+        ) as api_err:
             if attempt < max_retries - 1:
                 logger.warning(
                     f"OpenAI API error, retrying in {retry_delay} seconds... ({api_err})"
@@ -148,7 +179,10 @@ def generate_summary_with_gpt(category, reviews_df, max_reviews: int = 25):
                 time.sleep(retry_delay)
                 retry_delay *= 2
             else:
-                logger.error(f"Failed after retries due to API error: {api_err}")
+                logger.error(
+                    f"Failed after retries due to API error: {api_err}"
+                )
+                ARGS.dry_run = True
                 break
         except Exception as e:
             logger.error(f"Unexpected error during OpenAI call: {e}")
