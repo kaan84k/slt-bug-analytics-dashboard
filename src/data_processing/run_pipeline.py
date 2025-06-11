@@ -3,7 +3,7 @@ import time
 import os
 from pathlib import Path
 
-def run_step(module_name, step_number, description):
+def run_step(module_name, step_number, description, args=None):
     print(f"\n=== Step {step_number}: {description} ===")
     print(f"Running {module_name}...")
 
@@ -11,8 +11,12 @@ def run_step(module_name, step_number, description):
     env = os.environ.copy()
     env['PYTHONPATH'] = str(root_dir / 'src')
 
+    cmd = ['python', '-m', module_name]
+    if args:
+        cmd.extend(args)
+
     result = subprocess.run(
-        ['python', '-m', module_name],
+        cmd,
         capture_output=True,
         text=True,
         cwd=root_dir,
@@ -49,7 +53,11 @@ def main():
     run_step('data_processing.bug__categories_v2', 5, "Generating final bug analysis")
     
     # Step 6: Generate developer summaries
-    run_step('data_processing.developer_summary', 6, "Generating developer summaries")
+    dev_args = []
+    if not os.getenv("OPENAI_API_KEY"):
+        print("OPENAI_API_KEY not found - running developer_summary in dry-run mode")
+        dev_args.append('--dry-run')
+    run_step('data_processing.developer_summary', 6, "Generating developer summaries", args=dev_args)
 
     end_time = time.time()
     duration = end_time - start_time
