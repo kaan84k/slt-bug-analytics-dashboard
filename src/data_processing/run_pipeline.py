@@ -59,9 +59,6 @@ def main():
         dev_args.append('--dry-run')
     run_step('data_processing.developer_summary', 6, "Generating developer summaries", args=dev_args)
 
-    # Step 7: Annotate syslog levels
-    run_step('data_processing.bug_levels', 7, "Annotating syslog levels")
-
     end_time = time.time()
     duration = end_time - start_time
     
@@ -70,8 +67,8 @@ def main():
     print("- slt_selfcare_google_reviews.csv (Raw app reviews)")
     print("- prioritized_bugs.csv (Identified bug reports)")
     print("- categorized_bugs.csv (Initially categorized bugs)")
-    print("- reclassified_bugs_with_sbert.csv (Final bug classification with syslog levels)")
-    print("- developer_bug_summaries.csv (Developer insights with syslog levels)")
+    print("- reclassified_bugs_with_sbert.csv (Final bug classification)")
+    print("- developer_bug_summaries.csv (Developer insights)")
       # Check if all required files exist
     required_files = [
         'slt_selfcare_google_reviews.csv',

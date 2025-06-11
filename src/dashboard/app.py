@@ -6,7 +6,6 @@ import plotly.express as px
 from datetime import datetime
 import plotly.graph_objects as go
 from data_processing.non_bug import UserExperienceAnalyzer
-from data_processing.bug_levels import SYSLOG_LEVELS, PRIORITY_TO_SYSLOG, SYSLOG_COLOR_MAP
 import io
 import base64
 import re
@@ -20,15 +19,6 @@ try:
     bug_df = pd.read_csv("data/reclassified_bugs_with_sbert.csv")
     nlp_df = pd.read_csv("data/developer_bug_summaries.csv")
     predictions_df = pd.read_csv("data/bug_predictions.csv")
-
-    # Map priority levels from developer summaries to syslog levels
-    nlp_df['syslog_level'] = (
-        nlp_df.get('priority_level')
-        .map(PRIORITY_TO_SYSLOG)
-        .fillna('DEBUG')
-    )
-    category_level_map = nlp_df.set_index('bug_category')['syslog_level'].to_dict()
-    bug_df['syslog_level'] = bug_df['bug_category'].map(category_level_map).fillna('DEBUG')
 except Exception as e:
     st.error(f"Error loading data files: {str(e)}")
     st.info("Please run the full pipeline to generate all required files.")
@@ -88,17 +78,10 @@ selected_categories = st.sidebar.multiselect(
     default=bug_df['bug_category'].unique()
 )
 
-selected_levels = st.sidebar.multiselect(
-    "Select Syslog Levels",
-    options=SYSLOG_LEVELS,
-    default=SYSLOG_LEVELS
-)
-
 # Filter data
 filtered_bug_df = bug_df[
     (bug_df['appVersion'].astype(str).isin(selected_versions)) &
-    (bug_df['bug_category'].isin(selected_categories)) &
-    (bug_df['syslog_level'].isin(selected_levels))
+    (bug_df['bug_category'].isin(selected_categories))
 ]
 
 if 'date' in bug_df.columns:
@@ -130,35 +113,16 @@ tab1, tab2, tab3, tab4 = st.tabs(["Bug Categories", "Time Analysis", "Developer 
 
 with tab1:
     col1, col2 = st.columns(2)
-
+    
     with col1:
         st.subheader("Bug Count per Category")
-        filtered_bug_counts = (
-            filtered_bug_df
-            .groupby(['bug_category', 'syslog_level'])
-            .size()
-            .reset_index(name='Count')
-        )
-        fig_counts = px.bar(
-            filtered_bug_counts,
-            x='bug_category',
-            y='Count',
-            color='syslog_level',
-            category_orders={'syslog_level': SYSLOG_LEVELS},
-            color_discrete_map=SYSLOG_COLOR_MAP,
-            labels={'bug_category': 'Bug Category', 'syslog_level': 'Syslog Level'}
-        )
-        st.plotly_chart(fig_counts, use_container_width=True)
-
+        filtered_bug_counts = filtered_bug_df['bug_category'].value_counts().reset_index()
+        filtered_bug_counts.columns = ['Bug Category', 'Count']
+        st.bar_chart(filtered_bug_counts.set_index('Bug Category'))
+    
     with col2:
         st.subheader("Category Distribution")
-        fig_pie = px.pie(
-            filtered_bug_counts,
-            names='bug_category',
-            values='Count',
-            color='syslog_level',
-            color_discrete_map=SYSLOG_COLOR_MAP,
-        )
+        fig_pie = px.pie(filtered_bug_counts, names='Bug Category', values='Count')
         st.plotly_chart(fig_pie, use_container_width=True)
 
 with tab2:
@@ -387,9 +351,7 @@ with tab3:
                                 priority_level = category_insights['priority_level'].iloc[0]
                                 notes = category_insights['additional_notes'].iloc[0]
                                 priority = get_priority(notes, priority_level)
-                            syslog_level = PRIORITY_TO_SYSLOG.get(priority, 'DEBUG')
                             st.metric("Priority", priority)
-                            st.metric("Syslog Level", syslog_level)
                         # Display summary if available
                         if 'summary' in category_insights.columns and pd.notna(category_insights['summary'].iloc[0]):
                             summary_text = remove_label_prefixes(clean_text(category_insights['summary'].iloc[0]))
