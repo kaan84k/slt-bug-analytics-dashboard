@@ -8,11 +8,21 @@ def run_step(module_name, step_number, description, args=None):
     print(f"\n=== Step {step_number}: {description} ===")
     print(f"Running {module_name}...")
 
+    root_dir = Path(__file__).resolve().parents[2]
+    env = os.environ.copy()
+    env['PYTHONPATH'] = str(root_dir / 'src')
+
     cmd = ['python', '-m', module_name]
     if args:
         cmd.extend(args)
 
-    result = subprocess.run(cmd, capture_output=True, text=True)
+    result = subprocess.run(
+        cmd,
+        capture_output=True,
+        text=True,
+        cwd=root_dir,
+        env=env
+    )
 
     if result.returncode == 0:
         print(f"✓ {module_name} completed successfully")
