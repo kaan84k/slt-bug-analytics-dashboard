@@ -108,6 +108,8 @@ st.sidebar.download_button(
 )
 
 
+# ... (previous code)
+
 # Organize visualizations in tabs
 tab1, tab2, tab3, tab4 = st.tabs(["Bug Categories", "Time Analysis", "Developer Insights", "Sentiment Patterns"])
 
@@ -186,204 +188,205 @@ with tab2:
         else:
             st.info("review_date and appVersion columns required for User Journey View.")
 
-with tab3:
-    st.subheader("Developer Insights")
-    
-    # Add severity filter
-    severity_filter = st.selectbox(
-        "Filter by Priority",
-        ["All", "Critical", "High", "Medium", "Low"]
-    )
-    
-    # Helper functions
-    def get_priority(notes, priority_level=None):
-        try:
-            # First check if we have a valid priority_level already
-            if priority_level and pd.notna(priority_level) and str(priority_level).strip().lower() not in ['nan', 'unknown', '', 'none']:
-                priority_val = str(priority_level).strip()
-                # Normalize priority value
-                if priority_val.lower() == 'critical':
-                    return "Critical"
-                elif priority_val.lower() == 'high':
-                    return "High"
-                elif priority_val.lower() == 'medium':
-                    return "Medium"
-                elif priority_val.lower() == 'low':
-                    return "Low"
-            
-            # If no valid priority_level, check notes
-            if pd.isna(notes) or not notes or str(notes).strip().lower() in ['nan', '']:
-                return "Unknown"
-                
-            # Convert to string and lowercase for consistent processing
-            notes = str(notes).lower()
-            
-            # First, try to find explicit priority mentions
-            if "priority" in notes and ":" in notes:
-                priority_section = notes.split("priority")[1].split(":")[1].strip()
-                if "critical" in priority_section:
-                    return "Critical"
-                elif "high" in priority_section:
-                    return "High" 
-                elif "medium" in priority_section:
-                    return "Medium"
-                elif "low" in priority_section:
-                    return "Low"
-            
-            # If no explicit section, check the whole text
-            if "critical" in notes:
-                return "Critical"
-            elif "high" in notes:
-                return "High"
-            elif "medium" in notes:
-                return "Medium"
-            elif "low" in notes:
-                return "Low"
-                
-            return "Unknown"
-        except Exception as e:
-            # Log the error but don't crash
-            print(f"Error extracting priority: {e}")
-            return "Unknown"
-            
-    def clean_text(text):
-        if pd.isna(text) or not text:
-            return ""
-            
-        text = str(text)
-        # Remove markdown headers, asterisks, etc.
-        text = text.replace("### 1.", "").replace("### 2.", "")
-        text = text.replace("### 3.", "").replace("### 4.", "")
-        text = text.replace("****", "")
-        text = text.strip()
-        return text
-    
-    def remove_label_prefixes(text):
-        pattern = r'(?im)^\s*["\']?(SUMMARY|KEY FINDINGS|SUGGESTED ACTIONS|PRIORITY LEVEL):\**\s*'
-        return re.sub(pattern, '', text).strip()
-    
-    # Format text into a bulleted list
-    def format_bullet_list(text):
-        if pd.isna(text) or not text:
-            return []
-        
-        text = clean_text(text)
-        bullet_items = []
-        
-        # Try various delimiters to identify bullet points
-        if '\n-' in text:
-            # Split by lines that start with a dash
-            raw_items = text.split('\n-')
-            for i, item in enumerate(raw_items):
-                if i == 0 and not item.strip().startswith('-'):
-                    # First item typically doesn't have a dash prefix
-                    bullet_items.append(item.strip())
-                else:
-                    bullet_items.append(item.strip())
-        elif '\n' in text and len(text.split('\n')) > 1:
-            # Split by newlines if multiple lines exist
-            bullet_items = [line.strip() for line in text.split('\n') if line.strip()]
-        elif '-' in text and text.count('-') > 1:
-            # Split by dashes if multiple dashes exist
-            bullet_items = [item.strip() for item in text.split('-') if item.strip()]
-        elif '.' in text and text.count('.') > 2:
-            # Split by periods if multiple periods exist (and not just single sentence)
-            bullet_items = [item.strip() for item in text.split('.') if item.strip()]
-        else:
-            # Just use the whole text as one item
-            bullet_items = [text]
-            
-        # Clean up each item
-        clean_items = []
-        for item in bullet_items:
-            # Remove any bullet points or numbers at the beginning
-            clean_item = item.strip().lstrip('1234567890.-*•›✓✅✔︎☑︎■□●○•⦿⁃◦-–—−⋅᛫∙ ')
-            if clean_item:  # Skip empty items
-                clean_items.append(clean_item)
-                
-        return clean_items
-    
-    # Filter categories by priority
-    filtered_categories = []
-    for category in selected_categories:
-        try:
-            category_insights = nlp_df[nlp_df['bug_category'] == category]
-            if not category_insights.empty:
-                try:
-                    # Try to get priority from different sources
-                    if 'priority_level' in category_insights.columns and 'additional_notes' in category_insights.columns:
-                        priority = get_priority(
-                            category_insights['additional_notes'].iloc[0],
-                            category_insights['priority_level'].iloc[0]
-                        )
-                    elif 'priority_level' in category_insights.columns:
-                        priority = get_priority(None, category_insights['priority_level'].iloc[0])
-                    elif 'additional_notes' in category_insights.columns:
-                        priority = get_priority(category_insights['additional_notes'].iloc[0])
-                    else:
-                        priority = "Unknown"
-                except Exception as e:
-                    print(f"Error getting priority for {category}: {e}")
-                    priority = "Unknown"
-                    
-                if severity_filter == "All" or priority == severity_filter:
-                    filtered_categories.append(category)
-        except Exception as e:
-            st.warning(f"Error processing category {category}: {str(e)}")
-            if severity_filter == "All":
-                filtered_categories.append(category)
-    
-    # Display insights for filtered categories
-    for category in filtered_categories:
-        try:
-            category_insights = nlp_df[nlp_df['bug_category'] == category]
-            if not category_insights.empty:
-                with st.expander(f"📌 {category}", expanded=True):
-                    try:
-                        # Category summary metrics
-                        col1, col2 = st.columns(2)
-                        with col1:
-                            bug_count = len(filtered_bug_df[filtered_bug_df['bug_category'] == category])
-                            st.metric("Bug Count", bug_count)
-                        with col2:
-                            priority = "Unknown"
-                            if 'priority_level' in category_insights.columns and 'additional_notes' in category_insights.columns:
-                                priority_level = category_insights['priority_level'].iloc[0]
-                                notes = category_insights['additional_notes'].iloc[0]
-                                priority = get_priority(notes, priority_level)
-                            st.metric("Priority", priority)
-                        # Display summary if available
-                        if 'summary' in category_insights.columns and pd.notna(category_insights['summary'].iloc[0]):
-                            summary_text = remove_label_prefixes(clean_text(category_insights['summary'].iloc[0]))
-                            if summary_text:
-                                st.markdown("### 📝 Summary")
-                                st.write(summary_text)
-                        # Display key findings
-                        if 'key_findings' in category_insights.columns and pd.notna(category_insights['key_findings'].iloc[0]):
-                            findings = remove_label_prefixes(clean_text(category_insights['key_findings'].iloc[0]))
-                            st.markdown("### 🔍 Key Findings")
-                            findings_list = format_bullet_list(findings)
-                            for finding in findings_list:
-                                if finding.strip():
-                                    st.markdown(f"- {finding}")
-                        # Display suggested actions
-                        if 'suggested_actions' in category_insights.columns and pd.notna(category_insights['suggested_actions'].iloc[0]):
-                            action_text = remove_label_prefixes(clean_text(category_insights['suggested_actions'].iloc[0]))
-                            st.markdown("### 💡 Suggested Actions")
-                            actions = format_bullet_list(action_text)
-                            for idx, action in enumerate(actions, 1):
-                                if action.strip():
-                                    st.markdown(f"{idx}. {action}")
-                        # Display additional notes for priority analysis
-                        if 'additional_notes' in category_insights.columns and pd.notna(category_insights['additional_notes'].iloc[0]):
-                            notes = remove_label_prefixes(clean_text(category_insights['additional_notes'].iloc[0]))
-                            if notes.strip() and notes.lower() != 'nan':
-                                st.markdown("### 📊 Priority Analysis")
-                                st.info(notes)
-                    except Exception as e:
-                        st.error(f"Error displaying insights for {category}: {str(e)}")
-        except Exception as e:
-            st.error(f"Error processing category {category}: {str(e)}")
+# --- Developer Insights tab temporarily commented out ---
+# with tab3:
+#     st.subheader("Developer Insights")
+#     
+#     # Add severity filter
+#     severity_filter = st.selectbox(
+#         "Filter by Priority",
+#         ["All", "Critical", "High", "Medium", "Low"]
+#     )
+#     
+#     # Helper functions
+#     def get_priority(notes, priority_level=None):
+#         try:
+#             # First check if we have a valid priority_level already
+#             if priority_level and pd.notna(priority_level) and str(priority_level).strip().lower() not in ['nan', 'unknown', '', 'none']:
+#                 priority_val = str(priority_level).strip()
+#                 # Normalize priority value
+#                 if priority_val.lower() == 'critical':
+#                     return "Critical"
+#                 elif priority_val.lower() == 'high':
+#                     return "High"
+#                 elif priority_val.lower() == 'medium':
+#                     return "Medium"
+#                 elif priority_val.lower() == 'low':
+#                     return "Low"
+#             
+#             # If no valid priority_level, check notes
+#             if pd.isna(notes) or not notes or str(notes).strip().lower() in ['nan', '']:
+#                 return "Unknown"
+#                 
+#             # Convert to string and lowercase for consistent processing
+#             notes = str(notes).lower()
+#             
+#             # First, try to find explicit priority mentions
+#             if "priority" in notes and ":" in notes:
+#                 priority_section = notes.split("priority")[1].split(":")[1].strip()
+#                 if "critical" in priority_section:
+#                     return "Critical"
+#                 elif "high" in priority_section:
+#                     return "High" 
+#                 elif "medium" in priority_section:
+#                     return "Medium"
+#                 elif "low" in priority_section:
+#                     return "Low"
+#             
+#             # If no explicit section, check the whole text
+#             if "critical" in notes:
+#                 return "Critical"
+#             elif "high" in notes:
+#                 return "High"
+#             elif "medium" in notes:
+#                 return "Medium"
+#             elif "low" in notes:
+#                 return "Low"
+#                 
+#             return "Unknown"
+#         except Exception as e:
+#             # Log the error but don't crash
+#             print(f"Error extracting priority: {e}")
+#             return "Unknown"
+#             
+#     def clean_text(text):
+#         if pd.isna(text) or not text:
+#             return ""
+#             
+#         text = str(text)
+#         # Remove markdown headers, asterisks, etc.
+#         text = text.replace("### 1.", "").replace("### 2.", "")
+#         text = text.replace("### 3.", "").replace("### 4.", "")
+#         text = text.replace("****", "")
+#         text = text.strip()
+#         return text
+#     
+#     def remove_label_prefixes(text):
+#         pattern = r'(?im)^\s*["\']?(SUMMARY|KEY FINDINGS|SUGGESTED ACTIONS|PRIORITY LEVEL):\**\s*'
+#         return re.sub(pattern, '', text).strip()
+#     
+#     # Format text into a bulleted list
+#     def format_bullet_list(text):
+#         if pd.isna(text) or not text:
+#             return []
+#         
+#         text = clean_text(text)
+#         bullet_items = []
+#         
+#         # Try various delimiters to identify bullet points
+#         if '\n-' in text:
+#             # Split by lines that start with a dash
+#             raw_items = text.split('\n-')
+#             for i, item in enumerate(raw_items):
+#                 if i == 0 and not item.strip().startswith('-'):
+#                     # First item typically doesn't have a dash prefix
+#                     bullet_items.append(item.strip())
+#                 else:
+#                     bullet_items.append(item.strip())
+#         elif '\n' in text and len(text.split('\n')) > 1:
+#             # Split by newlines if multiple lines exist
+#             bullet_items = [line.strip() for line in text.split('\n') if line.strip()]
+#         elif '-' in text and text.count('-') > 1:
+#             # Split by dashes if multiple dashes exist
+#             bullet_items = [item.strip() for item in text.split('-') if item.strip()]
+#         elif '.' in text and text.count('.') > 2:
+#             # Split by periods if multiple periods exist (and not just single sentence)
+#             bullet_items = [item.strip() for item in text.split('.') if item.strip()]
+#         else:
+#             # Just use the whole text as one item
+#             bullet_items = [text]
+#             
+#         # Clean up each item
+#         clean_items = []
+#         for item in bullet_items:
+#             # Remove any bullet points or numbers at the beginning
+#             clean_item = item.strip().lstrip('1234567890.-*•›✓✅✔︎☑︎■□●○•⦿⁃◦-–—−⋅᛫∙ ')
+#             if clean_item:  # Skip empty items
+#                 clean_items.append(clean_item)
+#                 
+#         return clean_items
+#     
+#     # Filter categories by priority
+#     filtered_categories = []
+#     for category in selected_categories:
+#         try:
+#             category_insights = nlp_df[nlp_df['bug_category'] == category]
+#             if not category_insights.empty:
+#                 try:
+#                     # Try to get priority from different sources
+#                     if 'priority_level' in category_insights.columns and 'additional_notes' in category_insights.columns:
+#                         priority = get_priority(
+#                             category_insights['additional_notes'].iloc[0],
+#                             category_insights['priority_level'].iloc[0]
+#                         )
+#                     elif 'priority_level' in category_insights.columns:
+#                         priority = get_priority(None, category_insights['priority_level'].iloc[0])
+#                     elif 'additional_notes' in category_insights.columns:
+#                         priority = get_priority(category_insights['additional_notes'].iloc[0])
+#                     else:
+#                         priority = "Unknown"
+#                 except Exception as e:
+#                     print(f"Error getting priority for {category}: {e}")
+#                     priority = "Unknown"
+#                     
+#                 if severity_filter == "All" or priority == severity_filter:
+#                     filtered_categories.append(category)
+#         except Exception as e:
+#             st.warning(f"Error processing category {category}: {str(e)}")
+#             if severity_filter == "All":
+#                 filtered_categories.append(category)
+#     
+#     # Display insights for filtered categories
+#     for category in filtered_categories:
+#         try:
+#             category_insights = nlp_df[nlp_df['bug_category'] == category]
+#             if not category_insights.empty:
+#                 with st.expander(f"📌 {category}", expanded=True):
+#                     try:
+#                         # Category summary metrics
+#                         col1, col2 = st.columns(2)
+#                         with col1:
+#                             bug_count = len(filtered_bug_df[filtered_bug_df['bug_category'] == category])
+#                             st.metric("Bug Count", bug_count)
+#                         with col2:
+#                             priority = "Unknown"
+#                             if 'priority_level' in category_insights.columns and 'additional_notes' in category_insights.columns:
+#                                 priority_level = category_insights['priority_level'].iloc[0]
+#                                 notes = category_insights['additional_notes'].iloc[0]
+#                                 priority = get_priority(notes, priority_level)
+#                             st.metric("Priority", priority)
+#                         # Display summary if available
+#                         if 'summary' in category_insights.columns and pd.notna(category_insights['summary'].iloc[0]):
+#                             summary_text = remove_label_prefixes(clean_text(category_insights['summary'].iloc[0]))
+#                             if summary_text:
+#                                 st.markdown("### 📝 Summary")
+#                                 st.write(summary_text)
+#                         # Display key findings
+#                         if 'key_findings' in category_insights.columns and pd.notna(category_insights['key_findings'].iloc[0]):
+#                             findings = remove_label_prefixes(clean_text(category_insights['key_findings'].iloc[0]))
+#                             st.markdown("### 🔍 Key Findings")
+#                             findings_list = format_bullet_list(findings)
+#                             for finding in findings_list:
+#                                 if finding.strip():
+#                                     st.markdown(f"- {finding}")
+#                         # Display suggested actions
+#                         if 'suggested_actions' in category_insights.columns and pd.notna(category_insights['suggested_actions'].iloc[0]):
+#                             action_text = remove_label_prefixes(clean_text(category_insights['suggested_actions'].iloc[0]))
+#                             st.markdown("### 💡 Suggested Actions")
+#                             actions = format_bullet_list(action_text)
+#                             for idx, action in enumerate(actions, 1):
+#                                 if action.strip():
+#                                     st.markdown(f"{idx}. {action}")
+#                         # Display additional notes for priority analysis
+#                         if 'additional_notes' in category_insights.columns and pd.notna(category_insights['additional_notes'].iloc[0]):
+#                             notes = remove_label_prefixes(clean_text(category_insights['additional_notes'].iloc[0]))
+#                             if notes.strip() and notes.lower() != 'nan':
+#                                 st.markdown("### 📊 Priority Analysis")
+#                                 st.info(notes)
+#                     except Exception as e:
+#                         st.error(f"Error displaying insights for {category}: {str(e)}")
+#         except Exception as e:
+#             st.error(f"Error processing category {category}: {str(e)}")
 
 with tab4:
     st.subheader("Advanced Sentiment Analysis")
