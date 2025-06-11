@@ -1,6 +1,7 @@
 # SLT Bug Analytics Dashboard
 
 This repository contains a Streamlit dashboard for analysing bug reports in the SLT Selfcare app.
+Bug categories are annotated with standard syslog levels (`DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`) so you can filter and visualize bugs by severity. The data-processing pipeline assigns these levels automatically when `run_pipeline.py` is executed.
 
 ## Running Locally
 
