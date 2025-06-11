@@ -1,11 +1,14 @@
-import pandas as pd
-import os
-import time
+import argparse
 import logging
-from openai import OpenAI
-from dotenv import load_dotenv
-from tqdm import tqdm
+import os
 import sys
+import time
+
+from dotenv import load_dotenv
+from openai import OpenAI
+from openai import error as openai_error
+import pandas as pd
+from tqdm import tqdm
 
 # Set up logging
 logging.basicConfig(
@@ -17,16 +20,31 @@ logger = logging.getLogger(__name__)
 # Load environment variables (for OpenAI API key)
 load_dotenv()
 
-# Ensure API key is available
-if not os.getenv("OPENAI_API_KEY"):
-    logger.error("OPENAI_API_KEY not found. Please create a .env file with your API key.")
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generate developer summaries from bug reports")
+    parser.add_argument("--input", default="data/reclassified_bugs_with_sbert.csv", help="CSV file with bug data")
+    parser.add_argument("--output", default="data/developer_bug_summaries.csv", help="Where to save the summaries")
+    parser.add_argument("--dry-run", action="store_true", help="Skip OpenAI calls and output placeholder data")
+    return parser.parse_args()
+
+
+ARGS = parse_args()
+
+if not ARGS.dry_run and not os.getenv("OPENAI_API_KEY"):
+    logger.error("OPENAI_API_KEY not found. Please create a .env file with your API key or use --dry-run.")
     sys.exit(1)
 
-# Configure OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = None
+if not ARGS.dry_run:
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-def load_bug_data(file_path='data/reclassified_bugs_with_sbert.csv'):
-    """Load and prepare the bug data"""
+def load_bug_data(file_path: str) -> pd.DataFrame:
+    """Load and validate the bug data"""
+    if not os.path.exists(file_path):
+        logger.error(f"Input file not found: {file_path}")
+        sys.exit(1)
+
     try:
         logger.info(f"Loading bug data from {file_path}")
         df = pd.read_csv(file_path)
@@ -56,7 +74,7 @@ def group_bugs_by_category(df):
         
     return grouped
 
-def generate_summary_with_gpt(category, reviews_df, max_reviews=25):
+def generate_summary_with_gpt(category, reviews_df, max_reviews: int = 25):
     """Generate summaries, key findings, suggested actions, and priority levels using GPT-3.5"""
     # Limit the number of reviews to avoid token limit issues
     if len(reviews_df) > max_reviews:
@@ -90,46 +108,55 @@ def generate_summary_with_gpt(category, reviews_df, max_reviews=25):
     Format your response with clear headers for each section.
     """
     
-    # Call OpenAI API
-    try:
-        # Add a retry mechanism with exponential backoff
-        max_retries = 3
-        retry_delay = 2
-        
-        for attempt in range(max_retries):
-            try:
-                # Updated code for OpenAI API v1.0.0+
-                completion = client.chat.completions.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {"role": "system", "content": "You are a software development expert providing bug analysis."},
-                        {"role": "user", "content": prompt}
-                    ],
-                    temperature=0.5,  # More deterministic
-                    max_tokens=1000
-                )
-                
-                response = completion.choices[0].message.content
-                logger.debug(f"GPT response for {category}: {response[:100]}...")
-                return parse_gpt_response(response)
-            
-            except Exception as e:
-                if attempt < max_retries - 1:
-                    logger.warning(f"API call failed, retrying in {retry_delay} seconds... ({str(e)})")
-                    time.sleep(retry_delay)
-                    retry_delay *= 2  # Exponential backoff
-                else:
-                    raise
-                    
-    except Exception as e:
-        logger.error(f"Error generating summary for {category}: {str(e)}")
+    if ARGS.dry_run:
+        logger.info("Dry run enabled - skipping OpenAI call")
         return {
-            "summary": f"Error generating summary: {str(e)}",
-            "key_findings": "Error",
-            "suggested_actions": "Error",
+            "summary": "[dry-run] summary",
+            "key_findings": "[dry-run] key findings",
+            "suggested_actions": "[dry-run] suggested actions",
             "priority_level": "Unknown",
-            "additional_notes": f"Error occurred during analysis: {str(e)}"
+            "additional_notes": "OpenAI call skipped"
         }
+
+    # Call OpenAI API
+    max_retries = 3
+    retry_delay = 2
+    for attempt in range(max_retries):
+        try:
+            completion = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a software development expert providing bug analysis."},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=0.5,
+                max_tokens=1000,
+            )
+
+            response = completion.choices[0].message.content
+            logger.debug(f"GPT response for {category}: {response[:100]}...")
+            return parse_gpt_response(response)
+        except (openai_error.APIError, openai_error.Timeout, openai_error.RateLimitError) as api_err:
+            if attempt < max_retries - 1:
+                logger.warning(
+                    f"OpenAI API error, retrying in {retry_delay} seconds... ({api_err})"
+                )
+                time.sleep(retry_delay)
+                retry_delay *= 2
+            else:
+                logger.error(f"Failed after retries due to API error: {api_err}")
+                break
+        except Exception as e:
+            logger.error(f"Unexpected error during OpenAI call: {e}")
+            break
+
+    return {
+        "summary": "Error generating summary",
+        "key_findings": "Error",
+        "suggested_actions": "Error",
+        "priority_level": "Unknown",
+        "additional_notes": "Failed to generate summary",
+    }
 
 def parse_gpt_response(response):
     """Parse the GPT response into structured fields"""
@@ -213,11 +240,11 @@ def parse_gpt_response(response):
     
     return result
 
-def main():
+def main() -> None:
     logger.info("Starting developer summary generation")
-    
+
     # Load bug data
-    bugs_df = load_bug_data()
+    bugs_df = load_bug_data(ARGS.input)
     
     # Group bugs by category
     grouped_bugs = group_bugs_by_category(bugs_df)
@@ -261,7 +288,7 @@ def main():
     results_df.drop('priority_sort', axis=1, inplace=True)
     
     # Save to CSV
-    output_file = "data/developer_bug_summaries.csv"
+    output_file = ARGS.output
     results_df.to_csv(output_file, index=False)
     logger.info(f"Developer summaries saved to {output_file}")
     
