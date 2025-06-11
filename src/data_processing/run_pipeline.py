@@ -86,22 +86,9 @@ def main():
             print(f"  - {file}")
         print("Some pipeline steps may have failed.")
     
-    # Launch the dashboard
-    print("\nLaunching the Streamlit dashboard...")
-    print("Please wait while the dashboard initializes...")
-    
-    # Use subprocess.run to wait for streamlit to start
-    dashboard_path = Path(__file__).resolve().parents[1] / 'dashboard' / 'app.py'
-    try:
-        subprocess.run(
-            ['streamlit', 'run', str(dashboard_path)],
-            check=True,
-            text=True
-        )
-    except subprocess.CalledProcessError as e:
-        print("Error launching dashboard:", e)
-    except KeyboardInterrupt:
-        print("\nDashboard closed by user.")
+    # Inform the user how to launch the dashboard manually
+    print("\nTo view the interactive dashboard, run:")
+    print("  streamlit run src/dashboard/app.py")
 
 if __name__ == "__main__":
     main()
