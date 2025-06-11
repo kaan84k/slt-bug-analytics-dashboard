@@ -7,14 +7,22 @@ def run_step(module_name, step_number, description):
     print(f"\n=== Step {step_number}: {description} ===")
     print(f"Running {module_name}...")
 
-    result = subprocess.run(['python', '-m', module_name],
-                            capture_output=True,
-                            text=True)
+    root_dir = Path(__file__).resolve().parents[2]
+    env = os.environ.copy()
+    env['PYTHONPATH'] = str(root_dir / 'src')
+
+    result = subprocess.run(
+        ['python', '-m', module_name],
+        capture_output=True,
+        text=True,
+        cwd=root_dir,
+        env=env
+    )
     
     if result.returncode == 0:
-        print(f"✓ {script_name} completed successfully")
+        print(f"✓ {module_name} completed successfully")
     else:
-        print(f"✗ Error running {script_name}")
+        print(f"✗ Error running {module_name}")
         print("Error output:")
         print(result.stderr)
         raise Exception(f"Pipeline failed at step {step_number}")
