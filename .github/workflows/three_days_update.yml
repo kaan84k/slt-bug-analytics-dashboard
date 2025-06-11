@@ -19,3 +19,22 @@ jobs:
           pip install -r requirements.txt
       - name: Run pipeline
         run: python src/data_processing/run_pipeline.py
+
+      - name: Commit CSV outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/*.csv
+          if git diff --cached --quiet; then
+            echo "No CSV changes to commit"
+          else
+            git commit -m "Update data CSV files"
+            git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+            git push origin HEAD:${{ github.ref }}
+          fi
+
+      - name: Upload CSV outputs
+        uses: actions/upload-artifact@v3
+        with:
+          name: pipeline-csvs
+          path: data/*.csv
