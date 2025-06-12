@@ -474,12 +474,11 @@ with tab3:
                             for idx, action in enumerate(actions, 1):
                                 if action.strip():
                                     st.markdown(f"{idx}. {action}")
-                        # Display additional notes for priority analysis
-                        if 'additional_notes' in category_insights.columns and pd.notna(category_insights['additional_notes'].iloc[0]):
-                            notes = remove_label_prefixes(clean_text(category_insights['additional_notes'].iloc[0]))
-                            if notes.strip() and notes.lower() != 'nan':
-                                st.markdown("### 📊 Priority Analysis")
-                                st.info(notes)
+                        # if 'additional_notes' in category_insights.columns and pd.notna(category_insights['additional_notes'].iloc[0]):
+                        #     notes = remove_label_prefixes(clean_text(category_insights['additional_notes'].iloc[0]))
+                        #     if notes.strip() and notes.lower() != 'nan':
+                        #         st.markdown("### 📊 Priority Analysis")
+                        #         st.info(notes)
                     except Exception as e:
                         st.error(f"Error displaying insights for {category}: {str(e)}")
         except Exception as e:
