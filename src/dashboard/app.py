@@ -22,6 +22,9 @@ SYSLOG_MAP = {
     "UI Issue":          ("info",    6),
     "Other":             ("debug",   7)
 }
+
+# Alias used in developer insights
+CATEGORY_SEVERITY_MAP = SYSLOG_MAP
 SYSLOG_LEVELS = ["crit", "err", "warning", "notice", "info", "debug"]
 SYSLOG_COLORS = {
     "crit":    "#ff0000",
@@ -288,63 +291,14 @@ with tab2:
 
 with tab3:
     st.subheader("Developer Insights")
-    
+
     # Add severity filter
     severity_filter = st.selectbox(
-        "Filter by Priority",
-        ["All", "Critical", "High", "Medium", "Low"]
+        "Filter by Severity",
+        ["All", "crit", "err", "warning", "notice", "info", "debug"]
     )
-    
+
     # Helper functions
-    def get_priority(notes, priority_level=None):
-        try:
-            # First check if we have a valid priority_level already
-            if priority_level and pd.notna(priority_level) and str(priority_level).strip().lower() not in ['nan', 'unknown', '', 'none']:
-                priority_val = str(priority_level).strip()
-                # Normalize priority value
-                if priority_val.lower() == 'critical':
-                    return "Critical"
-                elif priority_val.lower() == 'high':
-                    return "High"
-                elif priority_val.lower() == 'medium':
-                    return "Medium"
-                elif priority_val.lower() == 'low':
-                    return "Low"
-            
-            # If no valid priority_level, check notes
-            if pd.isna(notes) or not notes or str(notes).strip().lower() in ['nan', '']:
-                return "Unknown"
-                
-            # Convert to string and lowercase for consistent processing
-            notes = str(notes).lower()
-            
-            # First, try to find explicit priority mentions
-            if "priority" in notes and ":" in notes:
-                priority_section = notes.split("priority")[1].split(":")[1].strip()
-                if "critical" in priority_section:
-                    return "Critical"
-                elif "high" in priority_section:
-                    return "High" 
-                elif "medium" in priority_section:
-                    return "Medium"
-                elif "low" in priority_section:
-                    return "Low"
-            
-            # If no explicit section, check the whole text
-            if "critical" in notes:
-                return "Critical"
-            elif "high" in notes:
-                return "High"
-            elif "medium" in notes:
-                return "Medium"
-            elif "low" in notes:
-                return "Low"
-                
-            return "Unknown"
-        except Exception as e:
-            # Log the error but don't crash
-            print(f"Error extracting priority: {e}")
-            return "Unknown"
             
     def clean_text(text):
         if pd.isna(text) or not text:
@@ -361,12 +315,12 @@ with tab3:
     def remove_label_prefixes(text):
         pattern = r'(?im)^\s*["\']?(SUMMARY|KEY FINDINGS|SUGGESTED ACTIONS|PRIORITY LEVEL):\**\s*'
         return re.sub(pattern, '', text).strip()
-    
+
     # Format text into a bulleted list
     def format_bullet_list(text):
         if pd.isna(text) or not text:
             return []
-        
+
         text = clean_text(text)
         bullet_items = []
         
@@ -403,31 +357,13 @@ with tab3:
                 
         return clean_items
     
-    # Filter categories by priority
+    # Filter categories by severity
     filtered_categories = []
     for category in selected_categories:
         try:
-            category_insights = nlp_df[nlp_df['bug_category'] == category]
-            if not category_insights.empty:
-                try:
-                    # Try to get priority from different sources
-                    if 'priority_level' in category_insights.columns and 'additional_notes' in category_insights.columns:
-                        priority = get_priority(
-                            category_insights['additional_notes'].iloc[0],
-                            category_insights['priority_level'].iloc[0]
-                        )
-                    elif 'priority_level' in category_insights.columns:
-                        priority = get_priority(None, category_insights['priority_level'].iloc[0])
-                    elif 'additional_notes' in category_insights.columns:
-                        priority = get_priority(category_insights['additional_notes'].iloc[0])
-                    else:
-                        priority = "Unknown"
-                except Exception as e:
-                    print(f"Error getting priority for {category}: {e}")
-                    priority = "Unknown"
-                    
-                if severity_filter == "All" or priority == severity_filter:
-                    filtered_categories.append(category)
+            severity_code, severity_number = CATEGORY_SEVERITY_MAP.get(category, ("unknown", 0))
+            if severity_filter == "All" or severity_code == severity_filter:
+                filtered_categories.append(category)
         except Exception as e:
             st.warning(f"Error processing category {category}: {str(e)}")
             if severity_filter == "All":
@@ -446,12 +382,8 @@ with tab3:
                             bug_count = len(filtered_bug_df[filtered_bug_df['bug_category'] == category])
                             st.metric("Bug Count", bug_count)
                         with col2:
-                            priority = "Unknown"
-                            if 'priority_level' in category_insights.columns and 'additional_notes' in category_insights.columns:
-                                priority_level = category_insights['priority_level'].iloc[0]
-                                notes = category_insights['additional_notes'].iloc[0]
-                                priority = get_priority(notes, priority_level)
-                            st.metric("Priority", priority)
+                            severity_code, severity_number = CATEGORY_SEVERITY_MAP.get(category, ("unknown", 0))
+                            st.metric("Severity", f"{severity_code} ({severity_number})")
                         # Display summary if available
                         if 'summary' in category_insights.columns and pd.notna(category_insights['summary'].iloc[0]):
                             summary_text = remove_label_prefixes(clean_text(category_insights['summary'].iloc[0]))
