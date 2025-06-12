@@ -38,8 +38,7 @@ if "authenticated" not in st.session_state:
     st.session_state["authenticated"] = False
 
 if not st.session_state["authenticated"]:
-    st.title("Login")
-    with st.form("login_form"):
+
         input_email = st.text_input("Email")
         input_password = st.text_input("Password", type="password")
         submitted = st.form_submit_button("Login")
