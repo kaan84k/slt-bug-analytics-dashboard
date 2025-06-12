@@ -11,16 +11,13 @@ pip install -r requirements.txt
 streamlit run src/dashboard/app.py
 ```
 
-The application requires a few environment variables. Create a `.env` file (see
-the provided example) and set the login credentials:
+The application can load environment variables from a `.env` file. The
+processing scripts use `OPENAI_API_KEY` for accessing the OpenAI API, so a
+minimal `.env` might look like:
 
 ```env
-APP_EMAIL=web2directory84@gmail.com
-APP_PASSWORD_HASH=<SHA256 hashed password>
+OPENAI_API_KEY=
 ```
-
-The repository includes an example `.env` with the hashed value for
-`Test!234`. You can update these variables to use your own credentials.
 
 ## Deployment Notes
 
