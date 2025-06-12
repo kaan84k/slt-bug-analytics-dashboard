@@ -6,6 +6,16 @@ import plotly.express as px
 from datetime import datetime
 import plotly.graph_objects as go
 from data_processing.non_bug import UserExperienceAnalyzer
+
+@st.cache_data
+def load_csv(path: str) -> pd.DataFrame:
+    """Load a CSV file with caching."""
+    return pd.read_csv(path)
+
+@st.cache_resource
+def load_analyzer(path: str) -> UserExperienceAnalyzer:
+    """Load UserExperienceAnalyzer with caching to avoid reinitialization."""
+    return UserExperienceAnalyzer(path)
 import io
 import base64
 import re
@@ -41,7 +51,7 @@ st.title("SLT Selfcare App - Bug Analytics Dashboard")
 
 # --- Load and process data ---
 try:
-    df = pd.read_csv("data/categorized_bugs.csv")
+    df = load_csv("data/categorized_bugs.csv")
 except Exception as e:
     st.error(f"Error loading categorized_bugs.csv: {str(e)}")
     st.stop()
@@ -107,9 +117,9 @@ def highlight_row(row):
 
 # Load categorized bugs and NLP summaries with error handling
 try:
-    bug_df = pd.read_csv("data/categorized_bugs.csv")
-    nlp_df = pd.read_csv("data/developer_bug_summaries.csv")
-    predictions_df = pd.read_csv("data/bug_predictions.csv")
+    bug_df = load_csv("data/categorized_bugs.csv")
+    nlp_df = load_csv("data/developer_bug_summaries.csv")
+    predictions_df = load_csv("data/bug_predictions.csv")
 except Exception as e:
     st.error(f"Error loading data files: {str(e)}")
     st.info("Please run the full pipeline to generate all required files.")
@@ -420,7 +430,7 @@ with tab4:
     
     try:
         # Initialize the analyzer
-        analyzer = UserExperienceAnalyzer('data/bug_predictions.csv')
+        analyzer = load_analyzer('data/bug_predictions.csv')
         
         # Display summary metrics
         summary = analyzer.get_sentiment_summary()
