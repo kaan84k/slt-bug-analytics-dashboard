@@ -99,9 +99,6 @@ def highlight_row(row):
     color = SYSLOG_COLORS.get(row['syslog_level'], "#f7f7f7")
     return ['background-color: %s' % color]*len(row)
 
-st.markdown("### Bug Tickets")
-styled = filtered_df.style.apply(highlight_row, axis=1)
-st.dataframe(styled, use_container_width=True, hide_index=True)
 
 # --- Existing dashboard code ---
 
@@ -200,7 +197,18 @@ st.sidebar.download_button(
 
 
 # Organize visualizations in tabs
-tab1, tab2, tab3, tab4 = st.tabs(["Bug Categories", "Time Analysis", "Developer Insights", "Sentiment Patterns"])
+tab_tickets, tab1, tab2, tab3, tab4 = st.tabs([
+    "Bug Tickets",
+    "Bug Categories",
+    "Time Analysis",
+    "Developer Insights",
+    "Sentiment Patterns",
+])
+
+with tab_tickets:
+    st.markdown("### Bug Tickets")
+    styled = filtered_df.style.apply(highlight_row, axis=1)
+    st.dataframe(styled, use_container_width=True, hide_index=True)
 
 with tab1:
     col1, col2 = st.columns(2)
