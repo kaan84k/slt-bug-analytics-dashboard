@@ -14,6 +14,7 @@ except Exception:  # pragma: no cover - optional dependency may be missing
 
 import pandas as pd
 from tqdm import tqdm
+from transformers import pipeline
 
 # Set up logging
 logging.basicConfig(
@@ -31,6 +32,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input", default="data/reclassified_bugs_with_sbert.csv", help="CSV file with bug data")
     parser.add_argument("--output", default="data/developer_bug_summaries.csv", help="Where to save the summaries")
     parser.add_argument("--dry-run", action="store_true", help="Skip OpenAI calls and output placeholder data")
+    parser.add_argument(
+        "--model",
+        default="facebook/bart-large-cnn",
+        help="Hugging Face summarization model (e.g. 'facebook/bart-large-cnn', 't5-large')",
+    )
+    parser.add_argument(
+        "--use-openai",
+        action="store_true",
+        help="Use OpenAI GPT-3.5 for summarization instead of the Hugging Face model",
+    )
     return parser.parse_args()
 
 
@@ -54,26 +65,32 @@ except Exception:
     logger.warning("openai package not found. Proceeding in dry-run mode.")
     ARGS.dry_run = True
 
-# Automatically fall back to dry-run mode if no API key is available
+# Initialize OpenAI client if requested
 client = None
-if ARGS.dry_run:
-    logger.info("Dry run requested - OpenAI API will not be used")
-else:
+if ARGS.use_openai and not ARGS.dry_run:
     api_key = os.getenv("OPENAI_API_KEY")
     if api_key:
         try:
             client = OpenAI(api_key=api_key)
         except Exception as e:
             logger.warning(
-                "Failed to initialize OpenAI client (%s). Proceeding in dry-run mode.",
+                "Failed to initialize OpenAI client (%s). Falling back to Hugging Face model.",
                 e,
             )
-            ARGS.dry_run = True
+            ARGS.use_openai = False
     else:
-        logger.warning(
-            "OPENAI_API_KEY not found. Proceeding in dry-run mode."
-        )
-        ARGS.dry_run = True
+        logger.warning("OPENAI_API_KEY not found. Falling back to Hugging Face model.")
+        ARGS.use_openai = False
+
+# Load Hugging Face summarization model if not using OpenAI
+summarizer = None
+if not ARGS.use_openai:
+    try:
+        logger.info(f"Loading Hugging Face model: {ARGS.model}")
+        summarizer = pipeline("summarization", model=ARGS.model)
+    except Exception as e:
+        logger.error(f"Failed to load Hugging Face model '{ARGS.model}': {e}")
+        sys.exit(1)
 
 def load_bug_data(file_path: str) -> pd.DataFrame:
     """Load and validate the bug data"""
@@ -203,6 +220,49 @@ def generate_summary_with_gpt(category, reviews_df, max_reviews: int = 25):
         "additional_notes": "Failed to generate summary",
     }
 
+
+def generate_summary_with_hf(category, reviews_df, max_reviews: int = 25):
+    """Generate a summary using a Hugging Face model."""
+    if summarizer is None:
+        logger.error("Hugging Face summarizer not initialized")
+        return {
+            "summary": "Error generating summary",
+            "key_findings": "N/A",
+            "suggested_actions": "N/A",
+            "priority_level": "Unknown",
+            "additional_notes": "Summarizer missing",
+        }
+
+    if len(reviews_df) > max_reviews:
+        logger.info(f"Limiting {category} reviews from {len(reviews_df)} to {max_reviews}")
+        reviews_sample = reviews_df.sample(max_reviews, random_state=42)
+    else:
+        reviews_sample = reviews_df
+
+    reviews_text = "\n\n".join(reviews_sample['review_description'].tolist())
+    prompt = f"Summarize the following bug reports about {category}:\n\n{reviews_text}"
+
+    try:
+        summary = summarizer(prompt, truncation=True)[0]["summary_text"]
+    except Exception as e:
+        logger.error(f"Summarization error with model {ARGS.model}: {e}")
+        summary = "Error generating summary"
+
+    return {
+        "summary": summary,
+        "key_findings": "N/A",
+        "suggested_actions": "N/A",
+        "priority_level": "Unknown",
+        "additional_notes": f"Generated with {ARGS.model}",
+    }
+
+
+def generate_summary(category, reviews_df, max_reviews: int = 25):
+    """Dispatch to GPT or Hugging Face summarization based on settings."""
+    if ARGS.use_openai and not ARGS.dry_run:
+        return generate_summary_with_gpt(category, reviews_df, max_reviews)
+    return generate_summary_with_hf(category, reviews_df, max_reviews)
+
 def parse_gpt_response(response):
     """Parse the GPT response into structured fields"""
     result = {
@@ -300,8 +360,7 @@ def main() -> None:
     # Process each category
     for category, category_df in tqdm(grouped_bugs.items(), desc="Processing bug categories"):
         logger.info(f"Generating summary for category: {category}")
-          # Generate summary with GPT
-        summary_data = generate_summary_with_gpt(category, category_df)
+        summary_data = generate_summary(category, category_df)
         
         # Add to results
         results.append({
