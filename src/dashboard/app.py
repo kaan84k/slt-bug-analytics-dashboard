@@ -8,14 +8,6 @@ import plotly.graph_objects as go
 from data_processing.non_bug import UserExperienceAnalyzer
 import hashlib
 
-try:
-    from dotenv import load_dotenv
-except Exception:  # pragma: no cover - optional dependency may be missing
-    def load_dotenv(*_args, **_kwargs):
-        st.warning("python-dotenv not installed; skipping .env loading")
-
-load_dotenv()
-
 @st.cache_data
 def load_csv(path: str) -> pd.DataFrame:
     """Load a CSV file with caching."""
@@ -46,9 +38,7 @@ if "authenticated" not in st.session_state:
     st.session_state["authenticated"] = False
 
 if not st.session_state["authenticated"]:
-    st.title("SLT Bug Analytics")
-    col_l, col_c, col_r = st.columns([3,2,3])
-    with col_c.form("login_form"):
+
         input_email = st.text_input("Email")
         input_password = st.text_input("Password", type="password")
         submitted = st.form_submit_button("Login")
