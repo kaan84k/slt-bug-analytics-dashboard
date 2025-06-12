@@ -10,13 +10,104 @@ import io
 import base64
 import re
 
+# --- Syslog severity mapping ---
+SYSLOG_MAP = {
+    "Crash/Freeze":      ("crit",    2),
+    "Server Error":      ("crit",    2),
+    "Login Error":       ("err",     3),
+    "Payment Issue":     ("err",     3),
+    "Update Issue":      ("warning", 4),
+    "Slow Performance":  ("warning", 4),
+    "Notification Problem": ("notice", 5),
+    "UI Issue":          ("info",    6),
+    "Other":             ("debug",   7)
+}
+SYSLOG_LEVELS = ["crit", "err", "warning", "notice", "info", "debug"]
+SYSLOG_COLORS = {
+    "crit":    "#ff0000",
+    "err":     "#ff9500",
+    "warning": "#ffd900",
+    "notice":  "#0066ff",
+    "info":    "#d97575",
+    "debug":   "#fabebe"
+}
+
 # Set page configuration first to avoid StreamlitAPIException
 st.set_page_config(page_title="SLT Bug Analytics Dashboard", layout="wide")
 st.title("SLT Selfcare App - Bug Analytics Dashboard")
 
+# --- Load and process data ---
+try:
+    df = pd.read_csv("data/categorized_bugs.csv")
+except Exception as e:
+    st.error(f"Error loading categorized_bugs.csv: {str(e)}")
+    st.stop()
+
+# Assign syslog_level and severity_code
+def map_syslog(row):
+    cat = str(row['bug_category'])
+    level, code = SYSLOG_MAP.get(cat, ("debug", 7))
+    return pd.Series([level, code])
+
+df[['syslog_level', 'severity_code']] = df.apply(map_syslog, axis=1)
+
+# Generate TicketID (BUG-1001, ...)
+df = df.reset_index(drop=True)
+df['TicketID'] = ["BUG-%04d" % (i+1001) for i in range(len(df))]
+
+# Convert review_date to datetime and sort
+df['review_date'] = pd.to_datetime(df['review_date'], errors='coerce')
+df = df.sort_values('review_date', ascending=False)
+
+# Add Timestamp column (alias for review_date)
+df['Timestamp'] = df['review_date']
+
+# Reorder columns
+display_cols = [
+    "TicketID", "Timestamp", "syslog_level", "severity_code",
+    "bug_category", "appVersion", "review_date", "review_description"
+]
+df_display = df[display_cols]
+
+# --- Sidebar filter ---
+st.sidebar.header("Filter by Syslog Level")
+selected_levels = st.sidebar.multiselect(
+    "Syslog Level", SYSLOG_LEVELS, default=SYSLOG_LEVELS
+)
+filtered_df = df_display[df_display['syslog_level'].isin(selected_levels)]
+
+# --- Download buttons ---
+st.sidebar.header("Download")
+csv_bytes = filtered_df.to_csv(index=False).encode('utf-8')
+st.sidebar.download_button(
+    "Download CSV", csv_bytes, "filtered_bug_tickets.csv", "text/csv"
+)
+
+# Syslog-style log file
+def to_syslog_row(row):
+    # <severity_code> [TicketID] (LEVEL) Category in vX on YYYY-MM-DD: description
+    return f"<{row['severity_code']}> [{row['TicketID']}] ({row['syslog_level'].upper()}) {row['bug_category']} in v{row['appVersion']} on {row['review_date'].date() if pd.notna(row['review_date']) else 'N/A'}: {row['review_description']}"
+
+syslog_lines = filtered_df.apply(to_syslog_row, axis=1)
+syslog_bytes = "\n".join(syslog_lines).encode('utf-8')
+st.sidebar.download_button(
+    "Download Syslog Log", syslog_bytes, "bug_tickets.log", "text/plain"
+)
+
+# --- Styled table with row highlighting ---
+def highlight_row(row):
+    color = SYSLOG_COLORS.get(row['syslog_level'], "#f7f7f7")
+    return ['background-color: %s' % color]*len(row)
+
+st.markdown("### Bug Tickets")
+styled = filtered_df.style.apply(highlight_row, axis=1)
+st.dataframe(styled, use_container_width=True, hide_index=True)
+
+# --- Existing dashboard code ---
+
 # Load categorized bugs and NLP summaries with error handling
 try:
-    bug_df = pd.read_csv("data/reclassified_bugs_with_sbert.csv")
+    bug_df = pd.read_csv("data/categorized_bugs.csv")
     nlp_df = pd.read_csv("data/developer_bug_summaries.csv")
     predictions_df = pd.read_csv("data/bug_predictions.csv")
 except Exception as e:
@@ -107,8 +198,6 @@ st.sidebar.download_button(
     "text/csv"
 )
 
-
-# ... (previous code)
 
 # Organize visualizations in tabs
 tab1, tab2, tab3, tab4 = st.tabs(["Bug Categories", "Time Analysis", "Developer Insights", "Sentiment Patterns"])
