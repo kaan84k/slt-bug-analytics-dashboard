@@ -6,7 +6,6 @@ import plotly.express as px
 from datetime import datetime
 import plotly.graph_objects as go
 from data_processing.non_bug import UserExperienceAnalyzer
-import hashlib
 
 @st.cache_data
 def load_csv(path: str) -> pd.DataFrame:
@@ -22,34 +21,6 @@ import base64
 import re
 
 st.set_page_config(page_title="SLT Bug Analytics Dashboard", layout="wide")
-
-# --- Simple authentication handling ---
-
-def check_credentials(email: str, password: str) -> bool:
-    """Validate email and password against environment variables."""
-    stored_email = os.environ.get("APP_EMAIL")
-    stored_hash = os.environ.get("APP_PASSWORD_HASH")
-    if not stored_email or not stored_hash:
-        return False
-    pwd_hash = hashlib.sha256(password.encode()).hexdigest()
-    return email == stored_email and pwd_hash == stored_hash
-
-if "authenticated" not in st.session_state:
-    st.session_state["authenticated"] = False
-
-if not st.session_state["authenticated"]:
-
-        input_email = st.text_input("Email")
-        input_password = st.text_input("Password", type="password")
-        submitted = st.form_submit_button("Login")
-    if submitted:
-        if check_credentials(input_email, input_password):
-            st.session_state["authenticated"] = True
-            st.experimental_rerun()
-        else:
-            st.error("Invalid credentials")
-    st.stop()
-
 
 # --- Syslog severity mapping ---
 SYSLOG_MAP = {
@@ -112,10 +83,6 @@ display_cols = [
 ]
 df_display = df[display_cols]
 
-# Logout button
-if st.sidebar.button("Logout"):
-    st.session_state["authenticated"] = False
-    st.experimental_rerun()
 
 # --- Sidebar filter ---
 st.sidebar.header("Filter by Syslog Level")
