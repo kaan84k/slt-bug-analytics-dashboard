@@ -1,9 +1,9 @@
 review_description,bug_category,review_date,appVersion
-crashing during the login,Login Error,2021-05-01 13:36:04,1.0.4
+crashing during the login,Crash/Freeze,2021-05-01 13:36:04,1.0.4
 after update it can t open,Update Issue,2021-04-10 16:10:11,1.2.2
 after the last update i m unable to login,Update Issue,2021-04-15 09:16:32,1.2.2
-app crashed just after login can t do anything,Login Error,2021-04-24 18:29:15,1.2.2
-keeps on crashing,Other,2021-04-24 20:24:22,1.2.2
+app crashed just after login can t do anything,Crash/Freeze,2021-04-24 18:29:15,1.2.2
+keeps on crashing,Crash/Freeze,2021-04-24 20:24:22,1.2.2
 cannot update,Update Issue,2023-08-21 15:32:20,1.7.0
 can t log in to the app every time error messages coming,Login Error,2020-05-31 19:02:45,1.0.0
 can t even log in properly,Login Error,2025-03-14 11:56:38,2.0.8
@@ -12,21 +12,21 @@ doesn t work after update,Update Issue,2021-04-11 18:06:53,1.2.2
 cant login,Login Error,2020-05-28 19:40:27,
 not working properly when ever i log in and it s says broken connection,Network/Connection,2021-10-04 21:54:14,1.3.2
 not loading the data usage giving me a error tried log out and log in also tried clearing data and cache and log in but still have the error,Slow Performance,2023-05-31 10:52:57,1.6.1
-app keep crashing,Other,2022-12-23 10:15:41,1.5.4
-app crashed as soon as i installed and opened it,Other,2021-05-31 14:43:51,1.3.2
+app keep crashing,Crash/Freeze,2022-12-23 10:15:41,1.5.4
+app crashed as soon as i installed and opened it,Crash/Freeze,2021-05-31 14:43:51,1.3.2
 after the update app automatically log off my account now i cannot log in again,Login Error,2021-04-27 07:21:54,1.2.2
 app gets forced closed when loading dash board after login before the update it was working fine,Slow Performance,2021-04-16 07:11:17,1.2.2
 very bad cannot log in,Login Error,2020-11-05 22:34:28,
 always shows errors,Other,2025-04-10 14:15:09,
-keep crashing i need some solution please,Other,2021-04-25 21:01:22,1.2.2
+keep crashing i need some solution please,Crash/Freeze,2021-04-25 21:01:22,1.2.2
 app not working after updated its stucks,Update Issue,2021-04-07 05:28:47,1.0.9
 cannot even log in to the app shows as invalid password but even if i reset it still doesn t work,Login Error,2021-09-19 23:49:10,1.3.2
-the app is crashing at the start,Other,2021-04-14 06:58:04,1.2.2
+the app is crashing at the start,Crash/Freeze,2021-04-14 06:58:04,1.2.2
 data not loading after login,Slow Performance,2021-10-12 12:58:01,1.3.2
 internal server error,Server Error,2024-05-29 08:04:35,1.8.0
 i ve been trying to enter my account for multiple time but it is still showing errors very poor build up,Other,2021-06-26 00:28:30,
 i am unable to login even after entering all required credential not the best of experiences,Login Error,2021-08-21 17:18:14,1.3.2
-can t login it says no internet connection,Network/Connection,2020-05-27 09:45:10,1.0.0
+can t login it says no internet connection,Login Error,2020-05-27 09:45:10,1.0.0
 cant even login,Login Error,2021-10-15 14:27:09,1.4.1
 cant even login,Login Error,2021-03-15 13:17:04,1.0.6
 app is not stable sometimes app does not loading,Slow Performance,2024-03-31 20:21:46,1.7.0
@@ -34,26 +34,26 @@ it cannot update and even open the previous app give me a solution plz,Update Is
 unable to login it says incorrect user name password even though i entered the right one unable to reset the password,Login Error,2022-07-06 13:23:10,1.4.2
 app is not working after the latest update,Update Issue,2021-04-12 11:52:28,1.2.2
 very difficult to log in,Login Error,2024-11-23 09:50:50,2.0.2
-after latest update we can t login no use of using this,Update Issue,2021-04-10 12:53:42,1.0.9
+after latest update we can t login no use of using this,Login Error,2021-04-10 12:53:42,1.0.9
 app is not working after the update,Update Issue,2021-04-06 19:57:59,1.0.9
 can t login to this app,Login Error,2021-09-29 09:56:07,1.3.2
 can t login to this,Login Error,2021-05-31 14:11:18,1.3.2
 i created an account but can t log in it said invalid username or password after create the account,Login Error,2021-09-06 15:58:08,1.3.2
-what in the world is wrong with this app always crashing always showing an error message,Other,2024-02-14 12:58:01,1.7.0
-can t log my stl account always says please try again later,Other,2021-06-20 07:41:41,1.3.2
+what in the world is wrong with this app always crashing always showing an error message,Crash/Freeze,2024-02-14 12:58:01,1.7.0
+can t log my stl account always says please try again later,Login Error,2021-06-20 07:41:41,1.3.2
 can t pay my bill session timeout error appear every time at the end,Payment Issue,2021-07-05 13:18:54,1.3.2
 i cant log also why dont u fix any,Other,2022-01-26 08:26:22,1.4.2
-i can t log into the app at the moment keep coming error message which is i m not connected to the internet but i m already connected to the internet and i can do other stuff eg youtube surf,Network/Connection,2020-05-25 06:12:51,1.0.0
+i can t log into the app at the moment keep coming error message which is i m not connected to the internet but i m already connected to the internet and i can do other stuff eg youtube surf,Login Error,2020-05-25 06:12:51,1.0.0
 system error is displayed every time when i want to subscribe or unsubscribe a package can t do anything through the app,Other,2025-04-22 20:22:39,2.1.0
 i cannot log in to app changed the password but still it says log in info wrong,Login Error,2021-08-06 05:30:15,1.3.2
-app is crashing every single time i try to log in through facebook and showing a alert by my phone it has a bug,Login Error,2022-12-10 20:38:03,1.5.4
+app is crashing every single time i try to log in through facebook and showing a alert by my phone it has a bug,Crash/Freeze,2022-12-10 20:38:03,1.5.4
 it says to update but not updating,Update Issue,2023-08-26 10:01:51,1.7.0
 can t log in to the app error says there must be only 10 digits to a user name,Login Error,2021-05-10 14:45:39,1.2.8
 something is wrong with the app every time i tried to login for the past two days an error msg pops up saying the service is temporarily unavailable,Login Error,2021-08-25 19:35:59,1.3.2
 pleas fix that error ops smthing went wrong this message pops when ever i launch the app,Other,2024-01-05 15:32:25,1.7.0
 not working properly always shows an error prompt when opened p s now there is no such an error still there is room to improve but overall it s usable,Other,2022-07-03 03:58:20,1.4.2
 i can t register every time i try it says try again,Other,2021-12-04 19:13:14,1.4.1
-can t login or create new account no network error appears though connected through the fibre frustrating worst app,Network/Connection,2023-02-03 14:50:23,1.6.0
+can t login or create new account no network error appears though connected through the fibre frustrating worst app,Login Error,2023-02-03 14:50:23,1.6.0
 error error error invalid password why you cannot make a app correctly,Other,2021-06-26 14:36:42,1.3.2
 can t add a new account all details are correct but receiving a error,Other,2022-07-28 19:19:20,1.4.2
 not working signup always showing error slt website also same,Other,2024-10-11 22:53:32,2.0.2
@@ -62,15 +62,15 @@ not working in my nokia 7 plus everytime show error,Other,2021-06-06 23:00:36,1.
 app crashes on start worst app so far,Other,2021-04-18 13:15:08,
 app gets stuck frequently,Crash/Freeze,2024-05-24 16:06:10,1.8.0
 couldn t sign in it says to type 10 digit password even after i type my 10 digit password,Login Error,2023-08-19 10:47:11,1.7.0
-app keeps crashing i could never use the app i am using a samsung galaxy note 9 android version 8 1 0,Update Issue,2021-04-17 18:00:50,1.2.2
+app keeps crashing i could never use the app i am using a samsung galaxy note 9 android version 8 1 0,Crash/Freeze,2021-04-17 18:00:50,1.2.2
 why i can t open some apps through this connection,Network/Connection,2023-04-30 00:00:51,1.6.1
 update issue please fix it,Update Issue,2023-08-18 10:38:05,1.7.0
-app crashed everytime when i try to start up redmi note 7,Other,2021-05-01 11:24:31,1.2.8
+app crashed everytime when i try to start up redmi note 7,Crash/Freeze,2021-05-01 11:24:31,1.2.8
 it worked alright for like two weeks and now suddenly the app started to crash with a message account details not available please watch out this issue,Crash/Freeze,2020-06-18 10:53:25,1.0.0
 cannot sign up using google or credentials,Login Error,2021-05-31 11:31:28,1.3.2
 can t login to the account it says my number is wrong,Login Error,2020-05-18 10:13:52,1.0.0
 cannot activate packages throws internal server error,Server Error,2024-05-27 18:02:20,1.8.0
-garbage even cannot log into the account and see the details,Other,2025-04-28 19:25:33,2.1.0
+garbage even cannot log into the account and see the details,Login Error,2025-04-28 19:25:33,2.1.0
 it s says cannot install,Other,2022-10-28 20:35:27,
 says internal error all the time when i go to check daily usage no update available have cleared cache even tried reinstalling,Update Issue,2024-02-11 12:21:50,1.7.0
 when i try to login i m getting sorry for the inconvenience caused service will be available soon message when will be the service available again when will be this issue resolve,Login Error,2023-12-05 22:16:11,1.7.0
@@ -92,7 +92,7 @@ updated features app crash,Update Issue,2021-04-09 07:41:50,1.2.2
 errors errors errors,Other,2025-04-12 22:35:42,2.0.8
 always not responding,Crash/Freeze,2024-05-21 21:40:26,1.8.0
 can t pay money with new update fix it,Update Issue,2021-04-18 13:38:49,1.2.2
-all of a sudden i can t login into the app you though my internet connection is available app is issuing error messages saying no internet,Network/Connection,2020-05-27 09:14:17,1.0.0
+all of a sudden i can t login into the app you though my internet connection is available app is issuing error messages saying no internet,Login Error,2020-05-27 09:14:17,1.0.0
 i have an ongoing complain that submitted last year they fixed the error but the complain still exist i cant submit a new complain because of it,Other,2023-05-20 17:35:08,1.6.1
 unable to sync my broadband account error message saying the service is temporary unavailable totally unusable,Other,2020-07-02 10:02:57,1.0.0
 unable to download the app,Other,2022-07-10 18:39:44,1.4.2
@@ -100,7 +100,7 @@ there is no customer service no way to resolve a problem tried for days but coul
 i can not download bill please fix this issue,Payment Issue,2025-02-24 18:23:39,2.0.8
 does not working correctly everytime it s temporary unavailable,Other,2021-07-04 08:32:26,1.3.2
 i checked my details from 1212 but when i include those details its also showing error,Other,2021-06-26 17:41:18,
-this app is freezing on galaxy s6 booting randomly useless,Other,2020-04-14 19:55:51,
+this app is freezing on galaxy s6 booting randomly useless,Crash/Freeze,2020-04-14 19:55:51,
 bug bug bug bug,Other,2021-10-12 13:11:46,1.3.2
 cannot login with the same credentials i use to login to the web portal useless,Login Error,2022-05-11 16:07:48,1.4.2
 data missing bad service,Other,2020-04-17 14:12:14,1.0.0
@@ -116,7 +116,7 @@ no longer works on rooted devices,Other,2021-04-09 19:43:44,1.2.2
 cannot enter id deatails,Other,2020-08-23 11:16:57,1.0.4
 lot of bugs can t even log a complain due to various reasons from time to time,Other,2022-05-04 07:08:49,1.4.2
 can t make a payment,Payment Issue,2021-04-16 08:16:27,1.2.2
-cannot log complaints very bad service always not able to do an action,Other,2024-01-05 20:13:09,1.7.0
+cannot log complaints very bad service always not able to do an action,Login Error,2024-01-05 20:13:09,1.7.0
 can t login with old credentials can t create new a new account cab t reset password allways says service will be available soon,Login Error,2021-05-31 13:37:36,1.3.2
 most of the time it says service unavailable,Other,2023-12-01 19:26:16,1.7.0
 it was working perfectly for the past two weeks it says either oops something went wrong try again later or service temporarily unavailable report same issue even after updating very disappointing,Other,2023-02-02 13:10:21,1.6.0
@@ -176,10 +176,10 @@ i can t type one time password when i trying to pay the bill,Payment Issue,2021-
 useless app can t create an account not working,Other,2020-07-28 10:02:30,1.0.4
 can t change wifi password,Contact Change Issue,2022-10-09 21:35:20,1.5.2
 app does not work,Other,2021-04-10 07:34:16,1.2.2
-can t login it says no internet while i m connected to slt fiber connection test the app before release,Network/Connection,2020-06-07 21:48:09,1.0.0
+can t login it says no internet while i m connected to slt fiber connection test the app before release,Login Error,2020-06-07 21:48:09,1.0.0
 worst app ever seen every time i go to pay the bill an error message appears,Payment Issue,2022-09-22 21:28:06,1.4.2
 cant even signup,Other,2021-09-18 21:26:00,
-its really bad it s not working i can t log into it it s says oops something went wrong check you data i m so mad even i have data it s say this again but again you have to fix it before i uninstall it,Other,2021-07-09 09:28:39,1.3.2
+its really bad it s not working i can t log into it it s says oops something went wrong check you data i m so mad even i have data it s say this again but again you have to fix it before i uninstall it,Login Error,2021-07-09 09:28:39,1.3.2
 application isn t working correctly and when i was trying to log in to the app and i entered username and password correctly application responded me need 10 digits please fix this issue your customer service so disappointed,Login Error,2021-07-16 00:47:29,1.3.2
 always service temporarily unavailable,Other,2024-05-07 22:10:03,1.8.0
 ooops something went wrong pls try again shorty this is the most visible msg otherwise all the necessary items features are enabled but the main problem is most of the time provide above error app is really good if it is working well slt pls pay your attention,Other,2021-06-25 23:55:14,1.3.2
@@ -191,7 +191,7 @@ not loading on mobile data,Slow Performance,2024-05-25 23:19:03,1.8.0
 cant install to my phone huawei nova 7se 5g,Other,2021-09-22 23:41:25,1.0.6
 too meny bugs and always showing service unavailable,Other,2021-09-01 00:38:32,1.3.2
 worst app ever i cannot even log into my account,Other,2022-07-25 13:35:18,1.4.2
-i cannot log it always says usernam invalid which given by slt,Other,2021-05-28 22:15:39,1.3.2
+i cannot log it always says usernam invalid which given by slt,Login Error,2021-05-28 22:15:39,1.3.2
 this app is not working i entired my u name password show it invalid,Other,2021-09-22 10:04:00,
 slt kaspersky page is not working at least can t login to my account to verify with slt kaspersky please fix this,Login Error,2023-11-05 03:01:34,1.7.0
 account user name invalid error not working this app properly for last update i have a log time account bad online service bad service not working authorities username and password not capture lol plz give this app develope for professional developeer,Update Issue,2023-03-03 00:12:36,1.6.1
@@ -203,7 +203,7 @@ always service temporary anavailable message appears,Other,2025-03-26 23:53:28,
 poor connection don t activite any data plans,Network/Connection,2024-04-13 22:08:24,1.5.2
 the app is not working i can t join,Other,2020-12-15 23:40:06,
 can t logging to this app this is really bad app,Other,2021-07-16 08:44:21,
-this app is always reboots and randomly freezing in xiomi a2 bad experience,Other,2020-04-13 21:08:52,
+this app is always reboots and randomly freezing in xiomi a2 bad experience,Crash/Freeze,2020-04-13 21:08:52,
 worst app always crashes,Other,2021-04-06 23:43:29,1.0.9
 one of the worst application cannot resend the bill request and cannot lodge a complaint the location cannot be added,Payment Issue,2022-11-05 14:02:52,1.5.2
 app is not working it says my device is rooted and app not working on rooted devices my phone is never rooted and i have checked via few root checker tools an d device does not have root privileges please correct this bug redmit note 7 android ver 10 miui 12 5,Other,2022-10-21 10:04:28,1.5.2
@@ -245,7 +245,7 @@ registration process is a mess,Other,2021-05-20 17:51:35,1.2.8
 failed,Other,2021-07-10 14:03:49,1.3.2
 always not working,Other,2022-07-03 10:01:38,1.4.2
 worst app ever always the service is unavailable can t view data balance and bills pls fix this error,Other,2023-05-30 22:15:49,1.6.1
-oh boi crashed everytime,Other,2022-01-20 11:39:25,1.4.2
+oh boi crashed everytime,Crash/Freeze,2022-01-20 11:39:25,1.4.2
 not working,Other,2020-07-11 07:37:23,1.0.4
 not working,Other,2021-04-07 09:51:14,1.0.6
 not working,Other,2020-07-27 11:34:19,1.0.4
@@ -286,7 +286,7 @@ bill payment page not fill my account number but show that previous page and whe
 happy day select system error router massage,Other,2024-04-11 21:21:03,
 update was bad,Update Issue,2021-10-14 07:04:09,1.3.2
 no way to reload prepaid connection,Network/Connection,2024-01-01 16:24:43,
-this app always get crashed when i try to pay bill through this app it always shows that my number is wrong please give a hint on required format so that it is not confusing there are lots of options but very few is working,Payment Issue,2022-01-13 08:44:45,1.4.2
+this app always get crashed when i try to pay bill through this app it always shows that my number is wrong please give a hint on required format so that it is not confusing there are lots of options but very few is working,Crash/Freeze,2022-01-13 08:44:45,1.4.2
 can t even logging at one attempt it shows my password as wrong user interfact is very confusing previous app is mych better than this,Other,2022-07-12 01:41:38,1.4.2
 most of the time app is not working unavailable very bad app,Other,2025-05-21 12:21:09,
 after the last update connection change dropdown is not visible at the top please fix it,Network/Connection,2023-01-12 19:08:06,1.5.4
@@ -412,7 +412,7 @@ long time i using this app for pay my bill but recently i cant pay using this ap
 very poor app most of the time it doesnt work they can t make proper app for their connection,Network/Connection,2023-05-29 22:58:34,1.6.1
 this app does not work properly could you fix it,Other,2024-01-09 07:55:34,1.7.0
 some services are not available end of the month thank you,Other,2025-04-29 08:48:56,2.1.0
-hi i was buy a slt mobitel router four days ago but still i can t log into your app and see my data details i have try on web also but its impossible every time i try the app indicates adding erro please fix that,Other,2023-12-16 13:51:53,1.7.0
+hi i was buy a slt mobitel router four days ago but still i can t log into your app and see my data details i have try on web also but its impossible every time i try the app indicates adding erro please fix that,Login Error,2023-12-16 13:51:53,1.7.0
 well the app is overall okay with me but the main issue that is visible to me right now is when most of the time i m about to login to the app and check my data balance and details there are messages shows up displaying service temporarily unavailable oops something went wrong please try again shortly and this really mess me up most of the time btw sometimes everything loads up but the data balance shows n a if you guys can change this i will change my review to 5star immediately,Login Error,2023-05-31 22:08:43,1.6.1
 well the app is overall okay with me but the main issue that is visible to me right now is when most of the time i m about to login to the app and check my data balance and details there are messages shows up displaying service temporarily unavailable oops something went wrong please try again shortly and this really mess me up most of the time btw sometimes everything loads up but the data balance shows n a if you guys can change this i will change my review to 5star immediately,Login Error,2023-05-31 21:55:14,1.6.1
 when a new version is available we are not allowed to use the existing version without updating when there is no space left in the phone to update the app is not usable at all,Update Issue,2022-01-16 09:43:09,
@@ -475,7 +475,7 @@ the most stupid app ever met never expect this kind of error in slt,Other,2021-0
 so many errors even can t see the bills,Other,2020-12-01 07:39:57,1.0.6
 does not update the payments accurately,Update Issue,2024-06-16 07:36:09,1.8.0
 not satisfied at all although you reset the password and retype it again says invalid username and password where s the support team here terrible this app,Other,2025-04-25 19:38:33,2.1.0
-it keeps getting crashed and not recommending the service also worst app ever used,Other,2021-09-05 20:04:44,1.3.2
+it keeps getting crashed and not recommending the service also worst app ever used,Crash/Freeze,2021-09-05 20:04:44,1.3.2
 poor condition not working properly,Other,2020-10-21 21:37:11,1.0.6
 wrost app ever can t even log in to my account this is more than a garbage please don t install this it s a waste of time,Login Error,2021-06-05 16:33:09,1.3.2
 terrible app when i open the app always it always say service temporary unavailable can t get any services from the app as a leading telecommunication company in the country slt should ashamed their self about this app,Other,2022-09-06 19:33:50,1.4.2
@@ -498,7 +498,7 @@ how can i get my user id password,Other,2020-08-14 11:30:40,1.0.4
 to hell with the ui cause it did the job but lately app is basically oops something went wrong try again shortly doesn t even do the job anymore,Other,2024-01-03 22:36:21,1.7.0
 poor app most of the functions not worked well otp not received on time e bill also not received to email,Payment Issue,2024-12-07 15:29:40,2.0.6
 worst app ever cannot check broadband usage even though there s a link to it it says to download slt broadband why should we download another app after downloading myslt we should be able to check everything from one app slt broadband has a bug and even after entering the correct password it says wrong password we have to enter the same password 10 15 times to log in useless as ever slt is boasting about their quality but they cannot even make a properly functioning app shame,Login Error,2021-01-08 16:04:20,
-another ewaste by slt mobitel app crashed every time i open it on my android 13 device or it says service temporary unavailable app sucks and often not responds to what i do ios version is still in okay condition but android needs a huge update idk why this huge tech companies make such use less apps like this my dialog is also such an waste and a bad reputation for the companies expected more from them update please,Update Issue,2024-05-21 20:09:40,
+another ewaste by slt mobitel app crashed every time i open it on my android 13 device or it says service temporary unavailable app sucks and often not responds to what i do ios version is still in okay condition but android needs a huge update idk why this huge tech companies make such use less apps like this my dialog is also such an waste and a bad reputation for the companies expected more from them update please,Crash/Freeze,2024-05-21 20:09:40,
 very poor application,Other,2023-02-02 22:17:25,
 cannot clearly see the history of bill amounts,Payment Issue,2021-09-27 16:34:53,1.3.2
 leda godkne htto ponna slt errors errors carry pnnyo ape salli walin kanawa bonawa app eka hdpn hutto nattn mn branch ekata awith router eka kudu krnwa,Other,2025-04-17 22:24:01,2.0.8
