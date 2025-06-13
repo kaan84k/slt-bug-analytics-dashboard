@@ -139,6 +139,7 @@ it doesnt show other connections after update i usually use 3 connections,Update
 how do i log into my account try sevaral times called your hotline the way they are saying not working i cannot pay bills due to the covid very poor service,Login Error,2021-08-23 03:42:13,1.3.2
 just awful always says connection error and only shows me the current usage can t do anything other than that this happened to me on multiple devices and my connection is perfectly fine the app is just awful,Server Error,2023-02-19 03:12:00,1.4.2
 i ve been trying to log into my account but it showed sorry for the inconvenience caused service will be available soon i contacted the slt hotline after waiting for almost 16 minutes but they couldn t fix that problem either disappointed please give the old app back,Login Error,2022-07-07 20:05:25,
+every time i try to load the app in the last couple of days it says that the service is temporarily unavailable it s been 2 days now and there hasn t been any fixes yet i can t even load the app to contact customer support this app is a waste of time,Contact Change Issue,2024-05-22 09:06:56,1.8.0
 worst app only white screen appears,UI Issue,2024-09-06 23:07:44,
 can not login with your personal informations of slt package mad verification system,Login Error,2020-04-14 07:07:39,1.0.0
 horrid app cannot pay bill and cannot even complain does not work properly,Payment Issue,2023-08-24 16:53:26,
@@ -249,6 +250,7 @@ one time payment method is now not available this is a hige miss in this app,Pay
 requested fiber connection they never respond good customer service,Other,2021-06-17 21:50:21,1.3.2
 useless app with useless staff created a complaint no action has been taken for once week when i try to create another one after 10 days it says already has one and updated but can t open the existing complaint,Update Issue,2023-02-17 13:22:24,1.6.0
 very bad and useless app can t even log into it do not even install it it is a wastage of your data,Login Error,2021-09-27 13:49:31,1.3.2
+this app is not working properly unable to add my telephone number,Contact Change Issue,2021-02-16 20:31:41,1.0.6
 can t update contact info this is a basic feature that any service provider app should have and it s broken or missing in myslt contact details are essential for receiving alerts and updates so not being able to change them is a serious flaw please fix this,Crash/Freeze,2025-04-16 08:56:30,2.1.0
 worst app won t proceed further while trying to pay the bills please fix it,Payment Issue,2021-07-20 08:31:47,1.3.2
 halfassed app cant do anything cant update info cant add an account cant even log in properly previous version was much better than this stupid app,Login Error,2022-08-28 17:06:07,1.4.2
@@ -292,7 +294,7 @@ cannot clearly see the history of bill amounts,Payment Issue,2021-09-27 16:34:53
 first of all you have to sort out why gating crash and very slow i am using myslt out of sl,Crash/Freeze,2021-09-03 09:07:15,1.3.2
 one of the worst company took 12 hours to get my 4g lte connection i have mailed so many times and this is a kind of time wastage,Other,2021-01-07 20:46:36,1.0.6
 app bill details app developing zero,Payment Issue,2020-11-24 10:58:31,1.0.6
-i paid for a fiber connection a week ago but still they have been unable to give the connection when i try to contact the responsible people they don t answer calls not recommend slt to anyone,Other,2024-10-16 17:35:14,2.0.2
+i paid for a fiber connection a week ago but still they have been unable to give the connection when i try to contact the responsible people they don t answer calls not recommend slt to anyone,Contact Change Issue,2024-10-16 17:35:14,2.0.2
 poor app i failed to even sign up cause this stupid app keep saying i don t have working internet while i do,Payment Issue,2021-04-06 21:55:14,1.0.9
 when i need to use you must offer to proceed without updating the app update should be optional not a must it cannot update with slow connections,Slow Performance,2021-10-11 20:27:14,1.3.2
 horrible service and horrible app displays wrong information inaccurate data balance,UI Issue,2020-04-25 17:12:45,
@@ -308,6 +310,7 @@ a totally horrible app i did my bill payment everytime with the app but today i 
 a connection with a very weak internet service provider very sad contributor a relationship where the bill pays no valuable service,Payment Issue,2021-05-27 21:46:51,1.3.0
 their connection speed gets so low due to higher user base so they can t have new users network speeds are so low that 3 seconds of hd video loads for 30 seconds and after thst 3 seconds it buffers for anlther 30 seconds,Other,2024-04-11 17:33:26,1.7.0
 can t even change contact information edit the dev team behind this app have to be the most incompetent team of software devs on any app it s been a month and a half and they still haven t fixed the issue nice job,Crash/Freeze,2025-05-07 08:19:27,2.1.0
+when i click pay its showing phone number and i enter amount and continue and then again it s asking for all the details to pay please pass the details from mobile app to the web form,Contact Change Issue,2021-11-15 00:32:03,1.4.1
 worst if i do not want to update now why do u push me worst experience,Update Issue,2023-01-27 23:13:37,1.5.4
 whats the slt account number i have to enter i tried the phone connection number but it says incorrect,Login Error,2020-11-03 20:09:05,1.0.6
 horrible app very slow have to wait like more than 15 min to see the data balance and to add extra gb please correct this don t check your valuable customer s patience,Slow Performance,2021-05-31 16:53:48,1.3.2
@@ -416,7 +419,6 @@ service not available,Other,2024-05-26 21:16:17,1.8.0
 service not available,Other,2024-02-14 11:56:56,1.7.0
 the worst app can t even sign up it keep saying the 6 digit code i enetered is null,Other,2021-09-21 14:48:54,1.3.2
 service currently unavailable now 3 days,Other,2023-04-26 07:10:45,1.6.1
-every time i try to load the app in the last couple of days it says that the service is temporarily unavailable it s been 2 days now and there hasn t been any fixes yet i can t even load the app to contact customer support this app is a waste of time,Other,2024-05-22 09:06:56,1.8.0
 not working properly so frustrating and annoying,Other,2021-12-15 12:35:04,1.4.2
 apo not working,Other,2021-05-09 18:24:05,1.2.8
 unable to downgrade data package very poor attitude,Other,2023-01-25 21:24:00,1.5.9
@@ -515,7 +517,6 @@ kaspersky products section value added services is not working not only in the m
 worse app unable to download poor service no reaction in call center westing our money and time i have to tranfer to the other brand,Other,2021-05-21 21:12:23,
 first myslt stopped working and now this app gives a message stating service is not available what s the point of this app if it doesn t work,Other,2020-07-11 06:54:18,1.0.4
 history tab previous package buying detals by date not working fix that as soon as possible,Other,2024-06-08 10:47:36,1.8.0
-this app is not working properly unable to add my telephone number,Other,2021-02-16 20:31:41,1.0.6
 youth add on 7 days package don t work,Other,2023-05-21 16:16:54,1.6.1
 installed and after i was going to connect my land no with my router they say my id is incorrect i checked my id 100th times but not useful,Other,2022-09-23 11:57:03,1.4.2
 not connect,Other,2022-11-18 20:37:33,
@@ -552,7 +553,6 @@ so much errors,Other,2023-04-10 19:41:26,1.6.1
 many options are not enabled to work properly or the options lack proper direction to get help from slt,Other,2020-12-11 06:48:10,1.0.6
 not work my slt app,Other,2021-05-31 11:14:55,1.3.2
 useless app doesn t work most of the time,Other,2020-10-27 19:47:56,1.0.6
-when i click pay its showing phone number and i enter amount and continue and then again it s asking for all the details to pay please pass the details from mobile app to the web form,Other,2021-11-15 00:32:03,1.4.1
 when i add extra data it finishers in no time i am confused my usage is 1gb or less for a day i added 10gb on 17th august 22nd my balance is only 1gb how come this happen they are faking with our money and worest is non of their apps works properly and does not provide information we need to check we need to see our day and night balance seperately and extra gb usage seperately worse service ever,Other,2020-08-22 11:50:46,1.0.4
 worst service ever can t even add my slt router keep getting errors had enough of with slt app,Other,2023-01-01 12:56:13,1.5.4
 after adding my slt details app showing my no but no other details,Other,2020-05-18 21:31:04,1.0.0
