@@ -7,6 +7,7 @@ bug_keywords = {
     "Notification Problem": ["notification", "alert", "reminder", "not getting", "missing notifications"],
     "Update Issue": ["update", "updated", "version", "after update", "since update", "new version"],
     "Server Error": ["server error", "server down", "server not responding", "cannot connect", "connection error", "500", "503"],
+    "Contact Change Issue": ["contact", "phone number", "mobile number", "change number", "update contact", "contact information", "contact details", "phone details", "cannot change", "number change"],
     "Other": []
 }
 
