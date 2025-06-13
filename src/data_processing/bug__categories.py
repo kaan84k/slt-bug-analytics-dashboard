@@ -1,8 +1,11 @@
 bug_keywords = {
-    "Login Error": ["login", "log in", "sign in", "cannot access", "authentication", "credentials"],
+    "Login Error": [
+        "login", "log in", "sign in", "cannot access", "authentication", "credentials",
+        "cannot log", "cannot login", "login problem", "login issue", "log my account", "log account"
+    ],
     "Contact Change Issue": ["contact info", "phone number", "mobile number", "change number", "update contact", "contact information", "contact details", "phone details", "cannot change", "number change"],
     "UI Issue": ["layout", "screen", "button", "display", "alignment", "responsive", "interface"],
-    "Crash/Freeze": ["crash", "freeze", "stuck", "unresponsive", "not responding"],
+    "Crash/Freeze": ["crash", "crashed", "crashing", "freeze", "freezing", "stuck", "unresponsive", "not responding"],
     "Payment Issue": ["payment", "bill", "topup", "recharge", "transaction", "fail", "credit card"],
     "Slow Performance": ["slow", "lag", "delay", "loading", "takes time", "wait", "performance"],
     "Notification Problem": ["notification", "alert", "reminder", "not getting", "missing notifications"],
@@ -50,7 +53,7 @@ df[['review_description', 'bug_category', 'review_date', 'appVersion']].to_csv("
 
 # Debug Review Example
 if __name__ == "__main__":
-    sample_review = "can t even change contact information edit the dev team behind this app have to be the most incompetent team of software devs on any app it s been a month and a half and they still haven t fixed the issue nice job guys"
+    sample_review = "cannot log complaints very bad service always not able to do an action"
     cleaned = preprocess(sample_review)
     category = categorize_review(cleaned)
     print(f"Sample review: {sample_review}")
