@@ -526,3 +526,4 @@ if st.sidebar.button("Send Email Now"):
         st.sidebar.success("Bug digest sent")
     except Exception as e:
         st.sidebar.error(f"Failed to send email: {e}")
+print("Reached email trigger section") 
