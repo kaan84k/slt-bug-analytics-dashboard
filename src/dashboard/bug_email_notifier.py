@@ -73,7 +73,10 @@ def main() -> None:
     df = load_bugs(DATA_PATH)
     sent = load_sent_tickets(SENT_FILE)
 
-    if not os.path.exists(SENT_FILE):
+    # Treat empty file as first run
+    first_run = not os.path.exists(SENT_FILE) or len(sent) == 0
+
+    if first_run:
         latest = df.head(10)
         if not latest.empty:
             html = build_html_table(latest[[
