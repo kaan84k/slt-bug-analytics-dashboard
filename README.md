@@ -11,9 +11,10 @@ pip install -r requirements.txt
 streamlit run src/dashboard/app.py
 ```
 
-The application can load environment variables from a `.env` file. The
-processing scripts use `OPENAI_API_KEY` for accessing the OpenAI API and
-`bug_email_notifier.py` requires email credentials. A minimal `.env` might look like:
+The application reads configuration from environment variables. For local
+development you can place them in a `.env` file, while in GitHub Actions these
+values come from repository secrets. The `OPENAI_API_KEY` is used by the data
+processing scripts and `bug_email_notifier.py` requires email credentials. A minimal `.env` might look like:
 
 ```env
 OPENAI_API_KEY=

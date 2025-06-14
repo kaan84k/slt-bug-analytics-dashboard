@@ -4,14 +4,8 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-try:
-    from dotenv import load_dotenv
-except Exception:  # pragma: no cover - python-dotenv optional
-    def load_dotenv(*_args, **_kwargs):
-        pass
-
-# Load environment variables if a .env file is present
-load_dotenv()
+# Environment variables must already be set. The script no longer loads a
+# local `.env` file so it can run cleanly in GitHub Actions using secrets.
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'categorized_bugs.csv')
 SENT_FILE = os.path.join(os.path.dirname(__file__), 'sent_tickets.txt')
