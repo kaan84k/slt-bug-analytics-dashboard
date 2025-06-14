@@ -6,6 +6,7 @@ import plotly.express as px
 from datetime import datetime
 import plotly.graph_objects as go
 from data_processing.non_bug import UserExperienceAnalyzer
+from dashboard.bug_email_notifier import main as send_bug_digest
 
 @st.cache_data
 def load_csv(path: str) -> pd.DataFrame:
@@ -516,3 +517,12 @@ try:
     )
 except Exception as e:
     st.sidebar.warning(f"Error setting up export: {str(e)}")
+
+# --- Manual Email Trigger ---
+st.sidebar.header("📧 Bug Digest Email")
+if st.sidebar.button("Send Email Now"):
+    try:
+        send_bug_digest()
+        st.sidebar.success("Bug digest sent")
+    except Exception as e:
+        st.sidebar.error(f"Failed to send email: {e}")

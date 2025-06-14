@@ -12,11 +12,14 @@ streamlit run src/dashboard/app.py
 ```
 
 The application can load environment variables from a `.env` file. The
-processing scripts use `OPENAI_API_KEY` for accessing the OpenAI API, so a
-minimal `.env` might look like:
+processing scripts use `OPENAI_API_KEY` for accessing the OpenAI API and
+`bug_email_notifier.py` requires email credentials. A minimal `.env` might look like:
 
 ```env
 OPENAI_API_KEY=
+# EMAIL_USER=you@example.com
+# EMAIL_PASS=app_password
+# EMAIL_TO=
 ```
 
 ## Deployment Notes
