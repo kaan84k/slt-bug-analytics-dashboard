@@ -46,10 +46,16 @@ def build_html_table(df: pd.DataFrame) -> str:
 
 
 def send_email(subject: str, html_body: str) -> None:
+    import os
+    print("[DEBUG] EMAIL_USER =", os.environ.get('EMAIL_USER'))
+    print("[DEBUG] EMAIL_PASS =", '*' * len(os.environ.get('EMAIL_PASS', '')))
+    print("[DEBUG] EMAIL_TO =", os.environ.get('EMAIL_TO'))
+
     user = os.environ.get('EMAIL_USER')
     password = os.environ.get('EMAIL_PASS')
     if not user or not password:
         raise RuntimeError('EMAIL_USER and EMAIL_PASS environment variables are required')
+
     receiver = os.environ.get('EMAIL_TO', user)
 
     msg = MIMEMultipart('alternative')
