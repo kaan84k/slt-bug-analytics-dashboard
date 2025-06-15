@@ -26,6 +26,22 @@ logger = logging.getLogger(__name__)
 # Load environment variables (for OpenAI API key)
 load_dotenv()
 
+# Map bug categories to syslog levels for downstream use
+CATEGORY_SEVERITY_MAP = {
+    "Crash/Freeze": ("crit", 2),
+    "Server Error": ("crit", 2),
+    "Login Error": ("err", 3),
+    "Payment Issue": ("err", 3),
+    "Contact Change Issue": ("err", 3),
+    "Network/Connection": ("err", 3),
+    "OTP Issue": ("warning", 4),
+    "Update Issue": ("warning", 4),
+    "Slow Performance": ("warning", 4),
+    "Notification Problem": ("notice", 5),
+    "UI Issue": ("info", 6),
+    "Other": ("debug", 7),
+}
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate developer summaries from bug reports")
@@ -361,8 +377,9 @@ def main() -> None:
     for category, category_df in tqdm(grouped_bugs.items(), desc="Processing bug categories"):
         logger.info(f"Generating summary for category: {category}")
         summary_data = generate_summary(category, category_df)
-        
+
         # Add to results
+        level, code = CATEGORY_SEVERITY_MAP.get(category, ("debug", 7))
         results.append({
             "bug_category": category,
             "count": len(category_df),
@@ -372,7 +389,9 @@ def main() -> None:
             "priority_level": summary_data["priority_level"],
             "additional_notes": summary_data["additional_notes"],
             "latest_date": category_df['review_date'].max(),
-            "versions_affected": ", ".join(category_df['appVersion'].dropna().unique().astype(str))
+            "versions_affected": ", ".join(category_df['appVersion'].dropna().unique().astype(str)),
+            "syslog_level": level,
+            "severity_code": code
         })
     
     # Create DataFrame from results

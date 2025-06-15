@@ -30,6 +30,8 @@ SYSLOG_MAP = {
     "Login Error":       ("err",     3),
     "Payment Issue":     ("err",     3),
     "Contact Change Issue": ("err", 3),
+    "Network/Connection": ("err",     3),
+    "OTP Issue":       ("warning", 4),
     "Update Issue":      ("warning", 4),
     "Slow Performance":  ("warning", 4),
     "Notification Problem": ("notice", 5),
