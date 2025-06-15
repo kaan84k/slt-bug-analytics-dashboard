@@ -34,3 +34,28 @@ enableCORS = false
 ```
 
 Having these settings in place lets the dashboard start automatically without needing a browser on the server and prevents CORS issues when accessing the app.
+
+## About This Project
+This dashboard visualises and summarises bug reports collected from the SLT Selfcare app on Google Play. The data processing pipeline gathers reviews, classifies potential bugs using a transformer model and groups them into categories. Developer-friendly summaries are generated with OpenAI models.
+
+## Data Pipeline
+Running `python -m data_processing.run_pipeline` executes the end-to-end workflow:
+
+1. `sltmobitel_app_review` scrapes the latest Play Store reviews.
+2. `prioritized_bugs` identifies likely bug reports.
+3. `bug__categories` performs an initial classification.
+4. `reclassified_bugs_with_sbert` refines the categories with SBERT embeddings.
+5. `bug__categories_v2` produces final analytics-ready CSV files.
+6. `developer_summary` creates concise summaries for each bug category.
+
+The generated CSVs are written to the `data/` directory and are consumed by the dashboard.
+
+## Dashboard Overview
+Launching the app opens an interactive interface with filtering options, visualisations and developer insights. Non-bug feedback is analysed separately to highlight sentiment trends and common topics. Export buttons allow downloading filtered results and category summaries. A manual button triggers the `bug_email_notifier.py` script to send the latest digest via email.
+
+## Repository Layout
+- `src/data_processing/` – data pipeline modules
+- `src/dashboard/` – Streamlit application and email notifier
+- `data/` – CSV files produced by the pipeline
+
+With the necessary environment variables configured, running the pipeline then launching Streamlit provides a full end-to-end view of bug reports and user feedback.
