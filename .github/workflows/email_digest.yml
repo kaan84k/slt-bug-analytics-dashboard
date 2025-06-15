@@ -2,7 +2,7 @@ name: Daily Bug Digest Email
 
 on:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '0 1 * * *'  # Daily at 1:00 AM UTC
   workflow_dispatch:
 
 jobs:
@@ -19,11 +19,28 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run bug email notifier
-
         env: 
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-        run: python src/dashboard/bug_email_notifier.py
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}  # Optional
+        run: |
+          python src/dashboard/bug_email_notifier.py
+
+      - name: Commit sent_tickets.txt if changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/dashboard/sent_tickets.txt
+          git diff --cached --quiet || git commit -m "Update sent_tickets.txt in workflow"
+
+      - name: Push changes
+        if: success()
+        run: |
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
