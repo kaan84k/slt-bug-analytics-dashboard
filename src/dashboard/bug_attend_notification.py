@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 from datetime import datetime
 
-from src.db_utils import load_df, save_df, table_exists
+from db_utils import load_df, save_df, table_exists
 
 ATTENDED_PATH = Path(__file__).resolve().parents[2] / 'data' / 'attended_tickets.csv'
 ATTENDED_TABLE = 'attended_tickets'
