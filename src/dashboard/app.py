@@ -271,6 +271,39 @@ with tab2:
     fig_bar.update_layout(barmode='stack', xaxis_tickangle=-45)
     st.plotly_chart(fig_bar, use_container_width=True)
 
+    # --- New: Bug occurrences over the last 31 days ---
+    st.subheader("Bug Occurrences in Last 31 Days")
+    if 'review_date' in filtered_bug_df.columns:
+        try:
+            filtered_bug_df['review_date'] = pd.to_datetime(filtered_bug_df['review_date'])
+            max_date = filtered_bug_df['review_date'].max()
+            if pd.notna(max_date):
+                start_date = max_date - pd.Timedelta(days=30)
+                last_month_df = filtered_bug_df[
+                    (filtered_bug_df['review_date'] >= start_date) &
+                    (filtered_bug_df['review_date'] <= max_date)
+                ].copy()
+                last_month_df['day'] = last_month_df['review_date'].dt.day
+                daily_counts = (
+                    last_month_df['day']
+                    .value_counts()
+                    .reindex(range(1, 32), fill_value=0)
+                    .sort_index()
+                )
+                fig_daily = px.bar(
+                    x=daily_counts.index,
+                    y=daily_counts.values,
+                    labels={'x': 'Date', 'y': 'Bug Count'}
+                )
+                fig_daily.update_layout(xaxis=dict(dtick=1))
+                st.plotly_chart(fig_daily, use_container_width=True)
+            else:
+                st.info("No review dates available for time series.")
+        except Exception as e:
+            st.error(f"Error creating time series graph: {str(e)}")
+    else:
+        st.info("review_date column required for Time Analysis.")
+
     # --- User Journey View: Bug Timeline & Sentiment Heatmap ---
     with st.expander("🧭 User Journey View: Bug Timeline & Sentiment Heatmap", expanded=False):
         st.markdown("#### Timeline of Bugs by App Version and Sentiment")
