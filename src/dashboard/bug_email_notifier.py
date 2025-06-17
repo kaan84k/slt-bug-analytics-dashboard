@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import smtplib
-from db_utils import load_df
+from db_utils import load_df, save_df, table_exists
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 # local `.env` file so it can run cleanly in GitHub Actions using secrets.
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'categorized_bugs.csv')
-SENT_FILE = os.path.join(os.path.dirname(__file__), 'sent_tickets.txt')
+SENT_TABLE = 'sent_tickets'
 
 
 def load_bugs(path: str) -> pd.DataFrame:
@@ -24,17 +24,22 @@ def load_bugs(path: str) -> pd.DataFrame:
     return df
 
 
-def load_sent_tickets(path: str) -> set[str]:
-    if not os.path.exists(path):
+
+
+def load_sent_tickets_db(table: str) -> set[str]:
+    """Load sent ticket IDs from the SQLite database."""
+    if not table_exists(table):
         return set()
-    with open(path, 'r') as f:
-        return {line.strip() for line in f if line.strip()}
+    df = load_df(table)
+    if 'ticket_id' not in df.columns:
+        return set()
+    return {str(t).strip() for t in df['ticket_id'] if str(t).strip()}
 
 
-def save_sent_tickets(tickets: set[str], path: str) -> None:
-    with open(path, 'w') as f:
-        for ticket in sorted(tickets):
-            f.write(f"{ticket}\n")
+def save_sent_tickets_db(tickets: set[str], table: str) -> None:
+    """Persist sent ticket IDs to the SQLite database."""
+    df = pd.DataFrame({'ticket_id': sorted(tickets)})
+    save_df(df, table)
 
 
 def build_html_table(df: pd.DataFrame) -> str:
@@ -75,10 +80,10 @@ def send_email(subject: str, html_body: str) -> None:
 
 def main() -> None:
     df = load_bugs(DATA_PATH)
-    sent = load_sent_tickets(SENT_FILE)
+    sent = load_sent_tickets_db(SENT_TABLE)
 
-    # Treat empty file as first run
-    first_run = not os.path.exists(SENT_FILE) or len(sent) == 0
+    # Treat empty table as first run
+    first_run = len(sent) == 0
 
     if first_run:
         latest = df.head(10)
@@ -87,7 +92,8 @@ def main() -> None:
                 'TicketID', 'bug_category', 'appVersion', 'review_date', 'review_description'
             ]])
             send_email('🚀 Initial Bug Digest: Top 10 Recent Bug Tickets', html)
-        save_sent_tickets(set(df['TicketID']), SENT_FILE)
+        all_ids = set(df['TicketID'])
+        save_sent_tickets_db(all_ids, SENT_TABLE)
         return
 
     new_tickets = df[~df['TicketID'].isin(sent)]
@@ -102,7 +108,7 @@ def main() -> None:
     send_email(subject, html)
 
     sent.update(new_tickets['TicketID'])
-    save_sent_tickets(sent, SENT_FILE)
+    save_sent_tickets_db(sent, SENT_TABLE)
 
 
 if __name__ == '__main__':

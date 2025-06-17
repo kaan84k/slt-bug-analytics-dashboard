@@ -31,12 +31,12 @@ jobs:
         run: |
           python src/dashboard/bug_email_notifier.py
 
-      - name: Commit sent_tickets.txt if changed
+      - name: Commit updated database if changed
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/dashboard/sent_tickets.txt
-          git diff --cached --quiet || git commit -m "Update sent_tickets.txt in workflow"
+          git add data/bug_data.db
+          git diff --cached --quiet || git commit -m "Update bug_data.db in workflow"
 
       - name: Push changes
         if: success()
