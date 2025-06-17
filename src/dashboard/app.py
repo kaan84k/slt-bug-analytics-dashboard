@@ -271,25 +271,27 @@ with tab2:
     fig_bar.update_layout(barmode='stack', xaxis_tickangle=-45)
     st.plotly_chart(fig_bar, use_container_width=True)
 
-    # --- Updated: Bug occurrences aggregated by day of month ---
-    st.subheader("Bug Occurrences by Day of Month")
+    # --- Updated: Bug Categories aggregated by day of month ---
+    st.subheader("Bug Categories by Day of Month")
     if 'review_date' in filtered_bug_df.columns:
         try:
-            filtered_bug_df = filtered_bug_df.copy()
-            filtered_bug_df['review_date'] = pd.to_datetime(filtered_bug_df['review_date'])
-            filtered_bug_df['day'] = filtered_bug_df['review_date'].dt.day
-            daily_counts = (
-                filtered_bug_df['day']
-                .value_counts()
-                .reindex(range(1, 32), fill_value=0)
-                .sort_index()
+            df_day = filtered_bug_df.copy()
+            df_day['review_date'] = pd.to_datetime(df_day['review_date'])
+            df_day['day'] = df_day['review_date'].dt.day
+            day_cat = (
+                df_day.groupby(['day', 'bug_category']).size().reset_index(name='Count')
             )
+            day_cat = day_cat.pivot(index='day', columns='bug_category', values='Count')
+            day_cat = day_cat.reindex(range(1, 32), fill_value=0)
+            stacked = day_cat.reset_index().melt(id_vars='day', var_name='Bug Category', value_name='Count')
             fig_daily = px.bar(
-                x=daily_counts.index,
-                y=daily_counts.values,
-                labels={'x': 'Date', 'y': 'Bug Count'}
+                stacked,
+                x='day',
+                y='Count',
+                color='Bug Category',
+                labels={'day': 'Date'}
             )
-            fig_daily.update_layout(xaxis=dict(dtick=1))
+            fig_daily.update_layout(barmode='stack', xaxis=dict(dtick=1))
             st.plotly_chart(fig_daily, use_container_width=True)
         except Exception as e:
             st.error(f"Error creating time series graph: {str(e)}")
