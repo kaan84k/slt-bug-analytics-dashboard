@@ -7,6 +7,7 @@ from datetime import datetime
 import plotly.graph_objects as go
 from data_processing.non_bug import UserExperienceAnalyzer
 from dashboard.bug_email_notifier import main as send_bug_digest
+from dashboard.bug_attend_notification import load_attended, mark_tickets_attended
 from db_utils import load_df, table_exists
 
 @st.cache_data
@@ -91,6 +92,9 @@ display_cols = [
     "bug_category", "appVersion", "review_date", "review_description"
 ]
 df_display = df[display_cols]
+
+# Load tickets already marked as attended
+attended_df = load_attended()
 
 
 # --- Sidebar filter ---
@@ -221,12 +225,13 @@ st.sidebar.download_button(
 
 
 # Organize visualizations in tabs
-tab_tickets, tab1, tab2, tab3, tab4 = st.tabs([
+tab_tickets, tab1, tab2, tab3, tab4, tab_attended = st.tabs([
     "Bug Tickets",
     "Bug Categories",
     "Time Analysis",
     "Developer Insights",
     "Sentiment Patterns",
+    "Attended Tickets",
 ])
 
 with tab_tickets:
@@ -495,13 +500,25 @@ with tab4:
         # Sentiment Distribution
         st.subheader("📊 Sentiment Distribution")
         sentiment_dist = pd.DataFrame.from_dict(
-            summary['sentiment_distribution'], 
-            orient='index', 
+            summary['sentiment_distribution'],
+            orient='index',
             columns=['Count']
         )
         st.bar_chart(sentiment_dist)
     except Exception as e:
         st.error(f"Error in sentiment analysis: {str(e)}")
+
+with tab_attended:
+    st.subheader("Attended Tickets")
+    if attended_df.empty:
+        st.info("No tickets marked as attended.")
+    else:
+        merged = pd.merge(attended_df, df_display, on="TicketID", how="left")
+        st.dataframe(
+            merged.sort_values("attended_at", ascending=False),
+            use_container_width=True,
+            hide_index=True,
+        )
 
 # --- Export Options ---
 st.sidebar.header("📤 Export Options")
@@ -534,4 +551,15 @@ if st.sidebar.button("Send Email Now"):
         st.sidebar.success("Bug digest sent")
     except Exception as e:
         st.sidebar.error(f"Failed to send email: {e}")
+
+# --- Bug Attendance ---
+st.sidebar.header("✅ Mark Tickets Attended")
+attend_selection = st.sidebar.multiselect(
+    "Select Ticket IDs",
+    options=df_display["TicketID"],
+)
+if st.sidebar.button("Mark as Attended"):
+    mark_tickets_attended(attend_selection)
+    attended_df = load_attended()
+    st.sidebar.success("Tickets updated")
 
