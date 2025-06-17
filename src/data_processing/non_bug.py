@@ -33,25 +33,24 @@ except Exception as e:
     nlp = None
 
 # Download and verify required NLTK data
-def download_nltk_data():
-    """Download required NLTK data and verify its availability"""
-    required_packages = [
-        'punkt',
-        'stopwords',
-        'wordnet',
-        'averaged_perceptron_tagger'
-    ]
-    
-    try:
-        for package in required_packages:
+def download_nltk_data() -> None:
+    """Ensure required NLTK corpora and models are available."""
+    package_paths = {
+        "punkt": "tokenizers/punkt",
+        "punkt_tab": "tokenizers/punkt_tab",
+        "stopwords": "corpora/stopwords",
+        "wordnet": "corpora/wordnet",
+        "averaged_perceptron_tagger": "taggers/averaged_perceptron_tagger",
+    }
+
+    for pkg, path in package_paths.items():
+        try:
+            nltk.data.find(path)
+        except LookupError:
             try:
-                nltk.data.find(f'tokenizers/{package}')
-            except LookupError:
-                print(f"Downloading {package}...")
-                nltk.download(package, quiet=True)
-    except Exception as e:
-        print(f"Error downloading NLTK data: {str(e)}")
-        raise
+                nltk.download(pkg, quiet=True)
+            except Exception as e:  # pragma: no cover - network issues
+                print(f"Failed to download {pkg}: {e}")
 
 # Ensure NLTK data is available
 download_nltk_data()
