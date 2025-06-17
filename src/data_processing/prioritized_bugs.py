@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from db_utils import save_df
 from sentence_transformers import SentenceTransformer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
@@ -242,12 +243,14 @@ available_columns = [col for col in output_columns if col in df.columns]
 
 # Save detailed results for all reviews
 df[available_columns].to_csv('data/bug_predictions.csv', index=False)
+save_df(df[available_columns], 'bug_predictions')
 
 # Save prioritized bugs for easy review
 if not bugs_prioritized.empty:
     # Ensure columns exist in the prioritized DataFrame before selecting
     available_prioritized_columns = [col for col in output_columns if col in bugs_prioritized.columns]
     bugs_prioritized[available_prioritized_columns].to_csv('data/prioritized_bugs.csv', index=False)
+    save_df(bugs_prioritized[available_prioritized_columns], 'prioritized_bugs')
 
 
 logger.info("\n✅ Bug detection completed. Results saved to:")

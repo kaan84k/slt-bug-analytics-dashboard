@@ -1,6 +1,7 @@
 # === Import Libraries ===
 import pandas as pd
 import re
+from db_utils import save_df
 import matplotlib.pyplot as plt
 from sentence_transformers import SentenceTransformer
 from sklearn.linear_model import LogisticRegression
@@ -52,6 +53,8 @@ other_df['bug_category'] = other_df['predicted_category']
 final_df = pd.concat([labeled_df, other_df], ignore_index=True)
 
 # === Save Final Output ===
+# Save to CSV and database
 final_df.to_csv('data/reclassified_bugs_with_sbert.csv', index=False)
+save_df(final_df, 'reclassified_bugs_with_sbert')
 # print("✅ Reclassified data saved to: /content/reclassified_bugs_with_sbert.csv")
 

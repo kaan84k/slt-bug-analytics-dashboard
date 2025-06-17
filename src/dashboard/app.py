@@ -7,16 +7,21 @@ from datetime import datetime
 import plotly.graph_objects as go
 from data_processing.non_bug import UserExperienceAnalyzer
 from dashboard.bug_email_notifier import main as send_bug_digest
+from db_utils import load_df, table_exists
 
 @st.cache_data
-def load_csv(path: str) -> pd.DataFrame:
-    """Load a CSV file with caching."""
-    return pd.read_csv(path)
+def load_data(path: str, table: str) -> pd.DataFrame:
+    """Load data from CSV if available, otherwise from the database."""
+    if os.path.exists(path):
+        return pd.read_csv(path)
+    if table_exists(table):
+        return load_df(table)
+    raise FileNotFoundError(f"{path} not found and table {table} missing")
 
 @st.cache_resource
-def load_analyzer(path: str) -> UserExperienceAnalyzer:
+def load_analyzer(df: pd.DataFrame) -> UserExperienceAnalyzer:
     """Load UserExperienceAnalyzer with caching to avoid reinitialization."""
-    return UserExperienceAnalyzer(path)
+    return UserExperienceAnalyzer(df)
 import io
 import base64
 import re
@@ -56,7 +61,7 @@ st.title("SLT Selfcare App - Bug Analytics Dashboard")
 
 # --- Load and process data ---
 try:
-    df = load_csv("data/categorized_bugs.csv")
+    df = load_data("data/categorized_bugs.csv", "categorized_bugs")
 except Exception as e:
     st.error(f"Error loading categorized_bugs.csv: {str(e)}")
     st.stop()
@@ -123,9 +128,9 @@ def highlight_row(row):
 
 # Load categorized bugs and NLP summaries with error handling
 try:
-    bug_df = load_csv("data/categorized_bugs.csv")
-    nlp_df = load_csv("data/developer_bug_summaries.csv")
-    predictions_df = load_csv("data/bug_predictions.csv")
+    bug_df = load_data("data/categorized_bugs.csv", "categorized_bugs")
+    nlp_df = load_data("data/developer_bug_summaries.csv", "developer_bug_summaries")
+    predictions_df = load_data("data/bug_predictions.csv", "bug_predictions")
 except Exception as e:
     st.error(f"Error loading data files: {str(e)}")
     st.info("Please run the full pipeline to generate all required files.")
@@ -436,7 +441,8 @@ with tab4:
     
     try:
         # Initialize the analyzer
-        analyzer = load_analyzer('data/bug_predictions.csv')
+        bug_pred_df = load_data('data/bug_predictions.csv', 'bug_predictions')
+        analyzer = load_analyzer(bug_pred_df)
         
         # Display summary metrics
         summary = analyzer.get_sentiment_summary()

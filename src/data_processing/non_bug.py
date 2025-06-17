@@ -57,8 +57,11 @@ def download_nltk_data():
 download_nltk_data()
 
 class UserExperienceAnalyzer:
-    def __init__(self, csv_file):
-        self.df = pd.read_csv(csv_file)
+    def __init__(self, source):
+        if isinstance(source, pd.DataFrame):
+            self.df = source.copy()
+        else:
+            self.df = pd.read_csv(source)
         # Filter for non-bug experiences
         self.df = self.df[self.df['is_bug_report'] == 0].copy()
         self.df['review_date'] = pd.to_datetime(self.df['review_date'])

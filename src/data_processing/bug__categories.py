@@ -54,6 +54,7 @@ bug_keywords = {
 
 import pandas as pd
 import re
+from db_utils import save_df
 
 # Load prioritized bug data
 df = pd.read_csv("data/prioritized_bugs.csv")
@@ -87,6 +88,7 @@ def categorize_review(text):
 df['bug_category'] = df['cleaned_description'].apply(categorize_review)
 
 df[['review_description', 'bug_category', 'review_date', 'appVersion']].to_csv("data/categorized_bugs.csv", index=False)
+save_df(df[['review_description', 'bug_category', 'review_date', 'appVersion']], 'categorized_bugs')
 
 # Debug Review Example
 if __name__ == "__main__":
