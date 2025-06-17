@@ -271,6 +271,33 @@ with tab2:
     fig_bar.update_layout(barmode='stack', xaxis_tickangle=-45)
     st.plotly_chart(fig_bar, use_container_width=True)
 
+    # --- Updated: Bug Categories aggregated by day of month ---
+    st.subheader("Bug Categories by Day of Month")
+    if 'review_date' in filtered_bug_df.columns:
+        try:
+            df_day = filtered_bug_df.copy()
+            df_day['review_date'] = pd.to_datetime(df_day['review_date'])
+            df_day['day'] = df_day['review_date'].dt.day
+            day_cat = (
+                df_day.groupby(['day', 'bug_category']).size().reset_index(name='Count')
+            )
+            day_cat = day_cat.pivot(index='day', columns='bug_category', values='Count')
+            day_cat = day_cat.reindex(range(1, 32), fill_value=0)
+            stacked = day_cat.reset_index().melt(id_vars='day', var_name='Bug Category', value_name='Count')
+            fig_daily = px.bar(
+                stacked,
+                x='day',
+                y='Count',
+                color='Bug Category',
+                labels={'day': 'Date'}
+            )
+            fig_daily.update_layout(barmode='stack', xaxis=dict(dtick=1))
+            st.plotly_chart(fig_daily, use_container_width=True)
+        except Exception as e:
+            st.error(f"Error creating time series graph: {str(e)}")
+    else:
+        st.info("review_date column required for Time Analysis.")
+
     # --- User Journey View: Bug Timeline & Sentiment Heatmap ---
     with st.expander("🧭 User Journey View: Bug Timeline & Sentiment Heatmap", expanded=False):
         st.markdown("#### Timeline of Bugs by App Version and Sentiment")
