@@ -20,21 +20,23 @@ jobs:
       - name: Run pipeline
         run: python src/data_processing/run_pipeline.py
 
-      - name: Commit CSV outputs
+      - name: Commit data outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/*.csv
+          git add data/*.csv data/bug_data.db
           if git diff --cached --quiet; then
-            echo "No CSV changes to commit"
+            echo "No data changes to commit"
           else
-            git commit -m "Update data CSV files"
+            git commit -m "Update data CSV files and database"
             git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
             git push origin HEAD:${{ github.ref }}
           fi
 
-      - name: Upload CSV outputs
+      - name: Upload data outputs
         uses: actions/upload-artifact@v4
         with:
-          name: pipeline-csvs
-          path: data/*.csv
+          name: pipeline-data
+          path: |
+            data/*.csv
+            data/bug_data.db
