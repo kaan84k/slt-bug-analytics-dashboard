@@ -1,7 +1,8 @@
 import os
 import pandas as pd
 import smtplib
-from db_utils import load_df, save_df, table_exists
+# Import from the top-level src package so running this file directly works
+from src.db_utils import load_df, save_df, table_exists
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
