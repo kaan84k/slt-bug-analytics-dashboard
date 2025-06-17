@@ -14,6 +14,7 @@ except Exception:  # pragma: no cover - optional dependency may be missing
 
 import pandas as pd
 from tqdm import tqdm
+from db_utils import save_df
 from transformers import pipeline
 
 # Set up logging
@@ -413,6 +414,7 @@ def main() -> None:
     # Save to CSV
     output_file = ARGS.output
     results_df.to_csv(output_file, index=False)
+    save_df(results_df, 'developer_bug_summaries')
     logger.info(f"Developer summaries saved to {output_file}")
     
     print(f"\nDeveloper bug summaries generated successfully!")

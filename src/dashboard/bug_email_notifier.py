@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import smtplib
+from db_utils import load_df
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -12,7 +13,10 @@ SENT_FILE = os.path.join(os.path.dirname(__file__), 'sent_tickets.txt')
 
 
 def load_bugs(path: str) -> pd.DataFrame:
-    df = pd.read_csv(path)
+    if os.path.exists(path):
+        df = pd.read_csv(path)
+    else:
+        df = load_df('categorized_bugs')
     df = df.reset_index(drop=True)
     df['TicketID'] = [f"BUG-{i+1001:04d}" for i in range(len(df))]
     df['review_date'] = pd.to_datetime(df['review_date'], errors='coerce')

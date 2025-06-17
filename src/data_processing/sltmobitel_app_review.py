@@ -3,6 +3,7 @@
 from google_play_scraper import reviews_all, Sort
 import pandas as pd
 import os
+from db_utils import save_df
 
 def fetch_google_reviews(app_id, lang='en', country='us'):
     try:
@@ -60,8 +61,11 @@ if os.path.exists(csv_path):
         combined_df = pd.concat([existing_df, reviews_df], ignore_index=True)
         combined_df.drop_duplicates(subset=["review_id"], inplace=True)
         combined_df.to_csv(csv_path, index=False)
+        save_df(combined_df, 'slt_selfcare_google_reviews')
     except Exception as e:
         print(f"Error updating existing CSV: {e}. Saving new data only.")
         reviews_df.to_csv(csv_path, index=False)
+        save_df(reviews_df, 'slt_selfcare_google_reviews')
 else:
     reviews_df.to_csv(csv_path, index=False)
+    save_df(reviews_df, 'slt_selfcare_google_reviews')
