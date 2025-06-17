@@ -1,7 +1,13 @@
 import os
+import sys
+from pathlib import Path
 import pandas as pd
 import smtplib
-# Import from the top-level src package so running this file directly works
+
+# Ensure the repository root is on the Python path when executed directly.
+if __package__ is None or __package__ == "":
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
 from src.db_utils import load_df, save_df, table_exists
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
