@@ -50,7 +50,9 @@ Running `python -m data_processing.run_pipeline` executes the end-to-end workflo
 
 Each stage writes its output both as CSV and into a SQLite database at
 `data/bug_data.db`. The dashboard will use the database if the CSV files are not
-available.
+available. A scheduled GitHub Actions workflow called **Three Days Update**
+executes the pipeline every day at 1:00&nbsp;AM UTC and commits the updated CSV
+files and database to the repository.
 
 ## Dashboard Overview
 Launching the app opens an interactive interface with filtering options, visualisations and developer insights. Non-bug feedback is analysed separately to highlight sentiment trends and common topics. Export buttons allow downloading filtered results and category summaries. A manual button triggers the `bug_email_notifier.py` script to send the latest digest via email.
