@@ -48,6 +48,7 @@ bug_keywords = {
     "OTP Issue": [
         "otp", "one time password", "verification code", "verification", "otp code",
         "didnt get otp", "otp not received"
+    ],
     "Contact Change Issue": [
         "contact", "phone number", "mobile number", "change number", "update contact",
         "contact information", "contact details", "phone details", "cannot change",
