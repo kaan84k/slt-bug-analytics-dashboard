@@ -138,6 +138,20 @@ def highlight_row(row):
     return ['background-color: %s' % color]*len(row)
 
 
+# Clean and prepare version data
+def clean_versions(versions):
+    cleaned = []
+    for v in versions:
+        if pd.notna(v):
+            ver_str = str(v).strip()
+            if ver_str:
+                cleaned.append(ver_str)
+    return sorted(
+        cleaned,
+        key=lambda x: [int(n) if n.isdigit() else n.lower() for n in x.replace('.', ' ').split()],
+    )
+
+
 # --- Existing dashboard code ---
 
 # Load categorized bugs and NLP summaries with error handling
@@ -175,19 +189,6 @@ with filter_expander:
             value=(min_date, max_date),
             min_value=min_date,
             max_value=max_date,
-        )
-
-# Clean and prepare version data
-    def clean_versions(versions):
-        cleaned = []
-        for v in versions:
-            if pd.notna(v):
-                ver_str = str(v).strip()
-                if ver_str:
-                    cleaned.append(ver_str)
-        return sorted(
-            cleaned,
-            key=lambda x: [int(n) if n.isdigit() else n.lower() for n in x.replace('.', ' ').split()],
         )
 
     # Get clean versions
