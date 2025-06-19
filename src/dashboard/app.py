@@ -99,7 +99,7 @@ attended_df = load_attended()
 
 # --- Sidebar filter ---
 # --- Sidebar: main container for filters and actions ---
-filter_expander = st.sidebar.expander("\ud83d\udd0d Filter Options", expanded=True)
+filter_expander = st.sidebar.expander("🔍 Filter Options", expanded=True)
 
 with filter_expander:
     st.markdown("**Syslog Level**")
@@ -109,7 +109,7 @@ with filter_expander:
 
 filtered_df = df_display[df_display["syslog_level"].isin(selected_levels)]
 
-download_expander = st.sidebar.expander("\ud83d\udce5 Download", expanded=False)
+download_expander = st.sidebar.expander("📥 Download", expanded=False)
 
 with download_expander:
     csv_bytes = filtered_df.to_csv(index=False).encode("utf-8")
@@ -229,7 +229,7 @@ with col3:
 # Add filtered data download to the download section
 with download_expander:
     st.download_button(
-        "\ud83d\udce5 Download Filtered Data",
+        "📥 Download Filtered Data",
         filtered_bug_df.to_csv(index=False).encode("utf-8"),
         "filtered_bugs.csv",
         "text/csv",
@@ -560,7 +560,7 @@ with tab_attended:
         )
 
 # --- Export Options ---
-export_expander = st.sidebar.expander("\ud83d\udce4 Export Options", expanded=False)
+export_expander = st.sidebar.expander("📤 Export Options", expanded=False)
 with export_expander:
     try:
         export_category = st.selectbox(
@@ -585,7 +585,7 @@ with export_expander:
         st.warning(f"Error setting up export: {str(e)}")
 
 # --- Manual Email Trigger ---
-email_expander = st.sidebar.expander("\ud83d\udce7 Bug Digest Email", expanded=False)
+email_expander = st.sidebar.expander("📧 Bug Digest Email", expanded=False)
 with email_expander:
     if st.button("Send Email Now"):
         try:
