@@ -93,33 +93,14 @@ for i in tqdm(range(0, len(non_empty_reviews), batch_size)):
     for j, idx in enumerate(non_empty_indices[i:i+batch_size]):
         review_embeddings[idx] = batch_embeddings[j]
 
-# Step 3: Create a larger labeled training dataset
-# Expanded manually labeled examples with more diverse patterns
-labeled_examples = [
-    ("App crashes every time I open it", 1),
-    ("Keeps freezing after login", 1),
-    ("Very helpful app!", 0),
-    ("Great design, but needs dark mode", 0),
-    ("Bug: Can't upload images", 1),
-    ("Everything works smoothly", 0),
-    ("Crash on opening camera feature", 1),
-    ("I love the app", 0),
-    ("The app won't start after the latest update", 1),
-    ("Best app I've ever used", 0),
-    ("Excellent features and very intuitive", 0),
-    ("Error message appears when trying to save", 1),
-    ("App is unstable and keeps closing", 1),
-    ("Worth every penny, highly recommend", 0),
-    ("Stuck on loading screen", 1),
-    ("Could use more customization options", 0),
-    ("Perfect for my needs", 0),
-    ("The UI is beautiful and responsive", 0),
-    ("Can't log in, keeps saying invalid credentials", 1),
-    ("Videos won't play, just shows black screen", 1)
-]
+# Step 3: Load expanded labeled training dataset
+logger.info("Loading expanded labeled training set...")
 
-train_texts, train_labels = zip(*labeled_examples)
-train_texts_processed = [preprocess_text(text) for text in train_texts]
+training_df = pd.read_csv("data/Expanded_Labeled_Training_Set.csv")
+training_df["review"] = training_df["review"].fillna("").apply(preprocess_text)
+
+train_texts_processed = training_df["review"].tolist()
+train_labels = training_df["label"].tolist()
 train_embeddings = model.encode(train_texts_processed)
 
 # Step 4: Train and optimize classifier
