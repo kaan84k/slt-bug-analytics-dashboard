@@ -1,45 +1,4 @@
 bug_keywords = {
-    "Login Error": [
-        "login", "log in", "sign in", "cannot access", "authentication", "credentials",
-        "cannot log", "cannot login", "login problem", "login issue", "log my account",
-        "log account", "unable to login", "cant login", "signing in", "invalid password",
-        "username invalid"
-    ],
-    "Contact Change Issue": [
-        "contact info", "phone number", "mobile number", "change number", "update contact",
-        "contact information", "contact details", "phone details", "cannot change",
-        "number change", "update number", "edit contact"
-    ],
-    "UI Issue": [
-        "layout", "screen", "button", "display", "alignment", "responsive", "interface",
-        "user interface", "ui", "blank screen", "design"
-    ],
-    "Crash/Freeze": [
-        "crash", "crashed", "crashing", "freeze", "freezing", "stuck", "unresponsive",
-        "not responding", "force close", "force stop", "hang", "stuck on"
-    ],
-    "Payment Issue": [
-        "payment", "bill", "topup", "recharge", "transaction", "fail", "credit card",
-        "unable to pay", "payment failed", "payment error", "bill pay", "transaction error",
-        "session timeout"
-    ],
-    "Slow Performance": [
-        "slow", "lag", "delay", "loading", "takes time", "wait", "performance",
-        "slow loading", "lagging", "sluggish"
-    ],
-    "Notification Problem": [
-        "notification", "alert", "reminder", "not getting", "missing notifications",
-        "notification error", "no notification"
-    ],
-    "Update Issue": [
-        "update", "updated", "version", "after update", "since update", "new version",
-        "upgrade", "latest update", "post update"
-    ],
-    "Server Error": [
-        "server error", "server down", "server not responding", "cannot connect",
-        "connection error", "500", "503", "internal server error", "system error",
-        "service unavailable"
-    ],
     "Network/Connection": [
         "network", "connection", "wifi", "internet", "signal", "offline", "no service",
         "poor connection", "weak signal", "disconnected", "no internet", "network error",
@@ -88,11 +47,6 @@ bug_keywords = {
         "sluggish", "buffering", "slow loading", "slow response", "takes forever",
         "not fast", "speed issue", "performance issue", "slow app"
     ],
-    "Notification Problem": [
-        "notification", "alert", "reminder", "not getting", "missing notifications",
-        "push notification", "notification not working", "alerts not working",
-        "no notifications", "notification settings"
-    ],
     "Update Issue": [
         "update", "updated", "version", "after update", "since update", "new version",
         "cant update", "can't update", "update failed", "update error", "latest version",
@@ -104,8 +58,8 @@ bug_keywords = {
         "server timeout", "server issue", "backend error"
     ],
     "Service Unavailability": [
-        "unavailable", "not working", "always down", "cannot access", "can’t access",
-        "sometimes not working", "most of the time down", "cannot use app"
+        "unavailable", "always down", "cannot access", "can’t access",
+        "cannot use app"
     ],
     "Data Sync Issue": [
         "data", "sync", "not syncing", "fetch", "not loading", "missing data",
@@ -115,7 +69,8 @@ bug_keywords = {
         "error", "something went wrong", "problem occurred", "fail", "unknown issue",
         "unexpected error", "oops", "doesn't work", "functionality broken",
         "useless", "nothing works", "waste of time", "not usable", "waste",
-        "good for nothing", "worthless", "no use", "no functionality"
+        "good for nothing", "worthless", "no use", "no functionality", "not working", "sometimes not working",
+        
     ],
     "Other": []
 }
