@@ -36,22 +36,11 @@ SYSLOG_MAP = {
     "Login Error":       ("err",     3),
     "Payment Issue":     ("err",     3),
     "Contact Change Issue": ("err", 3),
-<<<<<<< Updated upstream
     "Network/Connection": ("err",     3),
     "OTP Issue":       ("warning", 4),
-=======
-    "Installation Issues": ("err", 3),
-    "System Faults": ("crit", 2),
->>>>>>> Stashed changes
     "Update Issue":      ("warning", 4),
     "Slow Performance":  ("warning", 4),
-    "Connection Management": ("warning", 4),
-    "Signal/Network Quality": ("warning", 4),
     "Notification Problem": ("notice", 5),
-    "Package/Plan Issues": ("notice", 5),
-    "Complaint Management": ("notice", 5),
-    "Language/Localization": ("info", 6),
-    "PeoTV Issues": ("info", 6),
     "UI Issue":          ("info",    6),
     "Other":             ("debug",   7)
 }
