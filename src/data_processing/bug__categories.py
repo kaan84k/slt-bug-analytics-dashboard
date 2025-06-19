@@ -1,5 +1,4 @@
 bug_keywords = {
-<<<<<<< Updated upstream
     "Login Error": [
         "login", "log in", "sign in", "cannot access", "authentication", "credentials",
         "cannot log", "cannot login", "login problem", "login issue", "log my account",
@@ -49,7 +48,6 @@ bug_keywords = {
     "OTP Issue": [
         "otp", "one time password", "verification code", "verification", "otp code",
         "didnt get otp", "otp not received"
-=======
     "Contact Change Issue": [
         "contact", "phone number", "mobile number", "change number", "update contact",
         "contact information", "contact details", "phone details", "cannot change",
@@ -104,64 +102,6 @@ bug_keywords = {
         "connection error", "500", "503", "internal server", "server maintenance",
         "server timeout", "server issue", "backend error"
     ],
-    "Connection Management": [
-        "add connection", "new connection", "register connection", "add my connection",
-        "cant register", "can't register", "cannot register", "register new",
-        "prepaid connection", "pre paid", "reload prepaid", "add prepaid",
-        "multiple connections", "other connections", "two connections", "three connections",
-        "configure connection", "setup connection", "connection setup", "fiber connection",
-        "broadband connection", "4g connection", "lte connection", "adsl"
-    ],
-    "Signal/Network Quality": [
-        "service unavailable", "not available", "unavailable", "no service",
-        "poor connection", "bad signal", "no internet", "can't connect",
-        "connection issue", "service temporarily unavailable", "temporary unavailable",
-        "service error", "not working", "app is not working", "service not available",
-        "connection problem", "network error", "network issue", "connectivity",
-        "connection speed", "slow speed", "low speed", "speed issues",
-        "buffering", "loads slow", "slow loading", "higher user base",
-        "network speeds", "slow network", "poor network", "hd video loads",
-        "video buffering", "streaming issues", "connection quality"
-    ],
-    "Package/Plan Issues": [
-        "package", "plan", "data balance", "usage", "quota", "remaining data",
-        "data usage", "package details", "change package", "upgrade package",
-        "youth add on", "free offer", "add on", "data plan", "broadband package",
-        "package activation", "package not working", "can't activate package",
-        "prepaid broadband", "broadband number", "cannot add broadband",
-        "package don't work", "package doesn't work", "data package",
-        "package upgrade", "package change", "view package", "find package"
-    ],
-    "PeoTV Issues": [
-        "peo tv", "peotv", "channel", "tv service", "television",
-        "streaming", "video quality", "channel list", "program",
-        "tv connection", "tv package", "channel not working", "tv issues"
-    ],
-    "Installation Issues": [
-        "install", "installation", "cant install", "can't install", "installation failed",
-        "download failed", "app store", "play store", "installation error",
-        "download error", "unable to install", "won't install"
-    ],
-    "Complaint Management": [
-        "complaint", "feedback", "report issue", "customer service",
-        "bad application", "poor app", "terrible app", "worst app",
-        "useless app", "waste of time", "bad service", "poor service",
-        "horrible app", "awful app", "pathetic app", "complaint status",
-        "raise complaint", "lodge complaint", "submit complaint"
-    ],
-    "Language/Localization": [
-        "language", "translation", "english", "sinhala", "tamil",
-        "wrong language", "language setting", "text display", "foreign language",
-        "language option", "language preference"
-    ],
-    "System Faults": [
-        "system error", "system issue", "system fault", "system problem",
-        "application doesn't work", "app not functioning", "functionality issues",
-        "system down", "system unavailable", "system failure",
-        "something went wrong", "doesn't work properly", "not working properly",
-        "application error", "app error", "system error"
->>>>>>> Stashed changes
-    ],
     "Other": []
 }
 
@@ -205,11 +145,8 @@ save_df(df[['review_description', 'bug_category', 'review_date', 'appVersion']],
 
 # Debug Review Example
 if __name__ == "__main__":
-<<<<<<< Updated upstream
-    sample_review = "cannot log complaints very bad service always not able to do an action"
-=======
+
     sample_review = "system error is displayed every time when i want to subscribe or unsubscribe a package can t do anything through the app"
->>>>>>> Stashed changes
     cleaned = preprocess(sample_review)
     category = categorize_review(cleaned)
     print(f"Sample review: {sample_review}")
