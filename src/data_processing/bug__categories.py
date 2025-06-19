@@ -104,8 +104,8 @@ bug_keywords = {
         "server timeout", "server issue", "backend error"
     ],
     "Service Unavailability": [
-        "unavailable", "not working", "always down", "cannot access", "can’t access",
-        "sometimes not working", "most of the time down", "cannot use app"
+        "unavailable", "always down", "cannot access", "can’t access",
+        "cannot use app"
     ],
     "Data Sync Issue": [
         "data", "sync", "not syncing", "fetch", "not loading", "missing data",
@@ -115,7 +115,8 @@ bug_keywords = {
         "error", "something went wrong", "problem occurred", "fail", "unknown issue",
         "unexpected error", "oops", "doesn't work", "functionality broken",
         "useless", "nothing works", "waste of time", "not usable", "waste",
-        "good for nothing", "worthless", "no use", "no functionality"
+        "good for nothing", "worthless", "no use", "no functionality", "not working", "sometimes not working",
+        
     ],
     "Other": []
 }
