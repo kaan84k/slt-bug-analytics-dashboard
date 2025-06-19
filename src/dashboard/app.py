@@ -33,10 +33,13 @@ st.set_page_config(page_title="SLT Bug Analytics Dashboard", layout="wide")
 SYSLOG_MAP = {
     "Crash/Freeze":      ("crit",    2),
     "Server Error":      ("crit",    2),
+    "Service Unavailability": ("crit", 2),
     "Login Error":       ("err",     3),
     "Payment Issue":     ("err",     3),
     "Contact Change Issue": ("err", 3),
     "Network/Connection": ("err",     3),
+    "Data Sync Issue":   ("err",     3),
+    "General Error":     ("err",     3),
     "OTP Issue":       ("warning", 4),
     "Update Issue":      ("warning", 4),
     "Slow Performance":  ("warning", 4),
