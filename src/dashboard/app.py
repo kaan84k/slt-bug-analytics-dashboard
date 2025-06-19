@@ -98,29 +98,39 @@ attended_df = load_attended()
 
 
 # --- Sidebar filter ---
-st.sidebar.header("Filter by Syslog Level")
-selected_levels = st.sidebar.multiselect(
-    "Syslog Level", SYSLOG_LEVELS, default=SYSLOG_LEVELS
-)
-filtered_df = df_display[df_display['syslog_level'].isin(selected_levels)]
+# --- Sidebar: main container for filters and actions ---
+filter_expander = st.sidebar.expander("\ud83d\udd0d Filter Options", expanded=True)
 
-# --- Download buttons ---
-st.sidebar.header("Download")
-csv_bytes = filtered_df.to_csv(index=False).encode('utf-8')
-st.sidebar.download_button(
-    "Download CSV", csv_bytes, "filtered_bug_tickets.csv", "text/csv"
-)
+with filter_expander:
+    st.markdown("**Syslog Level**")
+    selected_levels = st.multiselect(
+        "Syslog Level", SYSLOG_LEVELS, default=SYSLOG_LEVELS
+    )
 
-# Syslog-style log file
-def to_syslog_row(row):
-    # <severity_code> [TicketID] (LEVEL) Category in vX on YYYY-MM-DD: description
-    return f"<{row['severity_code']}> [{row['TicketID']}] ({row['syslog_level'].upper()}) {row['bug_category']} in v{row['appVersion']} on {row['review_date'].date() if pd.notna(row['review_date']) else 'N/A'}: {row['review_description']}"
+filtered_df = df_display[df_display["syslog_level"].isin(selected_levels)]
 
-syslog_lines = filtered_df.apply(to_syslog_row, axis=1)
-syslog_bytes = "\n".join(syslog_lines).encode('utf-8')
-st.sidebar.download_button(
-    "Download Syslog Log", syslog_bytes, "bug_tickets.log", "text/plain"
-)
+download_expander = st.sidebar.expander("\ud83d\udce5 Download", expanded=False)
+
+with download_expander:
+    csv_bytes = filtered_df.to_csv(index=False).encode("utf-8")
+    st.download_button(
+        "Download CSV", csv_bytes, "filtered_bug_tickets.csv", "text/csv"
+    )
+
+    # Syslog-style log file
+    def to_syslog_row(row):
+        return (
+            f"<{row['severity_code']}> [{row['TicketID']}] ({row['syslog_level'].upper()}) "
+            f"{row['bug_category']} in v{row['appVersion']} on "
+            f"{row['review_date'].date() if pd.notna(row['review_date']) else 'N/A'}: "
+            f"{row['review_description']}"
+        )
+
+    syslog_lines = filtered_df.apply(to_syslog_row, axis=1)
+    syslog_bytes = "\n".join(syslog_lines).encode("utf-8")
+    st.download_button(
+        "Download Syslog Log", syslog_bytes, "bug_tickets.log", "text/plain"
+    )
 
 # --- Styled table with row highlighting ---
 def highlight_row(row):
@@ -148,51 +158,52 @@ except Exception as e:
     st.warning(f"Error processing review dates: {str(e)}")
     
 # Focus on non-bug feedback (is_bug=0)
-feedback_df = predictions_df[predictions_df['is_bug_report'] == 0].copy() if 'is_bug_report' in predictions_df.columns else pd.DataFrame()
+feedback_df = (
+    predictions_df[predictions_df["is_bug_report"] == 0].copy()
+    if "is_bug_report" in predictions_df.columns
+    else pd.DataFrame()
+)
 
-# Sidebar filters
-st.sidebar.header("📎 Filter Options")
-
-# Date range filter (assuming your data has a 'date' column)
-if 'date' in bug_df.columns:
-    bug_df['date'] = pd.to_datetime(bug_df['date'])
-    min_date = bug_df['date'].min()
-    max_date = bug_df['date'].max()
-    date_range = st.sidebar.date_input(
-        "Select Date Range",
-        value=(min_date, max_date),
-        min_value=min_date,
-        max_value=max_date
-    )
+# Additional filter options
+with filter_expander:
+    if "date" in bug_df.columns:
+        bug_df["date"] = pd.to_datetime(bug_df["date"])
+        min_date = bug_df["date"].min()
+        max_date = bug_df["date"].max()
+        date_range = st.date_input(
+            "Select Date Range",
+            value=(min_date, max_date),
+            min_value=min_date,
+            max_value=max_date,
+        )
 
 # Clean and prepare version data
 def clean_versions(versions):
-    # Convert all versions to strings and filter out empty/null values
     cleaned = []
     for v in versions:
         if pd.notna(v):
-            # Handle both string and numeric versions
             ver_str = str(v).strip()
-            if ver_str:  # Check if not empty string
+            if ver_str:
                 cleaned.append(ver_str)
-    # Natural sort for version numbers
-    return sorted(cleaned, key=lambda x: [int(n) if n.isdigit() else n.lower() 
-                                        for n in x.replace('.', ' ').split()])
+    return sorted(
+        cleaned,
+        key=lambda x: [int(n) if n.isdigit() else n.lower() for n in x.replace('.', ' ').split()],
+    )
 
 # Get clean versions
-available_versions = clean_versions(bug_df['appVersion'].unique())
+available_versions = clean_versions(bug_df["appVersion"].unique())
 
-selected_versions = st.sidebar.multiselect(
-    "Select App Versions",
-    options=available_versions,
-    default=available_versions
-)
+    selected_versions = st.multiselect(
+        "Select App Versions",
+        options=available_versions,
+        default=available_versions,
+    )
 
-selected_categories = st.sidebar.multiselect(
-    "Select Bug Categories",
-    options=sorted(bug_df['bug_category'].unique()),
-    default=bug_df['bug_category'].unique()
-)
+    selected_categories = st.multiselect(
+        "Select Bug Categories",
+        options=sorted(bug_df["bug_category"].unique()),
+        default=bug_df["bug_category"].unique(),
+    )
 
 # Filter data
 filtered_bug_df = bug_df[
@@ -215,13 +226,14 @@ with col2:
 with col3:
     st.metric("App Versions", len(selected_versions))
 
-# Download button for filtered data
-st.sidebar.download_button(
-    "📥 Download Filtered Data",
-    filtered_bug_df.to_csv(index=False).encode('utf-8'),
-    "filtered_bugs.csv",
-    "text/csv"
-)
+# Add filtered data download to the download section
+with download_expander:
+    st.download_button(
+        "\ud83d\udce5 Download Filtered Data",
+        filtered_bug_df.to_csv(index=False).encode("utf-8"),
+        "filtered_bugs.csv",
+        "text/csv",
+    )
 
 
 # Organize visualizations in tabs
@@ -548,45 +560,49 @@ with tab_attended:
         )
 
 # --- Export Options ---
-st.sidebar.header("📤 Export Options")
-try:
-    # Export summary reports per category
-    export_category = st.sidebar.selectbox(
-        "Export Summary for Category",
-        options=["All"] + list(nlp_df['bug_category'].unique())
-    )
-    if export_category == "All":
-        export_df = nlp_df.drop(columns=['review_description'], errors='ignore')
-        filename = "developer_bug_summaries_all.csv"
-    else:
-        export_df = nlp_df[nlp_df['bug_category'] == export_category].drop(columns=['review_description'], errors='ignore')
-        filename = f"developer_bug_summaries_{export_category}.csv"
-    st.sidebar.download_button(
-        label=f"Download Summary Report ({export_category})",
-        data=export_df.to_csv(index=False).encode('utf-8'),
-        file_name=filename,
-        mime='text/csv'
-    )
-except Exception as e:
-    st.sidebar.warning(f"Error setting up export: {str(e)}")
+export_expander = st.sidebar.expander("\ud83d\udce4 Export Options", expanded=False)
+with export_expander:
+    try:
+        export_category = st.selectbox(
+            "Export Summary for Category",
+            options=["All"] + list(nlp_df["bug_category"].unique()),
+        )
+        if export_category == "All":
+            export_df = nlp_df.drop(columns=["review_description"], errors="ignore")
+            filename = "developer_bug_summaries_all.csv"
+        else:
+            export_df = nlp_df[nlp_df["bug_category"] == export_category].drop(
+                columns=["review_description"], errors="ignore"
+            )
+            filename = f"developer_bug_summaries_{export_category}.csv"
+        st.download_button(
+            label=f"Download Summary Report ({export_category})",
+            data=export_df.to_csv(index=False).encode("utf-8"),
+            file_name=filename,
+            mime="text/csv",
+        )
+    except Exception as e:
+        st.warning(f"Error setting up export: {str(e)}")
 
 # --- Manual Email Trigger ---
-st.sidebar.header("📧 Bug Digest Email")
-if st.sidebar.button("Send Email Now"):
-    try:
-        send_bug_digest()
-        st.sidebar.success("Bug digest sent")
-    except Exception as e:
-        st.sidebar.error(f"Failed to send email: {e}")
+email_expander = st.sidebar.expander("\ud83d\udce7 Bug Digest Email", expanded=False)
+with email_expander:
+    if st.button("Send Email Now"):
+        try:
+            send_bug_digest()
+            st.success("Bug digest sent")
+        except Exception as e:
+            st.error(f"Failed to send email: {e}")
 
 # --- Bug Attendance ---
-st.sidebar.header("✅ Mark Tickets Attended")
-attend_selection = st.sidebar.multiselect(
-    "Select Ticket IDs",
-    options=df_display["TicketID"],
-)
-if st.sidebar.button("Mark as Attended"):
-    mark_tickets_attended(attend_selection)
-    attended_df = load_attended()
-    st.sidebar.success("Tickets updated")
+attendance_expander = st.sidebar.expander("\u2705 Mark Tickets Attended", expanded=False)
+with attendance_expander:
+    attend_selection = st.multiselect(
+        "Select Ticket IDs",
+        options=df_display["TicketID"],
+    )
+    if st.button("Mark as Attended"):
+        mark_tickets_attended(attend_selection)
+        attended_df = load_attended()
+        st.success("Tickets updated")
 
