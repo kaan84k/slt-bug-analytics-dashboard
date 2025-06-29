@@ -9,6 +9,7 @@ from data_processing.non_bug import UserExperienceAnalyzer
 from dashboard.bug_email_notifier import main as send_bug_digest
 from dashboard.bug_attend_notification import load_attended, mark_tickets_attended
 from db_utils import load_df, table_exists
+from ticket_utils import assign_ticket_ids
 
 @st.cache_data
 def load_data(path: str, table: str) -> pd.DataFrame:
@@ -78,9 +79,8 @@ def map_syslog(row):
 
 df[['syslog_level', 'severity_code']] = df.apply(map_syslog, axis=1)
 
-# Generate TicketID (BUG-1001, ...)
-df = df.reset_index(drop=True)
-df['TicketID'] = ["BUG-%04d" % (i+1001) for i in range(len(df))]
+# Generate stable TicketID using a hash of bug fields
+df = assign_ticket_ids(df)
 
 # Convert review_date to datetime and sort
 df['review_date'] = pd.to_datetime(df['review_date'], errors='coerce')

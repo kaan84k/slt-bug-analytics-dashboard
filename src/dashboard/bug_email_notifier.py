@@ -18,6 +18,7 @@ if __package__ is None or __package__ == "":
     sys.path.insert(0, str(project_root / "src"))
 
 from db_utils import load_df, save_df, table_exists
+from ticket_utils import assign_ticket_ids
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -34,8 +35,7 @@ def load_bugs(path: str) -> pd.DataFrame:
         df = pd.read_csv(path)
     else:
         df = load_df('categorized_bugs')
-    df = df.reset_index(drop=True)
-    df['TicketID'] = [f"BUG-{i+1001:04d}" for i in range(len(df))]
+    df = assign_ticket_ids(df)
     df['review_date'] = pd.to_datetime(df['review_date'], errors='coerce')
     df = df.sort_values('review_date', ascending=False)
     return df
@@ -102,8 +102,12 @@ def main() -> None:
     df = load_bugs(DATA_PATH)
     sent = load_sent_tickets_db(SENT_TABLE)
 
-    # Treat empty table as first run
+    # Treat empty table or legacy numeric IDs as first run
     first_run = len(sent) == 0
+    if not first_run and all(s[4:].isdigit() for s in sent):
+        print('[INFO] Resetting ticket history for new ID format.')
+        sent = set()
+        first_run = True
 
     if first_run:
         latest = df.head(10)
