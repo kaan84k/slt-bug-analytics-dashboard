@@ -23,6 +23,23 @@ OPENAI_API_KEY=
 # EMAIL_TO=
 ```
 
+## Docker Usage
+
+You can run the dashboard in a container without installing Python
+locally. Build the image and start the app:
+
+```bash
+docker build -t bug-dashboard .
+docker run --env-file .env -p 8501:8501 bug-dashboard
+```
+
+To execute the data pipeline inside the container instead of launching
+the Streamlit app, run:
+
+```bash
+docker run --env-file .env bug-dashboard python -m data_processing.run_pipeline
+```
+
 ## Deployment Notes
 
 When deploying on platforms such as Streamlit Community Cloud or other headless environments, include the `.streamlit/config.toml` file in the repository. This file ensures the server runs in headless mode and disables CORS, which is required for remote access:
