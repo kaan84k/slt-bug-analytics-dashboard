@@ -1,3 +1,11 @@
+"""Send email digests summarising recently discovered bug tickets.
+
+This module reads the categorised bug data produced by the pipeline, keeps
+track of which tickets have already been emailed, and sends HTML digests via
+SMTP. Environment variables must provide the email credentials as documented
+in the README.
+"""
+
 import os
 import sys
 from pathlib import Path
@@ -21,6 +29,7 @@ SENT_TABLE = 'sent_tickets'
 
 
 def load_bugs(path: str) -> pd.DataFrame:
+    """Load categorized bug data from ``path`` or the database."""
     if os.path.exists(path):
         df = pd.read_csv(path)
     else:
@@ -51,6 +60,7 @@ def save_sent_tickets_db(tickets: set[str], table: str) -> None:
 
 
 def build_html_table(df: pd.DataFrame) -> str:
+    """Return a styled HTML table for inclusion in the email body."""
     style = (
         "<style>"
         "table {border-collapse: collapse;width: 100%;}"\
@@ -63,6 +73,7 @@ def build_html_table(df: pd.DataFrame) -> str:
 
 
 def send_email(subject: str, html_body: str) -> None:
+    """Send an HTML email using credentials from environment variables."""
     import os
     print("[DEBUG] EMAIL_USER =", os.environ.get('EMAIL_USER'))
     print("[DEBUG] EMAIL_PASS =", '*' * len(os.environ.get('EMAIL_PASS', '')))
@@ -87,6 +98,7 @@ def send_email(subject: str, html_body: str) -> None:
 
 
 def main() -> None:
+    """Send an email summary of new bug tickets if any exist."""
     df = load_bugs(DATA_PATH)
     sent = load_sent_tickets_db(SENT_TABLE)
 

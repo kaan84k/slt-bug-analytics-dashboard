@@ -1,3 +1,12 @@
+"""Utility functions for tracking tickets that have been attended to.
+
+The dashboard allows a user to mark bug tickets as attended. This module
+persists that information both in ``data/attended_tickets.csv`` and in the
+``attended_tickets`` table of the SQLite database.  These helpers load,
+append to and save that information so the history is preserved across
+app restarts.
+"""
+
 import pandas as pd
 from pathlib import Path
 from datetime import datetime
@@ -18,6 +27,7 @@ def load_attended() -> pd.DataFrame:
 
 
 def save_attended(df: pd.DataFrame) -> None:
+    """Persist the attended tickets list to CSV and SQLite."""
     ATTENDED_PATH.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(ATTENDED_PATH, index=False)
     save_df(df, ATTENDED_TABLE)
