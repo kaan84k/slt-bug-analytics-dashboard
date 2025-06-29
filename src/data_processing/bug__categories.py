@@ -40,7 +40,8 @@ bug_keywords = {
         "payment", "bill", "topup", "recharge", "transaction", "fail", "credit card",
         "online reload", "reload failed", "payment not working", "can't pay",
         "payment error", "billing issue", "payment problem", "transaction failed",
-        "payment gateway", "payment unsuccessful", "reload issue", "bill pay"
+        "payment gateway", "payment unsuccessful", "reload issue", "bill pay option", 
+        "pay", "pay option", "bill pay"
     ],
     "Slow Performance": [
         "slow", "lag", "delay", "loading", "takes time", "wait", "performance",
