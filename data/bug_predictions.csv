@@ -1,4 +1,5 @@
 review_id,user_name,review_description,review_date,appVersion,rating,is_bug_report,bug_confidence,bug_keyword_count,review_length
+21966c0b-4999-48f8-b7dd-e5e0349b66cf,Dushyanth Kandiah,everything ok some features can be better like if you re going to upgrade a package if you click the upgrade button without any confirmation if upgrades the package,2025-07-02 07:34:47,2.0.8,3,0,0.13288585223150542,0,164
 35b9b802-ff28-4852-adad-4c58c29ac969,Dilum Perera,the app technically works i can pay my bills and see my usage stats but everything else is just below average the design somehow looks like an early 2010s webpage the colors are not eye pleasing options are cluttered everywhere no security at all some of the options changing mobile no notification settings etc don t work hilarious how the leading and profitable isp here make such an unintuitive confusing and ancient looking app because this seems done for a school project,2025-07-01 11:23:55,2.1.0,2,1,0.6621121334985208,0,476
 880c79f0-c0a0-4cab-8519-44804a158b82,Buwaneka Sudheera,slow sometimes no response,2025-06-30 05:13:55,2.1.0,1,0,0.31458398873884785,0,26
 29fb7ee0-b5f4-4bba-9305-0449a359e968,shamal senadhi,lot of bugs encountered ui is bad very slow,2025-06-29 08:06:13,2.1.0,1,0,0.3488541541372045,1,43
@@ -112,7 +113,7 @@ f5b14f8d-3bd0-4316-8b14-e3e75eac79df,Tharusha Aloka,when at an urgent situation 
 1eaedaa6-46e8-44b2-a884-e316354f40bd,Dilruk Jayasinghe,not recommended to pay the app itself does not provide a way to get an e bill for the relevant month mobitel selfcare app has those features,2024-11-28 12:43:52,2.0.6,1,0,0.4062946542379593,0,140
 ecedec00-24eb-4697-bb11-26652b9f2dce,indika kumari,very bad becuse this new update it isnt work,2024-11-27 03:56:03,1.8.0,1,0,0.2846323558179664,0,44
 2401c2de-6702-4066-94d8-f16a9bc44d4a,Munidasa Gunasinghe,useful,2024-11-26 03:48:47,2.0.2,5,0,0.07538780654086487,0,6
-c7f2b111-c314-4d79-b62f-180751246d47,fashion design,the app is ok but the mesurment makes false as my 40 gb finishes in days 10 days so if you all can see why this happens otherwise everythings fine and fast,2024-11-26 00:38:56,2.0.6,4,1,0.8601599858148969,0,155
+c7f2b111-c314-4d79-b62f-180751246d47,fashion design,the app is ok but the mesurment makes false as my 40 gb finishes in days 10 days so if you all can see why this happens otherwise everythings fine and fast,2024-11-26 00:38:56,2.0.6,4,1,0.8601600095983345,0,155
 9d307e5e-d533-4e91-80c0-ea1d2fa17ed9,Jayanthe Senarathne,very unprofessional,2024-11-25 13:26:51,2.0.6,1,0,0.04232982859846791,0,19
 3c9a8f6e-3ce6-4e0b-88c4-8382219d2e8e,Bharath Fernando,vary poor,2024-11-25 08:03:27,2.0.2,3,0,0.014281218500148808,0,9
 b2b0945d-8d7f-4846-99ba-19d4d687d736,Shagar Thangaraj,mobile online payment gateway is not working please fix it couldn t pay the bills,2024-11-25 02:35:58,2.0.6,2,1,0.7233040884119766,2,81
@@ -464,7 +465,7 @@ b32c2a15-782d-481d-b052-3be6ee151ba6,Pradeep Rathnayake,keep asking to update ev
 8013f581-e242-4432-99aa-ab4492351114,Namal Gunasekara,good app,2023-08-18 06:32:03,1.7.0,5,0,0.0035703640031430764,0,8
 d7bb532b-26c5-44bc-9bdd-fcf19f9a0112,Nikapitiye Dheerananda Thero,update issue please fix it,2023-08-18 05:08:05,1.7.0,5,1,0.8566486286588898,2,26
 69da0d4e-175b-42f3-99c5-e8951c2e2f03,Krishantha Punchihewa,userfriendly,2023-08-18 00:08:34,,4,0,0.023587198087354072,0,12
-c167c7a6-1688-42cc-9b1f-9488ecd4c7dc,Kadija Nazim,not at all user friendly every document reference is demanded simply to get a monthly bill is like getting your death certificate while yoy are alive very bad complicated slt app by mistake you happen to click a button immediately you are charged with data request ir credit request very bad sensitive app,2023-08-16 05:37:20,1.7.0,1,0,0.31669898650907585,0,305
+c167c7a6-1688-42cc-9b1f-9488ecd4c7dc,Kadija Nazim,not at all user friendly every document reference is demanded simply to get a monthly bill is like getting your death certificate while yoy are alive very bad complicated slt app by mistake you happen to click a button immediately you are charged with data request ir credit request very bad sensitive app,2023-08-16 05:37:20,1.7.0,1,0,0.3166989865090759,0,305
 49c8499d-47c9-43a0-995c-1bf16715afed,Linganathan Dushani,very slow,2023-08-15 12:23:09,1.7.0,1,0,0.008832749720059473,0,9
 93c61f0e-d2e1-47ef-8c45-21afcd44bff9,Asoka Jayawardena,good and quick service gives information what we need,2023-08-15 10:39:40,1.7.0,5,0,0.01163320464415365,0,53
 8b1cbd78-b36c-4fbd-9fc4-4f46c36863f0,Sawanadasa Alawattha,very good,2023-08-15 09:05:47,1.7.0,5,0,0.0007568687818036091,0,9
@@ -1073,12 +1074,12 @@ cf1f1a46-1ca1-4327-b871-b2eb3db09b41,Zackary Perera,so far slt fibre is the best
 80131c5c-3bb2-4a03-8ef1-bc37a229174c,Hasith Malshan,poor costomer service,2021-12-13 16:53:41,1.4.2,1,0,0.22654736893136207,0,21
 ec0e6d92-16b4-40e3-a5f3-3d300ba1950c,Visula Ketagoda,they scammed 1000 from me i activated a slt gamer lite bundle but everytime i activate it it says that i ve consumed all data and when contacted customer care they say that i ve used all of my data in like 1 second even tho they don t even have a 100mbps speed,2021-12-12 06:16:21,,1,0,0.048266749093653714,0,260
 71dc534f-c539-4154-bf07-2916d5b08a1a,Lakindu Abimaan,good and easy,2021-12-08 07:33:02,,5,0,0.001262797536496581,0,13
-ecdcf826-088a-415f-9352-b38d8f1578e8,HASITHA,nothing works properly except for the pay button once i upgraded my internet connection through the app but it had not been upgraded when i called the slt service center they mentioned that the app doesn t support upgrades even if it has an connection upgrade button,2021-12-07 04:24:36,1.4.2,1,1,0.659026583238834,0,266
+ecdcf826-088a-415f-9352-b38d8f1578e8,HASITHA,nothing works properly except for the pay button once i upgraded my internet connection through the app but it had not been upgraded when i called the slt service center they mentioned that the app doesn t support upgrades even if it has an connection upgrade button,2021-12-07 04:24:36,1.4.2,1,1,0.6590265962939097,0,266
 0886aa9a-d6f0-4687-907b-59626727463b,martstudio photo,good,2021-12-05 15:52:30,,5,0,0.0010906961659004504,0,4
 7e2bf863-5b76-4e89-8e2f-5fa6f8eb28ee,Punsara Umesh,i can t register every time i try it says try again,2021-12-04 13:43:14,1.4.1,1,1,0.9003013179821842,0,51
 2d581b39-76dc-45ef-88b2-9e7a21f967f0,WISDOM WORKS,did not receive otp in forgot my password then got an error message saying null,2021-12-01 17:42:37,,1,0,0.4067771397432197,1,79
 d52cc522-0e61-4cad-8445-10208007fb33,SP Ranga Dinesha Kumara,i want to get a fiber connection,2021-12-01 04:58:51,1.4.1,5,0,0.02414564196683268,0,32
-4af6ea23-df98-41c3-a9f7-10338cd96044,Sl GaminG MOD,i ll be sorry to tell you about this app this is really difficult for the user i m sorry to say that this is to make user friendly like dialog s my dialog app,2021-11-30 06:41:33,1.4.1,1,0,0.23015252380952983,0,158
+4af6ea23-df98-41c3-a9f7-10338cd96044,Sl GaminG MOD,i ll be sorry to tell you about this app this is really difficult for the user i m sorry to say that this is to make user friendly like dialog s my dialog app,2021-11-30 06:41:33,1.4.1,1,0,0.23015247872773756,0,158
 6a85db2b-5668-4647-9767-8cdeffd7956d,K. A. D. Nilmini Kularathne,great but it s difficult to singing i had to go to the slt office,2021-11-28 16:18:12,1.4.1,2,0,0.016936920310378436,0,65
 0f687fb3-fbbf-46b6-9134-42104144c43a,Rayan Bandara,maxx,2021-11-28 15:22:22,1.3.2,5,0,0.0016421102268937048,0,4
 4ec78847-bcc1-41f3-ac00-770eda871d35,Isurika Dilrushe,not open this app,2021-11-27 15:57:37,,1,0,0.07340339664905697,0,17
@@ -1092,7 +1093,7 @@ ac3b574c-f79f-4802-a031-65886745bb49,Dewja Shen,good apk for see the report,2021
 83fc4f1d-9c1c-4c72-bf60-f4b1b4f2dfc7,Anita Niroshani,good app,2021-11-20 06:54:05,,5,0,0.0035703640031430764,0,8
 e347ae8a-b1c7-4421-8f02-f1ffe8c0bc69,Stephen Sudarshan,user friendly,2021-11-20 06:19:18,1.3.2,5,0,0.005694380819289659,0,13
 a1a69a8d-0f83-4684-a81e-becd5e517240,Asela Rupasinghe,keep it touch slt,2021-11-16 02:58:32,,5,0,0.11112405160483742,0,17
-2af4f077-0c4b-497c-8506-9117e4706bde,Suren Rajasooriyar,when i click pay its showing phone number and i enter amount and continue and then again it s asking for all the details to pay please pass the details from mobile app to the web form,2021-11-14 19:02:03,1.4.1,1,0,0.49155739090938916,0,183
+2af4f077-0c4b-497c-8506-9117e4706bde,Suren Rajasooriyar,when i click pay its showing phone number and i enter amount and continue and then again it s asking for all the details to pay please pass the details from mobile app to the web form,2021-11-14 19:02:03,1.4.1,1,0,0.4915573120169182,0,183
 cd5a3dc9-8e20-423c-8765-a275b66d6241,sunera dineth,you good aitames is always somthing devaise thanse slt,2021-11-14 04:36:19,,1,0,0.007865362279750182,0,54
 aa19f0ca-c446-4afb-a15f-7ae5c46a87e0,Buddika Asan,wow,2021-11-12 18:30:31,,5,0,0.012691342594797962,0,3
 96637a54-566c-424b-9408-c820675d35a9,Sandya Priyangani,good,2021-11-08 00:31:42,1.4.1,5,0,0.0010906961659004504,0,4
@@ -1392,7 +1393,7 @@ f2469c32-04ba-41e5-bf6f-014e5773d387,chinthaka chaminda,ooops something went wro
 c63f39e4-c188-466a-8bef-3ec97d253e5e,Mohemad Ajmal,useless after the update i connot login using old credential even customer care rep doesn t know about it,2021-06-25 04:55:19,1.3.2,1,0,0.47198618876789267,0,105
 197242f6-d692-4ca5-b54c-ea59d4e8dcc1,chaminda liyanage,seemingly useless app i have tried to download but it s taking days to download what others say must be correct,2021-06-25 03:55:43,,1,1,0.7006095783734528,0,111
 2cf4354f-2511-45d2-ba77-437eae981c40,vimukthi sathsara,poor quality some of times isnt respond,2021-06-25 03:06:45,1.3.2,1,0,0.2907315584575653,0,39
-1f211de4-9dc6-4e7d-a8bd-03f1d0aa0900,Anonymous,new update amazing app easy to use,2021-06-25 02:57:56,1.3.2,5,0,0.0713362243260704,0,34
+1f211de4-9dc6-4e7d-a8bd-03f1d0aa0900,CrystalRasta,new update amazing app easy to use,2021-06-25 02:57:56,1.3.2,5,0,0.0713362243260704,0,34
 0e447395-52a3-4017-b5f7-40e9787c5800,yasiru lakshan,,2021-06-24 21:04:29,,1,0,0.0,0,0
 999b5534-7d2d-4899-a75e-b5a11f0e82da,Nadeeka Gamage,mokadda meka hata payak yanawa code eka enna,2021-06-24 15:20:20,1.3.2,1,0,0.007538615718512769,0,44
 46f4549f-e663-4d6e-bef1-51887dc583d9,Danuka Tharanga,good app,2021-06-24 11:23:31,1.2.8,5,0,0.0035703640031430764,0,8
@@ -1593,7 +1594,7 @@ dcc93997-908e-482e-b3a1-d1acd2129e60,Saminda Gunawardhana,super,2021-05-06 10:40
 58ea36ad-c991-409d-9005-99048bfe07c2,Thushari Perera,very bad app,2021-05-06 02:31:20,1.2.8,1,0,0.05072672885979118,0,12
 9ee31ab1-55cb-41c4-81b8-ddb3c88326ef,Tharin Senidu,wow,2021-05-04 09:24:09,,5,0,0.012691342594797962,0,3
 77a64486-044e-4542-9965-a5ac4ae2e30d,Asitha Jayasekera,really helpful to add extra gb pay bills etc,2021-05-04 06:04:41,1.2.8,5,0,0.025650022954894117,0,44
-85c64860-206d-4f48-a507-8044699bac05,Nihal Vijayananda,unprofessional crazy and unpractical app when registration started always say invalid username and invalid password but unfortunately still slt is sleeping without rectifying the app please do not insult your valuable customers since you are survive form them clearly shows careless and unconcern attention,2021-05-03 03:37:20,1.2.8,1,0,0.2979636549344282,0,306
+85c64860-206d-4f48-a507-8044699bac05,Nihal Vijayananda,unprofessional crazy and unpractical app when registration started always say invalid username and invalid password but unfortunately still slt is sleeping without rectifying the app please do not insult your valuable customers since you are survive form them clearly shows careless and unconcern attention,2021-05-03 03:37:20,1.2.8,1,0,0.297963412336959,0,306
 a3f273d7-7500-40fa-aaaf-a3f4a8e6c4b4,Menaka Amarawansa,after new update app become bs fix banner allocation use 50 of mobile screen and hassle to use prefer old ui much better,2021-05-02 13:28:52,1.2.8,2,0,0.275905545819338,1,120
 0945295e-8b1e-43a7-8f4b-b4747fe36440,Nuwan Gunarathna,dose not updated payment details,2021-05-01 15:40:47,1.2.8,1,0,0.39536495132727245,0,32
 b815e4b7-8bad-4b4b-912f-69ca5ab040c2,Malindu Pabasara,crashing during the login,2021-05-01 08:06:04,1.0.4,1,0,0.24200399907727402,1,25
