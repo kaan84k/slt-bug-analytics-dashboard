@@ -59,7 +59,8 @@ if os.path.exists(csv_path):
     try:
         existing_df = pd.read_csv(csv_path)
         combined_df = pd.concat([existing_df, reviews_df], ignore_index=True)
-        combined_df.drop_duplicates(subset=["review_id"], inplace=True)
+        combined_df.sort_values("review_date", inplace=True)
+        combined_df.drop_duplicates(subset=["review_id"], keep="last", inplace=True)
         combined_df.to_csv(csv_path, index=False)
         save_df(combined_df, 'slt_selfcare_google_reviews')
     except Exception as e:

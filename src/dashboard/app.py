@@ -196,6 +196,7 @@ with filter_expander:
 
     # Get clean versions
     available_versions = clean_versions(bug_df["appVersion"].unique())
+    latest_version = available_versions[-1] if available_versions else "N/A"
 
     selected_versions = st.multiselect(
         "Select App Versions",
@@ -222,13 +223,15 @@ if 'date' in bug_df.columns:
     ]
 
 # Metrics summary
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.metric("Total Bugs", len(filtered_bug_df))
 with col2:
     st.metric("Categories", len(selected_categories))
 with col3:
     st.metric("App Versions", len(selected_versions))
+with col4:
+    st.metric("Latest Version", latest_version)
 
 # Add filtered data download to the download section
 with download_expander:
