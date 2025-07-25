@@ -1,4 +1,5 @@
 source,review_id,review_title,user_name,review_description,rating,thumbs_up,review_date,developer_response,developer_response_date,appVersion,language_code,country_code
+Google Play,122e0e3d-9d57-4ec8-b4e5-c02b433b6cbf,,Mahith Mindupa,worst app ever! barely anything works,1,0,2025-07-23 07:12:10,,,2.0.8,en,us
 Google Play,dc762cbc-b4f3-44c2-8b2b-5139c8925505,,Kanchana Hettiarachchi,can't open,1,0,2025-07-21 08:57:45,,,2.1.0,en,us
 Google Play,8e671ef7-6032-471f-a3be-f40d2bfe6afa,,Dhanuka Hemanga,Can't change the contact information. What are you guys doing without fix these bugs ???? Very very disappointed !!!,1,0,2025-07-19 16:44:16,,,2.1.0,en,us
 Google Play,8972f428-3ac7-4c46-8fe2-80f06724f61b,,黑狼（小多）,1. App version cannot see exact package expiration time. 2. and cannot even redeem the gift packs received after the payment. All these require to sign into the website.,1,4,2025-07-15 04:51:57,,,2.1.0,en,us
@@ -6,7 +7,7 @@ Google Play,fc2243e5-235c-4497-a263-c4994009dcf1,,Vasanth Raj,"disappointed to s
 Google Play,6c4aa5b5-2dca-4e79-bf0c-6f871f8a9651,,Shanith Kavinda,full of bugs. always something error massage comes up.,1,0,2025-07-07 21:39:08,,,2.1.0,en,us
 Google Play,5b673ebf-8185-45ba-a869-92f42f2c72e4,,Chamith Malshan,data remaining not show.,1,0,2025-07-07 15:10:19,,,2.1.0,en,us
 Google Play,21966c0b-4999-48f8-b7dd-e5e0349b66cf,,Dushyanth Kandiah,"everything ok, some features can be better like if you're going to upgrade a package if you click the upgrade button without any confirmation if upgrades the package",3,0,2025-07-02 07:34:47,,,2.0.8,en,us
-Google Play,35b9b802-ff28-4852-adad-4c58c29ac969,,Dilum Perera,"The app technically works, I can pay my bills and see my usage stats but everything else is just below average. The design somehow looks like an early 2010s webpage, the colors are not eye pleasing, options are cluttered everywhere, no security at all, some of the options (changing mobile no, notification settings, etc) don't work. Hilarious how the leading and profitable ISP here make such an unintuitive, confusing and ancient looking app because this seems done for a school project.",2,9,2025-07-01 11:23:55,,,2.1.0,en,us
+Google Play,35b9b802-ff28-4852-adad-4c58c29ac969,,Dilum Perera,"The app technically works, I can pay my bills and see my usage stats but everything else is just below average. The design somehow looks like an early 2010s webpage, the colors are not eye pleasing, options are cluttered everywhere, no security at all, some of the options (changing mobile no, notification settings, etc) don't work. Hilarious how the leading and profitable ISP here make such an unintuitive, confusing and ancient looking app because this seems done for a school project.",2,11,2025-07-01 11:23:55,,,2.1.0,en,us
 Google Play,880c79f0-c0a0-4cab-8519-44804a158b82,,Buwaneka Sudheera,Slow. Sometimes no response,1,0,2025-06-30 05:13:55,,,2.1.0,en,us
 Google Play,29fb7ee0-b5f4-4bba-9305-0449a359e968,,shamal senadhi,Lot of bugs encountered UI is bad very slow,1,0,2025-06-29 08:06:13,,,2.1.0,en,us
 Google Play,030db043-4f80-4759-9f95-6393e6c2c618,,Upul Sampath,Using for years. But still the customer service team can’t make  the app to see the usage of the bill.,1,0,2025-06-29 04:49:01,,,1.4.2,en,us
@@ -1775,7 +1776,7 @@ Google Play,f98605fe-62bc-42f0-8b95-fef0a9ef6120,,Pawan Himanka Samarakoon Samar
 Google Play,17da8581-4b9c-4e4a-8a2f-da508d4450e4,,Saliya Lalinda Kumara,Not working,1,0,2021-04-13 06:11:02,,,1.2.2,en,us
 Google Play,e5304bb5-a8a1-49e5-a1ce-fc69f484b08e,,Lahiru Nanayakkara,After update app suddenly closed. Tried to completely uninstalled and reinstalled but problem still persit.,1,11,2021-04-12 12:52:28,,,1.2.2,en,us
 Google Play,05d9871f-e28c-49fb-97e2-35966ec22c93,,Dilan Hasitha,App is not working after the latest update,1,3,2021-04-12 06:22:28,,,1.2.2,en,us
-Google Play,e7f2f5c0-ad22-4051-b83d-7a4dd299c95e,,e.w. Chandrasiri,It sucks. It is very very slow. The data usage is not showing. It keep loading. Also the UI isn't very good.,1,34,2021-04-12 03:49:30,,,1.2.2,en,us
+Google Play,e7f2f5c0-ad22-4051-b83d-7a4dd299c95e,,e.w. Chandrasiri,It sucks. It is very very slow. The data usage is not showing. It keep loading. Also the UI isn't very good.,1,35,2021-04-12 03:49:30,,,1.2.2,en,us
 Google Play,f06a838b-d463-426c-ab4e-5ee597767fa0,,P.L.I. Wimalaratne,Doesn't work after update,1,2,2021-04-11 12:36:53,,,1.2.2,en,us
 Google Play,653e5735-71a2-4c93-a00a-289362503266,,__RV__FDO [vazians],Verry usefull update 😍,5,1,2021-04-10 16:20:50,,,1.2.2,en,us
 Google Play,868a759b-322c-4f4c-8fbe-5397871257be,,Thanuja Nilakshi,"After update, it can't open.!!",1,3,2021-04-10 10:40:11,,,1.2.2,en,us
