@@ -1,4 +1,5 @@
 source,review_id,review_title,user_name,review_description,rating,thumbs_up,review_date,developer_response,developer_response_date,appVersion,language_code,country_code
+Google Play,505e0773-c89e-453b-880a-d64eb6d1ae44,,Hashara Gamage,Too many errors 🤮,1,0,2025-07-27 07:34:23,,,2.1.0,en,us
 Google Play,6c3c5e44-d80a-4597-92c0-30280ceef9cc,,Files Foryou,very buggy app don't use it . look like trash cane,1,0,2025-07-26 10:19:16,,,,en,us
 Google Play,122e0e3d-9d57-4ec8-b4e5-c02b433b6cbf,,Mahith Mindupa,worst app ever! barely anything works,1,0,2025-07-23 07:12:10,,,2.0.8,en,us
 Google Play,dc762cbc-b4f3-44c2-8b2b-5139c8925505,,Kanchana Hettiarachchi,can't open,1,0,2025-07-21 08:57:45,,,2.1.0,en,us
@@ -175,7 +176,7 @@ Google Play,1d1a1ea1-03eb-45f6-9336-afbdb4a70d74,,Asanka Chandima,රව්ට�
 Google Play,26734dbc-d18f-428a-ba3f-9558c6989325,,S AHILAN,It is very useful,5,0,2024-07-30 07:27:22,,,1.8.0,en,us
 Google Play,b75ceedc-a5da-499d-b5ae-e1c66e49006d,,Kanthika Abeyesundere,Good,5,0,2024-07-28 17:10:12,,,1.7.0,en,us
 Google Play,0f5456a2-024b-479d-8234-6162f1e08c92,,Samarasinghe Bandara,I didn't see what I want,1,0,2024-07-28 02:01:01,,,1.6.1,en,us
-Google Play,8d461e69-98dd-4f72-8ca3-7c72362f6017,,Gamith Wickramage,"Absolutely Useless - Full of Errors. This app is completely useless. Every time I try to use it, it just shows errors and fails to perform even the most basic tasks. When I need it the most, it’s completely unreliable. The developers clearly haven’t tested it properly. Don’t waste your time or storage space on this app. One star because zero isn’t an option! Even can't place a complaint inside the app because it also says ""Service Temporarily Unavailable.""",1,293,2024-07-27 15:53:24,,,1.8.0,en,us
+Google Play,8d461e69-98dd-4f72-8ca3-7c72362f6017,,Gamith Wickramage,"Absolutely Useless - Full of Errors. This app is completely useless. Every time I try to use it, it just shows errors and fails to perform even the most basic tasks. When I need it the most, it’s completely unreliable. The developers clearly haven’t tested it properly. Don’t waste your time or storage space on this app. One star because zero isn’t an option! Even can't place a complaint inside the app because it also says ""Service Temporarily Unavailable.""",1,294,2024-07-27 15:53:24,,,1.8.0,en,us
 Google Play,1f2563fe-0600-4d05-b71c-067c13869f7b,,Rohana Prasanna,Excellent app. Very helpful and saved lot of time.,5,4,2024-07-20 11:43:37,,,1.8.0,en,us
 Google Play,5b9baf12-34b8-46bb-bd8e-0931074174b7,,Saviru Munamalpe,"This is the worst free app I've ever used. The user interface is terrible, I couldn't even find where to check my data usage. It's incredibly frustrating and utterly useless.",1,0,2024-07-17 04:13:25,,,,en,us
 Google Play,0eb3f44b-f811-4a5e-98ee-57d5ccae32ee,,JANITH CHATHRANGA,It has not prepaid reload option yet,2,0,2024-07-11 20:39:53,,,1.8.0,en,us
@@ -1714,7 +1715,7 @@ Google Play,76a93972-501e-4d64-9b7a-ce001bc3deff,,Chamath Atukorale,"App does no
 Google Play,dcc93997-908e-482e-b3a1-d1acd2129e60,,Saminda Gunawardhana,Super,5,0,2021-05-06 10:40:16,,,,en,us
 Google Play,5e7ad1d0-bdb7-401e-8277-a4c670788a68,,Shalini Fonseka,Hopeless. And customer service at SLT is so bad,1,0,2021-05-06 03:11:34,,,1.2.8,en,us
 Google Play,58ea36ad-c991-409d-9005-99048bfe07c2,,Thushari Perera,Very bad app.,1,0,2021-05-06 02:31:20,,,1.2.8,en,us
-Google Play,9ee31ab1-55cb-41c4-81b8-ddb3c88326ef,,Tharin Senidu,Wow,5,0,2021-05-04 09:24:09,,,,en,us
+Google Play,9ee31ab1-55cb-41c4-81b8-ddb3c88326ef,,A Google user,Wow,5,0,2021-05-04 09:24:09,,,,en,us
 Google Play,77a64486-044e-4542-9965-a5ac4ae2e30d,,Asitha Jayasekera,"Really helpful to add Extra GB, pay bills etc",5,2,2021-05-04 06:04:41,,,1.2.8,en,us
 Google Play,85c64860-206d-4f48-a507-8044699bac05,,Nihal Vijayananda,"Unprofessional, crazy and unpractical App. When registration started always say invalid username and invalid password. But unfortunately still SLT is sleeping without rectifying the App. Please do not insult your valuable customers since you are survive form them. Clearly shows careless and unconcern attention.😡😡😡",1,29,2021-05-03 03:37:20,,,1.2.8,en,us
 Google Play,a3f273d7-7500-40fa-aaaf-a3f4a8e6c4b4,,Menaka Amarawansa,"After new update, app become BS. Fix banner allocation use 50% of mobile screen and hassle to use. Prefer old UI. Much better .",2,9,2021-05-02 13:28:52,,,1.2.8,en,us
