@@ -1,4 +1,6 @@
 source,review_id,review_title,user_name,review_description,rating,thumbs_up,review_date,developer_response,developer_response_date,appVersion,language_code,country_code
+Google Play,aee844a1-a8e9-4fdb-a1bb-965276e8a6be,,Imila Maheshan,worst.so many bugs.package upgrade option also not working for a while.,1,0,2025-07-31 09:43:45,,,2.1.0,en,us
+Google Play,bb72596a-a1ef-4414-b44b-b8f36d034d1a,,Upeksha Dharmasena,sometimes it do not work properly. I can't see current packages.,2,0,2025-07-30 18:37:47,,,,en,us
 Google Play,844eb4f0-a968-4aa2-8dc4-198fd4eda1bf,,Sehan Hansaja,never works when you need it,1,0,2025-07-29 04:12:09,,,2.1.0,en,us
 Google Play,505e0773-c89e-453b-880a-d64eb6d1ae44,,Hashara Gamage,Too many errors 🤮,1,0,2025-07-27 07:34:23,,,2.1.0,en,us
 Google Play,6c3c5e44-d80a-4597-92c0-30280ceef9cc,,Files Foryou,very buggy app don't use it . look like trash cane,1,0,2025-07-26 10:19:16,,,,en,us
@@ -177,7 +179,7 @@ Google Play,1d1a1ea1-03eb-45f6-9336-afbdb4a70d74,,Asanka Chandima,රව්ට�
 Google Play,26734dbc-d18f-428a-ba3f-9558c6989325,,S AHILAN,It is very useful,5,0,2024-07-30 07:27:22,,,1.8.0,en,us
 Google Play,b75ceedc-a5da-499d-b5ae-e1c66e49006d,,Kanthika Abeyesundere,Good,5,0,2024-07-28 17:10:12,,,1.7.0,en,us
 Google Play,0f5456a2-024b-479d-8234-6162f1e08c92,,Samarasinghe Bandara,I didn't see what I want,1,0,2024-07-28 02:01:01,,,1.6.1,en,us
-Google Play,8d461e69-98dd-4f72-8ca3-7c72362f6017,,Gamith Wickramage,"Absolutely Useless - Full of Errors. This app is completely useless. Every time I try to use it, it just shows errors and fails to perform even the most basic tasks. When I need it the most, it’s completely unreliable. The developers clearly haven’t tested it properly. Don’t waste your time or storage space on this app. One star because zero isn’t an option! Even can't place a complaint inside the app because it also says ""Service Temporarily Unavailable.""",1,294,2024-07-27 15:53:24,,,1.8.0,en,us
+Google Play,8d461e69-98dd-4f72-8ca3-7c72362f6017,,Gamith Wickramage,"Absolutely Useless - Full of Errors. This app is completely useless. Every time I try to use it, it just shows errors and fails to perform even the most basic tasks. When I need it the most, it’s completely unreliable. The developers clearly haven’t tested it properly. Don’t waste your time or storage space on this app. One star because zero isn’t an option! Even can't place a complaint inside the app because it also says ""Service Temporarily Unavailable.""",1,295,2024-07-27 15:53:24,,,1.8.0,en,us
 Google Play,1f2563fe-0600-4d05-b71c-067c13869f7b,,Rohana Prasanna,Excellent app. Very helpful and saved lot of time.,5,4,2024-07-20 11:43:37,,,1.8.0,en,us
 Google Play,5b9baf12-34b8-46bb-bd8e-0931074174b7,,Saviru Munamalpe,"This is the worst free app I've ever used. The user interface is terrible, I couldn't even find where to check my data usage. It's incredibly frustrating and utterly useless.",1,0,2024-07-17 04:13:25,,,,en,us
 Google Play,0eb3f44b-f811-4a5e-98ee-57d5ccae32ee,,JANITH CHATHRANGA,It has not prepaid reload option yet,2,0,2024-07-11 20:39:53,,,1.8.0,en,us
@@ -1638,7 +1640,7 @@ Google Play,3fd35ead-db76-49f5-891d-bd009a166d9a,,lakmal abekoon,Super,5,0,2021-
 Google Play,e9ba5a82-3da3-4c62-87eb-a7cc56192ebb,,Suranga Ganewatta,Very slow,1,0,2021-05-31 05:05:10,,,1.2.8,en,us
 Google Play,1335d93e-17d2-4d79-b2d4-fbe41429e288,,Nilax shana,Very poor connection Rude with customers Cheating packages Poor customer service They Consider only about money,1,0,2021-05-31 04:41:57,,,,en,us
 Google Play,6fb32152-9e90-438b-899a-1555be402161,,mario fernando,මොනාද SLT උබලගේ වැඩ. මේ ඇප් හදන්නේ කවුද. ලොග් වෙන්න බැ.,1,0,2021-05-30 21:34:39,,,1.3.2,en,us
-Google Play,557af73b-d2b0-4491-a926-dec72f23aade,,Manjula Abeyrathna,Good app,5,0,2021-05-30 14:29:41,,,1.3.2,en,us
+Google Play,557af73b-d2b0-4491-a926-dec72f23aade,,Lakshan,Good app,5,0,2021-05-30 14:29:41,,,1.3.2,en,us
 Google Play,31459aeb-e06b-409b-ad91-4ce30bd15803,,nishantha korale hewage,Useless 😩🤯🤯,1,0,2021-05-30 10:52:34,,,1.3.2,en,us
 Google Play,1626286c-5844-4727-99ca-5ae9d0899be8,,Prabhath De Silva,Excellent,5,0,2021-05-30 10:27:28,,,1.3.2,en,us
 Google Play,21f7de2a-9b6b-421e-b4e6-d7e4732ff48e,,HH MEDIA NEWS,It's shows invalid phone number but my number is correct . What the hell is this. SLT is a biggest service provider company in Sri Lanka but . I don't why are they hiring a careless software engineer to develop the app.,1,1,2021-05-29 18:42:01,,,1.3.0,en,us
