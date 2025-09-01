@@ -1,4 +1,5 @@
 review_id,user_name,review_description,review_date,appVersion,rating,is_bug_report,bug_confidence,bug_keyword_count,review_length
+61f3c843-dc40-4ea9-b1b6-65f87531ab6a,Rajinda Thejan,so many issues and bugs,2025-08-30 10:50:44,,2,1,0.6826429164181799,2,23
 f606630a-21c6-4f55-bc4c-115651da5a8e,Asanka HB Seneviratne,good,2025-08-25 02:51:20,2.1.2,5,0,0.001087075860679785,0,4
 ea7401aa-ce98-4e6b-81c5-4c86c1dfc72c,Panda Clash,charging innocent customers high prices and sayings it s tax and add on and half the time ur app needs to be refreshed lol payed the full due and cancelled the connection u guys don t need fibre starlink is better and no extra cost,2025-08-21 10:12:30,2.1.2,1,0,0.13963216721982405,0,231
 6decc7d2-f377-41e0-9e77-2036655e3c4d,Kushan Bhathila,useless,2025-08-16 15:54:58,2.1.0,1,1,0.7907567412027541,0,7
@@ -954,7 +955,7 @@ ce59addf-1b86-43f9-8eea-19b1386410bc,Chamudit Jayanatha,you know i m disappointe
 d8b30b5a-6885-485a-9ca1-2419fc9facc3,Chandupa Herath,there s nothing much to say about this app it just works ok for the most part ui ux is garbage especially when considering what alternative solutions provide i think the web gui is far better than that of the app,2022-06-20 07:13:22,1.4.2,3,1,0.6546243085946861,0,212
 56c5f6d3-9104-4401-8ce9-9d728b50b34c,Dilan Hamid,please add the option to at through amex,2022-06-20 04:16:05,,2,0,0.12404120850735277,0,40
 6e3b53fb-51cb-4cef-a921-2da4ba88324a,aruna wijesinghe,extremely user friendly app,2022-06-18 04:33:53,1.4.2,5,0,0.017774930053256175,0,27
-58543362-bcc3-4f6f-869c-70875083f57d,S P Shantha Kumar Shantha,useful to,2022-06-17 12:21:55,,5,0,0.025906904446659905,0,9
+58543362-bcc3-4f6f-869c-70875083f57d,S P Shantha Kumar Shantha,useful to,2022-06-17 12:21:55,,5,0,0.025906904446659912,0,9
 976d78ed-c5d5-40b9-96a1-44292244073e,Tharuka Gamage,i was not able upgrade the current package it is pending since last 2 weeks when i call 1212 they say email to 1212 if email they say use the bloody app nothing is get the job done your otp is never arrived also when i try to create an account your 1212 operators are also basically s worst in every possible way,2022-06-15 10:19:30,1.4.2,2,0,0.4895200740930115,0,312
 e613bd08-961e-4518-93e0-42194a539c89,Sujan kavinda,payment gateway is so outdated and pain in the arse payments get declined idk for what reason only good to see the outstanding payable,2022-06-15 04:40:38,1.4.2,1,0,0.27616603986260835,0,134
 ef4caea5-54ad-474b-912d-72337493a871,Purple Bubblegum,my payment isn t getting processed,2022-06-14 08:11:58,1.4.2,2,1,0.5213619876128884,0,34
