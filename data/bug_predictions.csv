@@ -1,4 +1,5 @@
 review_id,user_name,review_description,review_date,appVersion,rating,is_bug_report,bug_confidence,bug_keyword_count,review_length
+563ea6e7-3d7e-491e-8efb-55bc2eb9e909,IPS,have thousands of errors in this app,2025-09-05 10:56:00,2.1.2,1,1,0.7375682822192963,1,36
 9973b062-efde-423c-8315-b8314f1d4532,Tharindu Ashen,only slt users can get advantage out of this app but not mobitel users,2025-09-01 15:53:29,1.3.2,1,1,0.6089240752880161,0,70
 61f3c843-dc40-4ea9-b1b6-65f87531ab6a,Rajinda Thejan,so many issues and bugs,2025-08-30 10:50:44,,2,1,0.6826429164181799,2,23
 f606630a-21c6-4f55-bc4c-115651da5a8e,Asanka HB Seneviratne,good,2025-08-25 02:51:20,2.1.2,5,0,0.001087075860679785,0,4
@@ -428,7 +429,7 @@ da073c41-acc2-4293-9da5-93a7aadae70f,Sujith Gunasekara,superb,2023-08-24 02:13:1
 25965a88-aae6-480a-a513-6b467b51017a,Gas Nidiya,,2023-08-24 02:08:02,1.6.1,5,0,0.0,0,0
 db52cb73-16b5-4487-bf54-c67b80df56bd,Kumarasinghege Pathiraja,good service,2023-08-24 00:57:20,1.7.0,3,0,0.0008222366150052084,0,12
 53ec6e8e-60b9-44a5-ba36-59409cec78d7,Ganga Ihala Korale VRC,good app,2023-08-24 00:27:15,,4,0,0.003570484530648129,0,8
-7185471f-0c41-4a36-b34d-70a40095abd6,Indee Herath,too much reports but all are useless and also every month end app not work ever month end last two days data usage not showing realtime data usage can not see at the point useless app,2023-08-23 19:00:37,1.7.0,1,1,0.9304723386550057,0,183
+7185471f-0c41-4a36-b34d-70a40095abd6,Indee Herath,too much reports but all are useless and also every month end app not work ever month end last two days data usage not showing realtime data usage can not see at the point useless app,2023-08-23 19:00:37,1.7.0,1,1,0.9304723223345097,0,183
 11b5aa62-b01d-4b47-a554-213de365de79,Sisira Mudannayake,exceptional,2023-08-23 18:26:10,1.7.0,5,0,0.01957791172453393,0,11
 1fdf09b8-78a3-4863-bcfd-0c94a1cfcb76,Ruwan Jayanetti,lot of bugs and inconsistencies,2023-08-23 17:48:32,1.7.0,1,1,0.7961711067544522,1,31
 36167def-d16e-4fbd-856c-9a8037322372,Govindharaj Arulraj,friendly use and all detail available,2023-08-23 17:23:50,1.7.0,4,0,0.002479609141263161,0,37
@@ -468,8 +469,8 @@ fabd5a26-9224-44d8-8c68-21c3aea5137a,JI madushani,good app,2023-08-20 08:39:13,1
 5946c235-6ae6-47da-8507-fd6f58a17123,Mahen Mahen,super,2023-08-19 17:05:11,1.7.0,4,0,0.001797854568836881,0,5
 be9cb672-4813-42f4-b996-028b6c5bfe5b,Johnnilmini Gomez,5 5 i m trying to get the new update but it only shows update but not updating,2023-08-19 16:03:21,1.4.2,5,1,0.5339585538448824,0,78
 13a55397-7347-405a-847d-0d4722538dca,Rajitha Weerarathna,this is not user friendly,2023-08-19 15:50:00,1.7.0,1,0,0.05040655720786422,0,25
-b2ffcf37-2f47-47ee-b77f-04f8a19863c7,Ranjan Gunathilake,update not werking pls check b 4 publishing its werking or not,2023-08-19 15:39:44,1.7.0,1,0,0.25368989395025254,0,62
-fef0576f-b0bc-47ec-b9d8-57404b795768,M. Manikkarajah,user friendly simple app,2023-08-19 14:43:43,1.7.0,4,0,0.03031923113486696,0,24
+b2ffcf37-2f47-47ee-b77f-04f8a19863c7,Ranjan Gunathilake,update not werking pls check b 4 publishing its werking or not,2023-08-19 15:39:44,1.7.0,1,0,0.25368989395025265,0,62
+fef0576f-b0bc-47ec-b9d8-57404b795768,M. Manikkarajah,user friendly simple app,2023-08-19 14:43:43,1.7.0,4,0,0.030319231134866984,0,24
 4c020d68-66a6-4fb8-9bda-f20a81ff50a7,Chandrasena Koralagoda,week internet availablity,2023-08-19 06:37:01,1.7.0,2,0,0.02308280362711823,0,25
 774466c3-2ce9-42ae-9105-629a5cad5619,Thanigaasalam Sinnathurai,it s very easy to access,2023-08-19 05:51:24,1.7.0,5,0,0.013027438606045109,0,24
 9bf41bd8-5933-4a93-ac96-f42d0b665b13,Ajantha Kadupitiya,donot pay through this app because it causes lot of issues as no email or sms notification donot pay your bill here donot trust this app always giving headache for you,2023-08-19 05:22:17,1.7.0,1,0,0.26149665910045633,1,167
@@ -1828,7 +1829,7 @@ f90fdc1c-387f-4424-a4a4-1932a7d8c3a6,Gerald Anthoniz,not working,2020-07-11 02:0
 1f9d4779-7d72-4de0-ba3e-3caafe12327e,Lafir Mahmood,very useful app,2020-07-10 08:25:29,,4,0,0.1293168630606658,0,15
 7fef9726-0795-477d-989e-c7c8f0289e7d,Isuru Herath,why isn t service upgrade features doesn t work i need to upgrade my adsl connection to fiber connection,2020-07-09 06:27:36,1.0.4,3,1,0.6510705686455921,0,104
 51f0fd2f-c7a5-412d-95ac-511f08c14d27,NiRosh,not working,2020-07-08 06:33:35,1.0.4,1,1,0.8127961290391752,1,11
-f168b89d-28a3-422a-b460-d383c70c34c9,Hansaka Weerasingha,not working as expected i have only added my broadband account and it doesn t even show the account details instead it gives an error message saying sorry account details not available on the other hand why do you have two different self care apps merge both myslt app and slt selfcare app if i want to upgrade my broadband package that also not working i can t see any options to do so stop releasing buggy apps,2020-07-07 04:55:07,1.0.4,1,1,0.8980204057203628,3,412
+f168b89d-28a3-422a-b460-d383c70c34c9,Hansaka Weerasingha,not working as expected i have only added my broadband account and it doesn t even show the account details instead it gives an error message saying sorry account details not available on the other hand why do you have two different self care apps merge both myslt app and slt selfcare app if i want to upgrade my broadband package that also not working i can t see any options to do so stop releasing buggy apps,2020-07-07 04:55:07,1.0.4,1,1,0.8980205475943395,3,412
 f4b2206a-0e2e-4379-9957-30be38ffa5ca,Google User,merge both of the apps why two apps for one service and this app is very slow too,2020-07-06 06:01:09,1.0.4,1,0,0.19294385679625742,0,81
 4c2c5da1-3d48-4db7-8b9b-446602d2593a,Chamoda Rathnayake,,2020-07-02 10:19:20,,1,0,0.0,0,0
 c742412c-8d00-4a79-a6ef-bec1a28ed46b,Never Trust,i love slt,2020-07-02 09:02:56,1.0.0,5,0,0.011959975703262219,0,10
@@ -1846,12 +1847,12 @@ c742412c-8d00-4a79-a6ef-bec1a28ed46b,Never Trust,i love slt,2020-07-02 09:02:56,
 7dcae312-9b6c-4d39-afc5-53b0c8eb8e6e,Mohammed Mifraz,really bad app not useful at all just waste of time and data,2020-06-22 18:59:36,1.0.0,1,0,0.37976728552689754,0,60
 bbfcbe06-e6a1-4e3b-9696-3d62ccb0729b,keerthi subasinghe,weak,2020-06-22 13:36:05,1.0.0,1,0,0.014577005065965562,0,4
 1fc4ae6d-1704-42e2-9ba6-c45738a3c717,SL gaming,good ggooooood,2020-06-20 14:05:57,,5,0,0.0014531750414193288,0,14
-b290dc31-88bb-45f6-9e9a-c44293602ab3,Mohammed Aneek,very poor ui and slow payed the bill but doesn t show even after 20mins or refreshing called customer service and the service is very bad and rude dialog instantly updates and service is connected once payed bill instantly,2020-06-18 08:45:11,1.0.0,1,0,0.40420462853345357,0,222
+b290dc31-88bb-45f6-9e9a-c44293602ab3,Mohammed Aneek,very poor ui and slow payed the bill but doesn t show even after 20mins or refreshing called customer service and the service is very bad and rude dialog instantly updates and service is connected once payed bill instantly,2020-06-18 08:45:11,1.0.0,1,0,0.4042046819924181,0,222
 05313b13-fac3-40cc-9479-6af9f8ed334c,Darshi Sedara Senarath,it worked alright for like two weeks and now suddenly the app started to crash with a message account details not available please watch out this issue,2020-06-18 05:23:25,1.0.0,5,1,0.9288982200573948,2,151
 c01c067b-8fee-4af7-9206-d8e5978c594f,Loga Indrakumar,sao many bugs accounts not showing properly,2020-06-18 01:55:21,1.0.0,1,1,0.5939028596306015,1,43
 c8c0c429-5436-49e6-96da-1d83971aabc5,Susika Sandasara,good app,2020-06-17 15:04:32,1.0.0,5,0,0.003570484530648129,0,8
 f1149fc7-f619-4a7f-8d94-a190b470491f,Nilusha Dilshan,this is not working screen says the service temporary unavailable,2020-06-16 04:46:01,1.0.0,1,1,0.9907531829438859,1,65
-7efae1ad-ab15-40a0-83b8-c1a89bc8ff1a,Pasan Jayasinghe,the app seems good but having two apps to manage my account and view my data usage my slt separately can become a nuisance after a while it d be better if you can merge both of them together,2020-06-15 02:14:55,1.0.0,3,0,0.27630673873689454,0,190
+7efae1ad-ab15-40a0-83b8-c1a89bc8ff1a,Pasan Jayasinghe,the app seems good but having two apps to manage my account and view my data usage my slt separately can become a nuisance after a while it d be better if you can merge both of them together,2020-06-15 02:14:55,1.0.0,3,0,0.2763066887012584,0,190
 2077cac1-797f-48f7-8a16-86054437cf5a,Kanishka SL,fantastic,2020-06-13 02:42:30,1.0.0,5,0,0.0005810912590292202,0,9
 fd8e75f2-fcdc-4e43-95dd-2d6a6c8ee010,Faalil,after i added my 4g broad band account error message is popping out and say sorry account detail not available please fix this,2020-06-11 19:24:17,1.0.0,3,1,0.660691780570173,2,126
 d4805070-073b-4d59-981e-cfc41487a703,Senaka Alawattage,super app very useful,2020-06-11 10:25:58,,5,0,0.10835878022673799,0,21
