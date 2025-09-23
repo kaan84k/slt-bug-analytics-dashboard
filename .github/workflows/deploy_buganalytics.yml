@@ -3,7 +3,7 @@ name: Auto Deploy Bug Analytics App
 on:
   push:
     branches:
-      - main   # or change if your repo uses "master"
+      - master   # or change if your repo uses "master"
 
 jobs:
   deploy:
