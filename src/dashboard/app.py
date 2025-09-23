@@ -30,7 +30,7 @@ import re
 
 st.set_page_config(page_title="SLT Bug Analytics Dashboard", layout="wide")
 
-# --- Syslog severity mappingf ---
+# --- Syslog severity mappingpf ---
 SYSLOG_MAP = {
     "Crash/Freeze":      ("crit",    2),
     "Server Error":      ("crit",    2),
