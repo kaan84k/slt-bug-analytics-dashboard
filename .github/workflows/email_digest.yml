@@ -8,6 +8,8 @@ on:
 jobs:
   send-email:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # 👈 This is the critical fix
 
     steps:
       - name: Checkout repository
@@ -27,21 +29,15 @@ jobs:
         env: 
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-  
-        run: |
-          python src/dashboard/bug_email_notifier.py
+        run: python src/dashboard/bug_email_notifier.py
 
       - name: Commit updated database if changed
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/bug_data.db
           git diff --cached --quiet || git commit -m "Update bug_data.db in workflow"
 
       - name: Push changes
-        if: success()
         run: |
-          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
           git push origin HEAD:${{ github.ref }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
