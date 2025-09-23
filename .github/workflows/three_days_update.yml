@@ -14,7 +14,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
+      - name: Sync with latest master
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          if [ "$BRANCH" = "$GITHUB_REF" ]; then
+            echo "Unsupported ref $GITHUB_REF" >&2
+            exit 1
+          fi
+          git fetch origin "$BRANCH"
+          git rebase "origin/$BRANCH"
+          
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
