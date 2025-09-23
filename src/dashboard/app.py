@@ -30,7 +30,7 @@ import re
 
 st.set_page_config(page_title="SLT Bug Analytics Dashboard", layout="wide")
 
-# --- Syslog severity mappingpf ---
+# --- Syslog severity mapping ---
 SYSLOG_MAP = {
     "Crash/Freeze":      ("crit",    2),
     "Server Error":      ("crit",    2),
@@ -62,7 +62,7 @@ SYSLOG_COLORS = {
 }
 
 # Set page configuration first to avoid StreamlitAPIException
-st.title("SLT Selfcare App - Bug Analytics")
+st.title("SLT Selfcare App - Bug Analytics Dashboard")
 
 # --- Load and process data ---
 try:
