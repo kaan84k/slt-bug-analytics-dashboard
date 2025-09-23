@@ -1,9 +1,9 @@
-name: Auto Deploy Bug Analytics App
+name: Auto Deploy Bug Analytics
 
 on:
   push:
     branches:
-      - main   # or change if your repo uses "master"
+      - master   # only trigger on main branch pushes
 
 jobs:
   deploy:
@@ -17,4 +17,4 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          /home/dpd/deploy_bug_analytics.sh
+          /home/dpd/deploy_buganalytics.sh
