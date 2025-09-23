@@ -18,4 +18,4 @@ jobs:
         port: ${{ secrets.SERVER_PORT }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          /home/dpd/deploy_buganalytics.sh
+          /home/dpd/deploy_bug_analytics.sh
