@@ -62,7 +62,7 @@ SYSLOG_COLORS = {
 }
 
 # Set page configuration first to avoid StreamlitAPIException
-st.title("SLT Selfcare App - Bug ")
+st.title("SLT Selfcare App - Bug Analytics Dashboard")
 
 # --- Load and process data ---
 try:
