@@ -1,4 +1,6 @@
 review_id,user_name,review_description,review_date,appVersion,rating,is_bug_report,bug_confidence,bug_keyword_count,review_length
+505bc5a1-078e-44b6-8efe-f3e0b7056f2b,Pasan Seneviratne,it is not informative developers must atleast study similar apps of other competitors,2025-10-04 09:43:24,2.1.2,2,0,0.24463833577094457,0,85
+e8bf5d47-9e90-43fa-9161-ca21971db9f5,Dimuthu Amaraweera,terrible bandwidth for the broadband connection,2025-10-04 04:56:43,,1,0,0.0489463055085573,0,47
 64039cea-d063-4daa-bfd3-4e9c278bd3a9,Dilakshi Gunawardena,worst app ever it s not working most of the time and when we upgrade the package we can t even see the gb amount so suspicious,2025-10-02 14:39:08,,1,1,0.5396160210022333,1,126
 6c8be9df-88bd-4d3f-a9d8-8e6692c71b8a,DRS-LIVE,useless app can t reload,2025-09-30 02:20:02,2.1.2,1,1,0.9488780241661915,0,24
 cebb0192-0ff3-47fc-a0ef-1753c04407d4,Lahiru Prasanna (Sl FireFlash),worst experience with an app ever,2025-09-28 05:35:25,2.1.2,1,0,0.06485418857275334,0,33
@@ -473,8 +475,8 @@ f65ad1da-57a7-4da4-88a8-5cccec7b1920,Julien Angelo,this app is not user friendly
 3c61d097-9031-407b-ab35-24cec92b77b2,ys yagaraj,slt,2023-08-22 02:50:18,1.7.0,5,0,0.007614702507148546,0,3
 4893c3dd-8a38-4d0c-8228-70c2507bfcfc,Shanuka Neranjan,not responded,2023-08-22 02:31:06,1.7.0,1,0,0.014081730707281536,0,13
 ebbedaf1-be0c-4bd1-873b-979324186125,Sith Pathlata,godapp,2023-08-21 16:13:18,1.7.0,5,0,0.006838213962237,0,6
-292a5162-e400-45ce-9360-10e3155f6044,Umadevi Sivaraja,i cant add pakages in our wifi connection it always says server error when we try to add pakages specially when we try to add youth add on and youtube pakage it accepts once in every 100 attempts rarely since we couldnt activate those pakages via call this is a big head ache to us a spcial note is that all the mobiles that are logged in my slt app are showing the same internal server error issue we also changed our router once but still the problem is not cured this is happening since a year,2023-08-21 12:15:44,1.7.0,1,1,0.7094283226241916,3,496
-4bd8f6b4-bb1d-4881-9d1c-8fc8579e8cf7,piumi Hewasinghe,good,2023-08-21 10:16:08,1.7.0,5,0,0.0010869129084241345,0,4
+292a5162-e400-45ce-9360-10e3155f6044,Umadevi Sivaraja,i cant add pakages in our wifi connection it always says server error when we try to add pakages specially when we try to add youth add on and youtube pakage it accepts once in every 100 attempts rarely since we couldnt activate those pakages via call this is a big head ache to us a spcial note is that all the mobiles that are logged in my slt app are showing the same internal server error issue we also changed our router once but still the problem is not cured this is happening since a year,2023-08-21 12:15:44,1.7.0,1,1,0.7094283226241919,3,496
+4bd8f6b4-bb1d-4881-9d1c-8fc8579e8cf7,piumi Hewasinghe,good,2023-08-21 10:16:08,1.7.0,5,0,0.0010869129084241373,0,4
 32504239-afa1-4da7-bc3a-7c9bf81f99b8,Anton Mahesh,cannot update,2023-08-21 10:02:20,1.7.0,1,1,0.9042859966110947,0,13
 e632cee8-4813-415f-abc4-d6ffa1652e07,Chirantha Lakmal,good,2023-08-20 14:06:22,1.7.0,5,0,0.0010869129084241373,0,4
 323dd28c-ef04-42b6-8e1c-e9aed135a685,K Chandrasekara,very good,2023-08-20 10:53:09,1.7.0,4,0,0.0007554732453157685,0,9
@@ -500,7 +502,7 @@ b32c2a15-782d-481d-b052-3be6ee151ba6,Pradeep Rathnayake,keep asking to update ev
 8013f581-e242-4432-99aa-ab4492351114,Namal Gunasekara,good app,2023-08-18 06:32:03,1.7.0,5,0,0.0035658865044496603,0,8
 d7bb532b-26c5-44bc-9bdd-fcf19f9a0112,Nikapitiye Dheerananda Thero,update issue please fix it,2023-08-18 05:08:05,1.7.0,5,1,0.8569824814627578,2,26
 69da0d4e-175b-42f3-99c5-e8951c2e2f03,Krishantha Punchihewa,userfriendly,2023-08-18 00:08:34,,4,0,0.02353310617344424,0,12
-c167c7a6-1688-42cc-9b1f-9488ecd4c7dc,Kadija Nazim,not at all user friendly every document reference is demanded simply to get a monthly bill is like getting your death certificate while yoy are alive very bad complicated slt app by mistake you happen to click a button immediately you are charged with data request ir credit request very bad sensitive app,2023-08-16 05:37:20,1.7.0,1,0,0.3174701371244546,0,305
+c167c7a6-1688-42cc-9b1f-9488ecd4c7dc,Kadija Nazim,not at all user friendly every document reference is demanded simply to get a monthly bill is like getting your death certificate while yoy are alive very bad complicated slt app by mistake you happen to click a button immediately you are charged with data request ir credit request very bad sensitive app,2023-08-16 05:37:20,1.7.0,1,0,0.31747002562993043,0,305
 49c8499d-47c9-43a0-995c-1bf16715afed,Linganathan Dushani,very slow,2023-08-15 12:23:09,1.7.0,1,0,0.00883385595241423,0,9
 93c61f0e-d2e1-47ef-8c45-21afcd44bff9,Asoka Jayawardena,good and quick service gives information what we need,2023-08-15 10:39:40,1.7.0,5,0,0.01161352466015899,0,53
 8b1cbd78-b36c-4fbd-9fc4-4f46c36863f0,Sawanadasa Alawattha,very good,2023-08-15 09:05:47,1.7.0,5,0,0.0007554732453157685,0,9
@@ -524,7 +526,7 @@ c282dab4-981f-42fd-9730-b0cf3dec3e0f,Rohitha Prasantha,physical,2023-08-12 02:07
 ae27208d-5439-4ae6-b824-43312eace549,Layan Vindika,this app is the most useless app i have ever seen can t even sign up not compatible for give a single star,2023-08-11 07:21:29,1.7.0,1,1,0.9215441954496165,0,106
 eabaa246-efd1-4960-b1ee-e136f08ae9a2,Kaveesh Kshan,worst app ever currently the app displays service temporarily unavailable not only now for the past 2 or 3 weeks i am having this issue,2023-08-11 05:47:49,1.6.1,1,1,0.9150470029518888,1,135
 9e9b6db7-878a-4e96-b3d3-955b35f99bda,Emil Jackson Soosaipillai,very helpful,2023-08-10 06:09:40,1.7.0,5,0,0.0070055151258294045,0,12
-7c231ae5-d756-42f4-aa13-b75adb1dadf9,Mohamed Zumair,the new update is better keep it up with your rapid development one missing functionality is to reload the checking usage of the remaining data percentage size i have to close the app from the task menu and reopen it again to check the remaining data or usage but the add on data or extra gb data are getting refreshed when i go back and click on the button again the above issue is making super frustrated sometimes please add the reload feature pull to refresh thanks,2023-08-10 05:11:17,1.7.0,3,1,0.8448342777640194,1,469
+7c231ae5-d756-42f4-aa13-b75adb1dadf9,Mohamed Zumair,the new update is better keep it up with your rapid development one missing functionality is to reload the checking usage of the remaining data percentage size i have to close the app from the task menu and reopen it again to check the remaining data or usage but the add on data or extra gb data are getting refreshed when i go back and click on the button again the above issue is making super frustrated sometimes please add the reload feature pull to refresh thanks,2023-08-10 05:11:17,1.7.0,3,1,0.844834338863132,1,469
 4d771453-4669-43cc-8ec1-75d8d3216f49,Subramaniam Sivakumaran,good,2023-08-09 14:39:03,,5,0,0.0010869129084241373,0,4
 5f6af957-85be-4ab7-9fe5-f6539c9a6a10,sisira karunarathna,good,2023-08-09 09:53:12,1.7.0,5,0,0.0010869129084241373,0,4
 5ac72b0e-c562-4176-ac5c-3affad92a542,wasantha kumara,easy to handle,2023-08-09 09:22:14,1.7.0,4,0,0.0041731532947209375,0,14
@@ -557,7 +559,7 @@ f72ea2ad-7682-4105-8091-2babe408d483,Ranjan Mano,good,2023-06-05 13:12:44,1.6.1,
 9dbcc314-d075-419b-a908-db4a8b964730,Dr. Rasanjana Mendis,good app,2023-06-04 01:53:48,1.6.1,5,0,0.0035658865044496603,0,8
 eca1a1ba-cd8c-412f-a3f3-410f5f9e4caf,hiruni jayasinghe,how is this used i can t recover the account otp is not sent to the email,2023-06-01 18:54:59,1.6.1,1,0,0.147372437620262,0,73
 80c7773e-a7a9-48dc-80a5-dedc9da4464e,Joshua Perera,app isn t working,2023-06-01 01:24:54,1.6.1,1,1,0.9436058396679495,0,17
-86df8f50-e89f-45e9-8f1b-31442779c222,PRAMOD MADURANGA,well the app is overall okay with me but the main issue that is visible to me right now is when most of the time i m about to login to the app and check my data balance and details there are messages shows up displaying service temporarily unavailable oops something went wrong please try again shortly and this really mess me up most of the time btw sometimes everything loads up but the data balance shows n a if you guys can change this i will change my review to 5star immediately,2023-05-31 16:38:43,1.6.1,1,1,0.932720645565034,1,484
+86df8f50-e89f-45e9-8f1b-31442779c222,PRAMOD MADURANGA,well the app is overall okay with me but the main issue that is visible to me right now is when most of the time i m about to login to the app and check my data balance and details there are messages shows up displaying service temporarily unavailable oops something went wrong please try again shortly and this really mess me up most of the time btw sometimes everything loads up but the data balance shows n a if you guys can change this i will change my review to 5star immediately,2023-05-31 16:38:43,1.6.1,1,1,0.9327206054130224,1,484
 41cf7afc-78bb-422a-8e91-f11801fcba7e,The Horizon Flash,well the app is overall okay with me but the main issue that is visible to me right now is when most of the time i m about to login to the app and check my data balance and details there are messages shows up displaying service temporarily unavailable oops something went wrong please try again shortly and this really mess me up most of the time btw sometimes everything loads up but the data balance shows n a if you guys can change this i will change my review to 5star immediately,2023-05-31 16:25:14,1.6.1,1,1,0.9327206054130224,1,484
 411d58eb-40ee-46fc-85d9-444d72e56215,Fahad,the current update is so buggy and unresponsive half the time it says service temporarily unavailable,2023-05-31 15:23:34,1.6.1,2,1,0.9687163727265315,1,101
 02935f1a-5eab-45e5-b87f-cedc8c18a5a2,Nimesh S,not loading the data usage giving me a error tried log out and log in also tried clearing data and cache and log in but still have the error,2023-05-31 05:22:57,1.6.1,1,1,0.9333995394286044,1,140
@@ -960,10 +962,10 @@ d17aa21c-bf04-42ec-8dba-278416baa0b4,Chamika,it works and delivers the functiona
 d4fb17b7-d44b-423b-aac2-60ea47583855,Ishara Diaz,app maintain star,2022-07-01 07:41:02,1.4.2,1,0,0.4751629477198405,0,17
 81c41add-82f3-4349-8f97-d0486cce090e,leake news official,,2022-06-30 14:21:55,,5,0,0.0,0,0
 573f21cc-5d8c-4401-9c3f-aca46a74efaa,Upul Perera,i like it,2022-06-30 00:35:56,1.4.2,3,0,0.0006742072687618814,0,9
-f8b4e5be-59e6-4aaa-9a4c-2c3157c004d3,Piyal Madushanka,i cant pay my e bill using app previous month it works but now its doesnt work,2022-06-28 15:05:00,1.4.2,3,1,0.8490411230197805,0,78
-e91b0e14-181b-4809-a1f1-a71030a95ee8,Dilnayana Rajapakse,gamer lite package eka epic games launcher ekata daanna barida,2022-06-28 05:51:57,,5,0,0.008698029492687531,0,62
+f8b4e5be-59e6-4aaa-9a4c-2c3157c004d3,Piyal Madushanka,i cant pay my e bill using app previous month it works but now its doesnt work,2022-06-28 15:05:00,1.4.2,3,1,0.8490411230197807,0,78
+e91b0e14-181b-4809-a1f1-a71030a95ee8,Dilnayana Rajapakse,gamer lite package eka epic games launcher ekata daanna barida,2022-06-28 05:51:57,,5,0,0.008698029492687553,0,62
 3187fbbb-6672-4fc2-bcff-7f04f2d9fd6f,Supun Vitharanage,,2022-06-27 10:09:33,1.4.2,5,0,0.0,0,0
-fe4b44fa-59d8-4e81-ad0a-ff1b815de7a2,murshid samat,awful user interface the old app was much easier to use,2022-06-27 04:06:25,,1,0,0.08943931003634772,0,55
+fe4b44fa-59d8-4e81-ad0a-ff1b815de7a2,murshid samat,awful user interface the old app was much easier to use,2022-06-27 04:06:25,,1,0,0.08943931003634777,0,55
 ca33461b-33b4-4564-a69d-46698c726552,Chinthaka Jayarathne,people who did the ui ux deserves to be fired its a nightmare for example why can t you show the remaining standard and free data seperately who is interested in knowing standard free remaining data,2022-06-24 13:01:02,1.4.2,1,0,0.18002873356748253,0,198
 7742cdac-7d91-49bc-b99e-f756211da767,Waruna Ranathunga,visa card payments not working,2022-06-24 10:12:31,1.4.2,1,1,0.8578900038091406,1,30
 a76b7946-ba8a-476e-b5ce-7e1697c721bf,Nadeeka Priyadarshani,optional,2022-06-24 05:18:44,1.4.2,3,0,0.014507172645008667,0,8
@@ -1001,7 +1003,7 @@ c714e17f-c730-4420-8d24-8e20fb857a01,Lahiruka Wijesinghe,i would like to report 
 9c875318-bb46-4bfa-8c8a-32347082ec8a,Dushara Divyanjalee,i m disappointed with the customer service this app was really good before but now i m having difficulties in paying online i have complained several times but they didn t provide a sollution poor customer service,2022-05-21 16:54:47,1.4.2,1,0,0.47069835215694056,0,213
 547fb5d1-ca41-4741-a651-aef0b7444da8,Theja Wijesinghe,inexpensive,2022-05-20 03:12:36,1.4.2,4,0,0.02695246917484556,0,11
 dc5f9ce4-a2a5-4339-98e5-bda66baf19bc,Kumudu Nimali,better service,2022-05-19 15:47:32,1.4.2,5,0,0.004095605075006912,0,14
-d97c1d77-c39a-4e13-98f7-f23f3496a62e,Tharindu Kanishka,wanted i upgrade my internet package they promising that the app will provode efficient service but my request is still inprogress and now i cannot upgrade it by calling the call center they are saying that i need to wait because i have already requested it via my slt app nonsense,2022-05-18 05:04:03,1.4.2,1,0,0.2092440973643864,0,281
+d97c1d77-c39a-4e13-98f7-f23f3496a62e,Tharindu Kanishka,wanted i upgrade my internet package they promising that the app will provode efficient service but my request is still inprogress and now i cannot upgrade it by calling the call center they are saying that i need to wait because i have already requested it via my slt app nonsense,2022-05-18 05:04:03,1.4.2,1,0,0.20924391206974205,0,281
 835b35fc-d6c3-4cc5-bcd2-2a375b167e83,amitha dilshan,esy pay,2022-05-14 03:14:11,1.4.2,4,0,0.006806499687849398,0,7
 7ea8a9de-bcc5-4ed8-bd1c-6b3bb51ab231,Lavanya Malkini,cool,2022-05-12 05:55:49,1.4.2,5,0,0.005234296781611224,0,4
 5a1d9b88-8ef7-42a7-be6b-30452509643f,Midu Shan,useless you can t even make payment it won t work,2022-05-11 16:35:12,,1,1,0.9435444070603639,0,49
@@ -1019,7 +1021,7 @@ f603d349-e1cc-420c-856f-7898331247cd,Chathula Ranasinghe (Chathu),great app,2022
 914a0bb3-0345-4451-90ee-33953d0d87eb,Akash Randul,wow love slt,2022-04-06 12:52:13,,5,0,0.012158119699610455,0,12
 0385d0c7-3827-4071-9a27-4a27ee7435a1,Ravi Shankar,,2022-04-04 07:14:03,1.4.1,5,0,0.0,0,0
 2b773a74-41b2-43d2-bc9a-f44817666980,Vindya Samaranayake,slt broadband is better than this,2022-04-03 04:22:03,1.4.2,1,0,0.01738088772035239,0,33
-2ca46cf1-c210-4c73-8c13-44cb4823b322,Monica Suriyaarachchi,have a message board on the app to inform the customer of any common outage problems related to his area or islandwide or if his connection is disconnected for some reason state that on this message board so that slt can avoid many calls to their hotline call centre,2022-03-30 02:57:33,1.4.2,3,1,0.5837578177905063,1,266
+2ca46cf1-c210-4c73-8c13-44cb4823b322,Monica Suriyaarachchi,have a message board on the app to inform the customer of any common outage problems related to his area or islandwide or if his connection is disconnected for some reason state that on this message board so that slt can avoid many calls to their hotline call centre,2022-03-30 02:57:33,1.4.2,3,1,0.58375816781966,1,266
 7ad387c0-86d3-4a53-9075-68ab24e95817,Shanike De Silva,why is this app restricted for root users,2022-03-29 13:50:06,1.4.2,1,1,0.6138891511698322,0,41
 13cc0bbe-5063-45fc-bdeb-839c358be906,Sahull Hameed,my fahakee sahumkk,2022-03-27 12:20:25,1.4.2,3,0,0.00039846808261569463,0,18
 aba88f44-994d-4be6-8a7b-12054711bff7,Asitha Dissanayaka,easy to use and usefull must add a refresh option when in the app,2022-03-20 09:45:51,1.4.2,4,0,0.12374636038897557,0,65
@@ -1088,7 +1090,7 @@ e09ee91e-1a55-4362-a21a-c2208a559f15,Hashen Mihiranga,my favorite data saver app
 436f64ef-eca3-46a6-8397-88a5e884345e,Niwantha Bandara,nice,2021-12-22 16:16:56,1.4.1,5,0,0.0017701662472764809,0,4
 7aae2324-1e84-4c3e-8338-81b4036df26e,Manoja Gunarangi,very good app this is the best app i had ever used,2021-12-22 14:50:43,1.4.2,5,0,0.0027620858069081692,0,50
 2a6e4f7c-cce0-46c8-8715-d6407df0bb62,Chathura Weerakoon,superb,2021-12-22 14:03:51,,5,0,0.0016410403637468576,0,6
-8471355d-283d-4ecc-970b-ab56af08a9dc,Namal Rangana,this app needs a huge change starting from boring user interface only usable buttons are the pay package balance buttons every other thing is useless exept for promotions what s the meaning of your moto the connection when we have to install another app to check mobile connection info lol,2021-12-22 12:32:39,1.4.2,1,1,0.5322066810672221,0,289
+8471355d-283d-4ecc-970b-ab56af08a9dc,Namal Rangana,this app needs a huge change starting from boring user interface only usable buttons are the pay package balance buttons every other thing is useless exept for promotions what s the meaning of your moto the connection when we have to install another app to check mobile connection info lol,2021-12-22 12:32:39,1.4.2,1,1,0.5322069497278121,0,289
 ec6723dd-471f-4e4b-b5af-2881fe815beb,Krishnapillai Muralitharan,it is easy to control the data,2021-12-22 12:28:31,1.4.2,3,0,0.016232719391525513,0,30
 81f12470-759d-41f4-8d3c-9d392622ac32,kithsara digital,good,2021-12-22 07:14:38,1.4.1,5,0,0.0010869129084241373,0,4
 497bea8b-bc80-453a-9651-5a654635f623,Mathusa,good,2021-12-22 06:48:38,1.4.2,4,0,0.0010869129084241373,0,4
@@ -1108,7 +1110,7 @@ cf1f1a46-1ca1-4327-b871-b2eb3db09b41,Zackary Perera,so far slt fibre is the best
 80131c5c-3bb2-4a03-8ef1-bc37a229174c,Hasith Malshan,poor costomer service,2021-12-13 16:53:41,1.4.2,1,0,0.2260691265029098,0,21
 ec0e6d92-16b4-40e3-a5f3-3d300ba1950c,Visula Ketagoda,they scammed 1000 from me i activated a slt gamer lite bundle but everytime i activate it it says that i ve consumed all data and when contacted customer care they say that i ve used all of my data in like 1 second even tho they don t even have a 100mbps speed,2021-12-12 06:16:21,,1,0,0.048222257296944696,0,260
 71dc534f-c539-4154-bf07-2916d5b08a1a,Lakindu Abimaan,good and easy,2021-12-08 07:33:02,,5,0,0.0012600122719155912,0,13
-ecdcf826-088a-415f-9352-b38d8f1578e8,HASITHA,nothing works properly except for the pay button once i upgraded my internet connection through the app but it had not been upgraded when i called the slt service center they mentioned that the app doesn t support upgrades even if it has an connection upgrade button,2021-12-07 04:24:36,1.4.2,1,1,0.6588288683552461,0,266
+ecdcf826-088a-415f-9352-b38d8f1578e8,HASITHA,nothing works properly except for the pay button once i upgraded my internet connection through the app but it had not been upgraded when i called the slt service center they mentioned that the app doesn t support upgrades even if it has an connection upgrade button,2021-12-07 04:24:36,1.4.2,1,1,0.65882885495848,0,266
 0886aa9a-d6f0-4687-907b-59626727463b,martstudio photo,good,2021-12-05 15:52:30,,5,0,0.0010869129084241373,0,4
 7e2bf863-5b76-4e89-8e2f-5fa6f8eb28ee,Punsara Umesh,i can t register every time i try it says try again,2021-12-04 13:43:14,1.4.1,1,1,0.8997520703993553,0,51
 2d581b39-76dc-45ef-88b2-9e7a21f967f0,WISDOM WORKS,did not receive otp in forgot my password then got an error message saying null,2021-12-01 17:42:37,,1,0,0.4066027660581896,1,79
@@ -1246,7 +1248,7 @@ ea65b4a2-9460-42b9-9286-03a02cf4a0e9,chamalka jayasinghe,hmm awlk ne gammk,2021-
 45458b3a-9aec-4919-a02c-1efe21308dc1,Priyantha Senadeera,,2021-09-28 06:05:20,,5,0,0.0,0,0
 0b628458-aa4e-45b9-8c71-fa3bcf0a8f64,Srikantha Janakaruban (Janakan),super,2021-09-27 11:14:46,1.4.0,5,0,0.0017924086864118875,0,5
 5db00b5c-b8a4-44fb-9dd0-8f65e468ccaa,Wasantha Kalahe,cannot clearly see the history of bill amounts,2021-09-27 11:04:53,1.3.2,1,1,0.8113984999743313,0,46
-dd23669e-cf74-411f-ba59-f20eb3557c79,Vikasitha Sathsara,very bad and useless app can t even log into it do not even install it it is a wastage of your data,2021-09-27 08:19:31,1.3.2,1,1,0.8759505197296513,0,99
+dd23669e-cf74-411f-ba59-f20eb3557c79,Vikasitha Sathsara,very bad and useless app can t even log into it do not even install it it is a wastage of your data,2021-09-27 08:19:31,1.3.2,1,1,0.8759504925886296,0,99
 74be1ccc-39d8-46df-83af-31b52d45f93d,Herath GBHerath,good app,2021-09-26 15:14:15,1.3.2,5,0,0.0035658865044496603,0,8
 14933dc9-8dd2-4a66-894f-ecfd2c8bde83,Exclusive Techniques,this app is good but needs to be improved app devoloper hasn t considered about the overall look appearance of this app and i get something was wrong message sown up everytime i open this app at the beginning my dialog app was the same but they have updated it and a lot of bugs are now fixed and now it has amazing little animations improving overall quality of the app,2021-09-26 14:24:16,1.3.2,4,0,0.16667957099049618,2,370
 177c1e7d-91db-42f0-ab0b-de40b49d6efb,Prasan Susantha,fake app this app always waist data with time and money i highly not recommended this app,2021-09-26 11:29:34,,1,0,0.03485125002119147,0,89
@@ -1460,7 +1462,7 @@ ba6836e5-3477-445a-a8f0-ecb58cd5f3fd,Hansaja Indipa,bad app,2021-06-16 18:09:39,
 1751dd55-907c-42d9-9c11-1f8c10de4592,Hansa sandamal,i like this app good luck,2021-06-16 04:55:32,1.3.2,3,0,0.01178585992147459,0,25
 8b4deb18-66e1-4c96-ba37-87122e727888,Ruwan Kumara,nice apps,2021-06-15 23:11:51,1.3.0,5,0,0.003242896911193103,0,9
 2ecf6ed5-75f9-4594-b33e-f5cffc7bd763,Nalaka Chathuranga,it s use full app but some time bad service new interface not bad,2021-06-15 19:36:24,1.3.2,4,0,0.16451310796992594,0,65
-911855d6-67e8-42ab-84bc-96388e9f400f,Akki Shanth,good speed,2021-06-15 18:50:31,1.3.2,5,0,0.000515681223395108,0,10
+911855d6-67e8-42ab-84bc-96388e9f400f,Akki Shanth,good speed,2021-06-15 18:50:31,1.3.2,5,0,0.0005156812233951076,0,10
 b46b1f87-d0fb-4551-8df7-b3ecb4a4c993,Mohamed Insham,good,2021-06-15 17:05:22,1.2.8,5,0,0.0010869129084241373,0,4
 b1f48d17-4488-42e9-aa1e-ecc62b31044f,manjula watthegedara,don t install the app it is not easy to work,2021-06-15 15:49:41,1.3.2,1,0,0.23400226870044974,0,44
 ca99a2f4-7de1-4cff-94b5-bb9556c14026,nalin nishantha,wow,2021-06-15 13:50:43,,1,0,0.012706674927524631,0,3
@@ -1586,7 +1588,7 @@ a593b8e8-240e-43ce-a2d4-6e3281d8cc9c,Annasamy Harrish,no any way to view the det
 9e8f5a00-2932-4d8e-b513-c5921aca38ac,rajitha munasinghe,useless app even can t submit otp at beginning,2021-05-16 04:35:39,,1,1,0.8740224391237625,0,46
 96bb048d-8ea2-4adb-90ad-159aa67b57d9,Sajika Nawod,app,2021-05-15 08:10:26,,2,0,0.029822783877214435,0,3
 b963cec3-607c-44e7-a8fd-36668cb7add2,hiruni himasha,really bad i try to sign and always pop up invalid passwor or user name and also my father went slt gampaha branch to create slt account to phone the branch members are also even dont know how to create the account finally we decided to switch again to dialog such a biggest company failed to create app for customers really bad and wrost,2021-05-15 05:11:05,,1,1,0.5035557464294965,1,338
-0f6feb82-5334-4d83-8701-e273e1a57ee6,Sandaru Hettiarachchi,when i submit otp code the app says app requires a working internet connection which you don t have at the moment hey i was connected to my slt router at the moment which i used to download the app a few moments ago,2021-05-15 03:11:32,1.2.8,1,1,0.8043938844737494,0,215
+0f6feb82-5334-4d83-8701-e273e1a57ee6,Sandaru Hettiarachchi,when i submit otp code the app says app requires a working internet connection which you don t have at the moment hey i was connected to my slt router at the moment which i used to download the app a few moments ago,2021-05-15 03:11:32,1.2.8,1,1,0.8043939393988939,0,215
 23be3e19-71ad-4d61-88a8-04bfb8f70c37,Prasanga Dodangoda,bad,2021-05-14 05:57:19,,1,0,0.0025768205082465643,0,3
 ea46094c-468e-4f0f-8f4d-6b129a38b2f5,RAVINDU AVISHKA,the worst app,2021-05-13 08:16:41,1.2.8,1,0,0.002955633162641027,0,13
 ddaf2d8e-e341-431b-bb32-1586c32f9204,Niroshan Bandara,,2021-05-13 02:54:25,,5,0,0.0,0,0
